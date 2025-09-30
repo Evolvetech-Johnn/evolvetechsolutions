@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Política de Privacidade da Evolve Tech Solutions - Informações sobre coleta de dados e contato.">
+    <meta name="keywords" content="política de privacidade, Evolve Tech Solutions, proteção de dados, privacidade">
+    <meta name="author" content="Evolve Tech Team">
+    <meta name="robots" content="index, follow">
+    <meta name="geo.region" content="BR-PR">
+    <meta name="geo.placename" content="Londrina, Paraná">
+    <meta name="geo.position" content="-23.310066;-51.159520">
+    <meta name="ICBM" content="-23.310066, -51.159520">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#007bff">
+    <meta name="language" content="pt-BR">
+    <meta property="fb:app_id" content="SEU_APP_ID_AQUI">
+    <link rel="canonical" href="https://www.evolvetech.com.br/privacy-policy.html">
+    <meta property="og:title" content="Política de Privacidade - Evolve Tech Solutions">
+    <meta property="og:description" content="Saiba como a Evolve Tech Solutions protege seus dados. Leia nossa Política de Privacidade.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.evolvetech.com.br/privacy-policy.html">
+    <meta property="og:image" content="/img/logo evolve.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Política de Privacidade - Evolve Tech Solutions">
+    <meta name="twitter:description" content="Saiba como a Evolve Tech Solutions protege seus dados. Leia nossa Política de Privacidade.">
+    <meta name="twitter:image" content="/images/og-image.jpg">
+    <title>Política de Privacidade - Evolve Tech Solutions</title>
+    <link rel="icon" type="image/x-icon" href="/img/LogoVS.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/responsive.css">
+    <style>
+        /* Privacy Policy Specific Styles */
+        .privacy-policy {
+            padding: var(--spacing-2xl) 0;
+            margin-top: 100px; /* Push content below fixed header */
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            position: relative;
+            overflow: hidden;
+            min-height: calc(100vh - 200px); /* Ensure content fills viewport */
+        }
+
+        .privacy-policy .container {
+            max-width: 800px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .privacy-policy h1 {
+            font-size: clamp(1.5rem, 4vw, var(--font-size-2xl));
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        .privacy-policy h1::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+        }
+
+        .privacy-policy h2 {
+            font-size: clamp(1rem, 3vw, var(--font-size-lg));
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: var(--spacing-xs);
+        }
+
+        .privacy-policy h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-blue);
+            border-radius: var(--radius-full);
+        }
+
+        .privacy-policy p {
+            font-size: clamp(0.875rem, 2.5vw, var(--font-size-md));
+            color: var(--text-muted);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.8;
+        }
+
+        .privacy-policy a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: var(--transition-base);
+        }
+
+        .privacy-policy a:hover,
+        .privacy-policy a:focus {
+            color: var(--accent-blue-dark);
+            text-decoration: underline;
+            transform: translateX(3px);
+            outline: none;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            background: var(--gradient-primary);
+            color: var(--text-dark);
+            border: none;
+            border-radius: var(--radius-xl);
+            font-size: clamp(0.875rem, 2.5vw, var(--font-size-md));
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-md), var(--shadow-glow-blue);
+            margin: var(--spacing-md) auto;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-secondary);
+            opacity: 0;
+            z-index: -1;
+            transform: scale(1.2);
+            transition: var(--transition-base);
+        }
+
+        .contact-btn:hover,
+        .contact-btn:focus {
+            transform: translateY(-5px) scale(1.08) rotate(2deg);
+            box-shadow: var(--shadow-lg), var(--shadow-glow-blue);
+            outline: none;
+        }
+
+        .contact-btn:hover::before,
+        .contact-btn:focus::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .contact-btn i {
+            margin-right: var(--spacing-sm);
+            font-size: 1.4em;
+            animation: iconPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .privacy-policy {
+                margin-top: 80px; /* Adjust for smaller header */
+                padding: var(--spacing-xl) 0;
+            }
+
+            .privacy-policy .container {
+                padding: 0 var(--spacing-md);
+                max-width: 90%;
+            }
+
+            .privacy-policy h1 {
+                font-size: clamp(1.25rem, 3.5vw, var(--font-size-xl));
+                margin-bottom: var(--spacing-lg);
+            }
+
+            .privacy-policy h2 {
+                font-size: clamp(0.875rem, 2.5vw, var(--font-size-md));
+                margin-top: var(--spacing-lg);
+            }
+
+            .privacy-policy p {
+                font-size: clamp(0.75rem, 2vw, var(--font-size-sm));
+                margin-bottom: var(--spacing-md);
+            }
+
+            .contact-btn {
+                padding: 0.75rem 2rem;
+                font-size: clamp(0.75rem, 2vw, var(--font-size-sm));
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .privacy-policy {
+                margin-top: 70px;
+                padding: var(--spacing-lg) 0;
+            }
+
+            .privacy-policy .container {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .privacy-policy h1 {
+                font-size: clamp(1rem, 3vw, var(--font-size-lg));
+            }
+
+            .privacy-policy h2 {
+                font-size: clamp(0.75rem, 2vw, var(--font-size-sm));
+            }
+
+            .privacy-policy p {
+                font-size: clamp(0.625rem, 1.8vw, var(--font-size-xs));
+            }
+
+            .contact-btn {
+                padding: 0.5rem 1.5rem;
+                font-size: clamp(0.625rem, 1.8vw, var(--font-size-xs));
+                max-width: 200px;
+            }
+
+            .contact-btn i {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Evolve Tech",
+        "url": "https://www.evolvetech.com.br",
+        "logo": "/images/logo.png",
+        "description": "Empresa que cria sites e oferece soluções tecnológicas como desenvolvimento web, SEO, chatbots e aplicativos mobile.",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+55-43-98870-4856",
+            "contactType": "Customer Service",
+            "areaServed": "BR",
+            "availableLanguage": "Portuguese"
+        },
+        "sameAs": [
+            "https://wa.me/5543988704856",
+            "https://www.linkedin.com/company/evolvetech",
+            "https://www.instagram.com/evolvetech"
+        ]
+    }
+    </script>
+</head>
+<body class="theme-blue">
+    <!-- Preloader -->
+    <div class="preloader" aria-hidden="true">
+        <div class="loader">
+            <div class="loader__circle loader__circle--primary"></div>
+            <div class="loader__circle loader__circle--secondary"></div>
+            <div class="loader__circle loader__circle--tertiary"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+                <span class="menu-toggle__line"></span>
+                <span class="menu-toggle__line"></span>
+                <span class="menu-toggle__line"></span>
+            </button>
+            <button class="theme-toggle" aria-label="Alternar tema">
+                <i class="fas fa-adjust"></i>
+            </button>
+            <a href="/" class="logo">
+                <img src="/img/logoHeaderNeon.png" alt="Evolve Tech Logo" class="logo-img">
+            </a>
+            <nav aria-label="Navegação principal">
+                <ul>
+                    <li><a href="/#home">Home</a></li>
+                    <li><a href="/#tecnologias">Tecnologias</a></li>
+                    <li><a href="/#portfolio">Portfólio</a></li>
+                    <li><a href="/#historia" class="historia-toggle">Nossa História</a></li>
+                    <li><a href="/#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" aria-hidden="true"></div>
+
+    <!-- Main Content -->
+    <main>
+        <section class="privacy-policy">
+            <div class="container">
+                <h1 class="animate-on-scroll">Política de Privacidade – Evolve Tech Solutions</h1>
+                <p class="animate-on-scroll">Última atualização: 19/05/2025</p>
+                <p class="animate-on-scroll">
+                    O aplicativo Evolve Tech Solutions foi desenvolvido apenas para exibir o conteúdo do site 
+                    <a href="https://evolvetechsolutions.com.br" target="_blank" rel="noopener noreferrer">https://evolvetechsolutions.com.br</a> 
+                    por meio de uma visualização WebView.
+                </p>
+                <p class="animate-on-scroll">
+                    Este aplicativo não coleta, armazena ou compartilha nenhum tipo de dado pessoal dos usuários.
+                </p>
+                <h2 class="animate-on-scroll">Coleta de Dados</h2>
+                <p class="animate-on-scroll">
+                    Nenhum dado pessoal (como nome, e-mail, CPF ou localização) é solicitado ou processado pelo aplicativo.
+                </p>
+                <h2 class="animate-on-scroll">Contato</h2>
+                <p class="animate-on-scroll">
+                    Em caso de dúvidas, entre em contato pelo e-mail: 
+                    <a href="mailto:contato@evolvetechsolutions.com.br">contato@evolvetechsolutions.com.br</a>
+                </p>
+                <a href="mailto:contato@evolvetechsolutions.com.br" class="contact-btn animate-on-scroll" aria-label="Entrar em contato por e-mail">
+                    <i class="fas fa-envelope"></i> Entrar em Contato
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>
+                © 2025 Evolve Tech. Todos os direitos reservados. | 
+                <a href="/privacy-policy.html" class="privacy-btn" aria-label="Ver Política de Privacidade">
+                    <i class="fas fa-shield-alt"></i> Política de Privacidade
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="/index.js"></script>
+</body>
+</html>
