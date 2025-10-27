@@ -1,0 +1,239 @@
+/* Navbar Styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(15, 23, 42, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbarContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+/* Logo Styles */
+.navbarLogo {
+  text-decoration: none;
+  z-index: 1001;
+}
+
+.navbarLogoContent {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navbarLogoText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.navbarLogoAccent {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+/* Desktop Navigation */
+.navbarNav {
+  display: flex;
+  align-items: center;
+}
+
+.navbarList {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbarItem {
+  position: relative;
+}
+
+.navbarLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: var(--border-radius-lg);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navbarLink:hover {
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+.navbarLink.active {
+  color: var(--color-accent);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.navbarLink.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 1px;
+}
+
+/* Mobile Menu Button */
+.navbarToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-md);
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.navbarToggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: none;
+}
+
+/* Mobile Menu Overlay */
+.navbarOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Mobile Menu */
+.navbarMobile {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  background: var(--color-card);
+  border-left: 1px solid var(--color-border);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.navbarMobileContent {
+  padding: 5rem 2rem 2rem;
+}
+
+.navbarMobileList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.navbarMobileItem {
+  width: 100%;
+}
+
+.navbarMobileLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: var(--border-radius-lg);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.navbarMobileLink:hover {
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+.navbarMobileLink.active {
+  color: var(--color-accent);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbarNav {
+    display: none;
+  }
+  
+  .navbarToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .navbarContainer {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbarContainer {
+    height: 60px;
+  }
+  
+  .navbarLogoText,
+  .navbarLogoAccent {
+    font-size: 1.25rem;
+  }
+  
+  .navbarMobile {
+    width: 100%;
+  }
+}
+
+/* Skip Link Styles */
+.skipLink {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-accent);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1002;
+  transition: top 0.3s ease;
+}
+
+.skipLink:focus {
+  top: 6px;
+}

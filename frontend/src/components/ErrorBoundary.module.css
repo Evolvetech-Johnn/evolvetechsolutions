@@ -1,0 +1,132 @@
+.errorBoundary {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+.errorContainer {
+  background: white;
+  border-radius: 16px;
+  padding: 3rem;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.errorIcon {
+  color: #ef4444;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.errorTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.errorMessage {
+  font-size: 1.1rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.errorButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.errorButtonPrimary {
+  background: #3b82f6;
+  color: white;
+}
+
+.errorButtonPrimary:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+.errorButtonSecondary {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.errorButtonSecondary:hover {
+  background: #e5e7eb;
+  transform: translateY(-2px);
+}
+
+.errorDetails {
+  text-align: left;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.errorDetails summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.errorStack {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 640px) {
+  .errorBoundary {
+    padding: 1rem;
+  }
+  
+  .errorContainer {
+    padding: 2rem 1.5rem;
+  }
+  
+  .errorTitle {
+    font-size: 1.5rem;
+  }
+  
+  .errorActions {
+    flex-direction: column;
+  }
+  
+  .errorButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
