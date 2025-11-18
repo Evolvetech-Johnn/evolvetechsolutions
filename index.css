@@ -904,6 +904,226 @@ nav ul li a:hover::after, nav ul li a:focus::after {
     gap: var(--spacing-sm);
 }
 
+/* Process Management Section */
+.process-management {
+    padding: var(--spacing-2xl) 0;
+    background: var(--bg-dark);
+    color: var(--text-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.process-management::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.15), transparent 50%),
+        radial-gradient(circle at 80% 10%, rgba(199, 0, 255, 0.12), transparent 55%),
+        radial-gradient(circle at 50% 90%, rgba(0, 255, 153, 0.08), transparent 60%);
+    z-index: 0;
+}
+
+.process-management .container {
+    position: relative;
+    z-index: 1;
+}
+
+.process-management .section-header {
+    max-width: 720px;
+    margin: 0 auto var(--spacing-xl);
+    text-align: center;
+}
+
+.process-management .section-header p {
+    color: var(--text-muted);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.process-card {
+    background: rgba(15, 17, 26, 0.8);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.process-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--gradient-primary);
+}
+
+.process-card h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.process-card p {
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-base);
+}
+
+.process-card ul {
+    list-style: none;
+    display: grid;
+    gap: var(--spacing-xs);
+    color: var(--text-dark);
+}
+
+.process-card li {
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: var(--font-size-sm);
+}
+
+.process-card li::before {
+    content: '\f058';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+.workflow-section {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.workflow-section h3 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.workflow-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.workflow-step {
+    background: rgba(26, 27, 46, 0.85);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.workflow-step h4 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.workflow-step p {
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+}
+
+.step-number {
+    position: absolute;
+    top: var(--spacing-base);
+    right: var(--spacing-base);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: rgba(0, 212, 255, 0.15);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.status-tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.status-tags .tag {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-dark);
+    letter-spacing: 0.02em;
+}
+
+.status-tags .tag.vendedor { background: rgba(0, 212, 255, 0.2); }
+.status-tags .tag.juridico { background: rgba(199, 0, 255, 0.2); }
+.status-tags .tag.tecnico { background: rgba(0, 255, 153, 0.2); }
+.status-tags .tag.assinatura { background: rgba(255, 199, 0, 0.2); }
+.status-tags .tag.aberto { background: rgba(255, 255, 255, 0.15); }
+.status-tags .tag.andamento { background: rgba(0, 212, 255, 0.15); }
+.status-tags .tag.concluido { background: rgba(0, 255, 153, 0.18); }
+
+.status-tracker {
+    background: rgba(15, 17, 26, 0.85);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow-md);
+}
+
+.tracker-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.tracker-header p {
+    color: var(--text-muted);
+}
+
+.tracker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.tracker-card {
+    background: rgba(26, 27, 46, 0.8);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    box-shadow: var(--shadow-sm);
+}
+
+.tracker-card p {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    flex: 1;
+}
+
+.metric {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: rgba(0, 212, 255, 0.18);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.03em;
+}
+
 /* Contact Section Enhanced */
 .contato {
     padding: var(--spacing-2xl) 0;
@@ -1657,9 +1877,15 @@ footer::before {
     .tecnologias-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
-    
+
     .portfolio-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .process-grid,
+    .workflow-steps,
+    .tracker-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
 
@@ -1927,6 +2153,40 @@ footer::before {
         max-width: 200px;
         padding: var(--spacing-sm);
     }
+
+    /* AbraEnergia Process Section */
+    .process-management .container {
+        display: block;
+        text-align: left;
+        padding: 0 var(--spacing-sm);
+    }
+
+    .process-management .section-header {
+        text-align: center;
+    }
+
+    .process-grid,
+    .workflow-steps,
+    .tracker-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .process-card,
+    .workflow-step,
+    .tracker-card {
+        padding: var(--spacing-lg);
+        text-align: left;
+    }
+
+    .step-number {
+        position: static;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .status-tags {
+        justify-content: flex-start;
+    }
 }
 
 /* Very small devices (up to 480px) */
@@ -1992,6 +2252,21 @@ footer::before {
     .quick-budget-modal-content {
         max-width: 95%;
         padding: var(--spacing-sm);
+    }
+
+    .process-card,
+    .workflow-step,
+    .tracker-card {
+        padding: var(--spacing-base);
+    }
+
+    .status-tags {
+        gap: calc(var(--spacing-xs) / 2);
+    }
+
+    .metric {
+        width: 100%;
+        justify-content: center;
     }
 }
 
