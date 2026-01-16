@@ -97,7 +97,7 @@ const Home = () => {
   return (
     <div className={styles.home}>
       {/* Hero Section */}
-      <section className={styles.hero}>
+      <section className={styles.hero} aria-label="Seção principal">
         <div className={styles.heroContainer}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -113,13 +113,13 @@ const Home = () => {
               que impulsionam o crescimento do seu negócio com tecnologia de ponta.
             </p>
             <div className={styles.heroActions}>
-              <Link to="/portfolio" className={`${styles.heroButton} ${styles.heroButtonPrimary}`}>
-                <Globe size={20} />
+              <Link to="/portfolio" className={`${styles.heroButton} ${styles.heroButtonPrimary}`} aria-label="Ver nosso portfólio de projetos">
+                <Globe size={20} aria-hidden="true" />
                 Ver Portfólio
-                <ArrowRight size={20} />
+                <ArrowRight size={20} aria-hidden="true" />
               </Link>
-              <Link to="/contact" className={`${styles.heroButton} ${styles.heroButtonSecondary}`}>
-                <MessageCircle size={20} />
+              <Link to="/contact" className={`${styles.heroButton} ${styles.heroButtonSecondary}`} aria-label="Entre em contato conosco">
+                <MessageCircle size={20} aria-hidden="true" />
                 Fale Conosco
               </Link>
             </div>
@@ -128,7 +128,7 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className={styles.services}>
+      <section className={styles.services} aria-labelledby="services-title">
         <div className={styles.servicesContainer}>
           <motion.div
             className={styles.servicesHeader}
@@ -137,7 +137,7 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className={styles.servicesTitle}>Nossos Serviços</h2>
+            <h2 id="services-title" className={styles.servicesTitle}>Nossos Serviços</h2>
             <p className={styles.servicesDescription}>
               Oferecemos soluções completas para todas as suas necessidades digitais
             </p>
@@ -153,14 +153,14 @@ const Home = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className={styles.serviceCardIcon}>
+                <div className={styles.serviceCardIcon} aria-hidden="true">
                   <service.icon size={48} />
                 </div>
                 <h3 className={styles.serviceCardTitle}>{service.title}</h3>
                 <p className={styles.serviceCardDescription}>{service.description}</p>
-                <Link to="/portfolio" className={styles.serviceCardLink}>
+                <Link to="/portfolio" className={styles.serviceCardLink} aria-label={`Saiba mais sobre ${service.title}`}>
                   Saiba mais
-                  <ArrowRight size={16} />
+                  <ArrowRight size={16} aria-hidden="true" />
                 </Link>
               </motion.div>
             ))}
@@ -169,7 +169,7 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className={styles.stats}>
+      <section className={styles.stats} aria-label="Estatísticas da empresa">
         <div className={styles.statsContainer}>
           <div className={styles.statsGrid}>
             {stats.map((stat, index) => (
@@ -190,7 +190,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className={styles.cta}>
+      <section className={styles.cta} aria-label="Chamada para ação">
         <div className={styles.ctaContainer}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -202,10 +202,10 @@ const Home = () => {
             <p className={styles.ctaDescription}>
               Entre em contato conosco e vamos transformar sua ideia em realidade
             </p>
-            <Link to="/contact" className={styles.ctaButton}>
-              <MessageCircle size={20} />
+            <Link to="/contact" className={styles.ctaButton} aria-label="Iniciar novo projeto">
+              <MessageCircle size={20} aria-hidden="true" />
               Iniciar Projeto
-              <ArrowRight size={20} />
+              <ArrowRight size={20} aria-hidden="true" />
             </Link>
           </motion.div>
         </div>

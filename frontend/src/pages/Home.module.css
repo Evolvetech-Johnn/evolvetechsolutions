@@ -4,37 +4,66 @@
 
 /* Hero Section */
 .hero {
-  padding: var(--spacing-2xl) 0 var(--spacing-xl) 0;
-  background: linear-gradient(135deg, var(--color-gray-900) 0%, var(--color-gray-800) 100%);
+  padding: 8rem 0 6rem 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%),
+              url('/hero-bg.png') center/cover no-repeat;
+  background-attachment: fixed;
   color: var(--color-white);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .heroContainer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: 0 var(--spacing-xl);
+  position: relative;
+  z-index: 1;
 }
 
 .heroTitle {
-  font-size: var(--font-size-5xl);
-  font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
   margin: 0 0 var(--spacing-lg) 0;
   line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .heroAccent {
-  color: var(--color-accent);
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 5s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .heroSubtitle {
-  font-size: var(--font-size-xl);
-  color: var(--color-gray-300);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  color: #e2e8f0;
   margin: 0 0 var(--spacing-2xl) 0;
-  max-width: 600px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.6;
+  line-height: 1.7;
+  font-weight: 400;
 }
 
 .heroActions {
@@ -116,37 +145,64 @@
 }
 
 .serviceCard {
-  background-color: var(--color-white);
-  padding: var(--spacing-xl);
-  border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--color-gray-200);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: var(--spacing-2xl);
+  border-radius: var(--border-radius-2xl);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.1);
   text-align: center;
-  transition: all var(--transition-normal);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.serviceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.serviceCard:hover::before {
+  transform: scaleX(1);
 }
 
 .serviceCard:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--color-accent);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2),
+              0 0 0 1px rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.4);
 }
 
 .serviceCardIcon {
   color: var(--color-accent);
   margin-bottom: var(--spacing-lg);
+  transition: transform 0.3s ease;
+}
+
+.serviceCard:hover .serviceCardIcon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .serviceCardTitle {
   font-size: var(--font-size-xl);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-gray-900);
   margin: 0 0 var(--spacing-md) 0;
+  font-family: var(--font-family-heading);
 }
 
 .serviceCardDescription {
-  color: var(--color-gray-600);
-  line-height: 1.6;
+  color: var(--color-gray-700);
+  line-height: 1.7;
   margin: 0 0 var(--spacing-lg) 0;
+  font-size: var(--font-size-base);
 }
 
 .serviceCardLink {
@@ -155,12 +211,29 @@
   gap: var(--spacing-sm);
   color: var(--color-accent);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: all var(--transition-normal);
+  position: relative;
+}
+
+.serviceCardLink::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.serviceCardLink:hover::after {
+  width: 100%;
 }
 
 .serviceCardLink:hover {
   color: var(--color-accent-hover);
+  transform: translateX(4px);
 }
 
 /* Stats Section */

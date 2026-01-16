@@ -1,3 +1,6 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
 /* CSS Variables */
 :root {
   /* Colors */
@@ -5,8 +8,8 @@
   --color-secondary: #1e293b;
   --color-accent: #3b82f6;
   --color-accent-hover: #2563eb;
-  --color-text: #cbd5e1;
-  --color-text-muted: #94a3b8;
+  --color-text: #e2e8f0;
+  --color-text-muted: #a1a1aa;
   --color-white: #ffffff;
   --color-black: #000000;
   --color-gray-50: #f8fafc;
@@ -56,6 +59,7 @@
   
   /* Typography */
   --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   --font-family-mono: 'Fira Code', 'Monaco', 'Cascadia Code', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
   
   /* Font sizes */
@@ -197,6 +201,7 @@ body {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-white);
+  font-family: var(--font-family-heading);
   font-weight: 700;
   line-height: var(--line-height-tight);
   margin-bottom: var(--spacing-md);
@@ -598,4 +603,50 @@ a:hover {
     --bg-card: rgba(255, 255, 255, 0.8);
     --color-border: #e2e8f0;
   }
+}
+
+/* ======================================
+   ACCESSIBILITY ENHANCEMENTS
+   ====================================== */
+
+/* Respect user's preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Enhanced focus indicators for keyboard navigation */
+*:focus {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.2);
+}
+
+/* Enhanced button focus states */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.2);
+}
+
+/* Skip link enhancement */
+.skip-link:focus-visible {
+  outline: 3px solid var(--color-white);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }

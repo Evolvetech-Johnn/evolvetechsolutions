@@ -1,17 +1,96 @@
 // Sistema de mapeamento interno para URLs reais (não exposto no frontend)
 const urlMapping = {
-  'abrastandard': 'www.abrastandard.org',
-  'abraenergia': 'www.abraenergia.com.br',
-  'respira-sustentabilidade': 'www.respirasustentabilidade.com.br',
-  'instituto-ecovitta': 'www.institutoecovitta.org',
-  'start-solar': 'www.startsolar.com.br',
-  'inova-londrina': 'www.inovalondrina.com.br',
-  'holy-street-store': 'www.holystreetstore.com.br',
-  'vem-ganhar': 'www.vemganhar.com.br',
+  'eletrostart': 'eletrostart1.netlify.app',
+  'lapec': 'lapecexameslaboratoriais.netlify.app',
+  'abraenergia': 'abraenergia.com.br',
+  'abrastandard': 'abrastandard.org',
+  'instituto-ecovitta': 'institutoecovitta.org',
+  'holy-street-store': 'holystreetstore.com.br',
+  'respira-sustentabilidade': 'respirasustentabilidade.com.br',
+  'start-solar': 'startsolar.com.br',
+  'inova-londrina': 'inovalondrina.com.br',
+  'vem-ganhar': 'vemganhar.com.br',
   'fintech-app': 'app.financenext.com.br'
 };
 
+
 const projects = [
+  {
+    id: 'eletrostart',
+    name: 'Eletrostart',
+    platform: 'ecommerce',
+    category: 'E-commerce',
+    description: 'Loja virtual completa de materiais elétricos e iluminação LED, oferecendo uma ampla variedade de produtos com sistema de busca avançado, carrinho inteligente e checkout otimizado para melhor experiência do usuário.',
+    summary: 'E-commerce de materiais elétricos e iluminação LED profissional.',
+    image: '/images/projects/eletrostart.jpg',
+    internalUrl: urlMapping['eletrostart'],
+    technologies: ['React', 'Vite', 'CSS Modules', 'React Router', 'Context API', 'LocalStorage'],
+    features: [
+      'Catálogo completo de produtos elétricos',
+      'Sistema de busca e filtros avançados',
+      'Carrinho de compras persistente',
+      'Categorização por tipo de produto',
+      'Galeria de imagens dos produtos',
+      'Sistema de favoritos',
+      'Contato via WhatsApp integrado',
+      'Design responsivo mobile-first'
+    ],
+    highlights: [
+      'Interface intuitiva e moderna',
+      'Performance otimizada com Vite',
+      'Experiência mobile excepcional',
+      'Integração com WhatsApp Business'
+    ],
+    status: 'completed',
+    year: 2025,
+    createdAt: '2025-01-10',
+    client: 'Eletrostart',
+    duration: '2 meses',
+    testimonial: 'A EvolveTech criou uma loja virtual que superou nossas expectativas. O design moderno e a facilidade de navegação aumentaram significativamente nossas vendas online.',
+    results: {
+      performance: 'Carregamento em <2s',
+      mobile: '100% responsivo',
+      engagement: 'Fácil navegação'
+    }
+  },
+  {
+    id: 'lapec',
+    name: 'Lapec Exames Laboratoriais',
+    platform: 'web',
+    category: 'Saúde',
+    description: 'Portal institucional moderno para laboratório de análises clínicas, com informações sobre exames, agendamento online, resultados digitais e área do paciente. Plataforma que moderniza a experiência do usuário com serviços de saúde.',
+    summary: 'Portal de laboratório com agendamento e resultados online.',
+    image: '/images/projects/lapec.jpg',
+    internalUrl: urlMapping['lapec'],
+    technologies: ['React', 'Node.js', 'Express', 'PostgreSQL', 'JWT', 'Material-UI', 'AWS S3'],
+    features: [
+      'Catálogo completo de exames',
+      'Sistema de agendamento online',
+      'Portal do paciente com resultados',
+      'Área administrativa para gestão',
+      'Informações detalhadas dos exames',
+      'Localização e contato',
+      'Blog de saúde e bem-estar',
+      'Integração com WhatsApp'
+    ],
+    highlights: [
+      'Redução de 60% em ligações telefônicas',
+      'Agendamento 24/7 disponível',
+      'Resultados digitais seguros',
+      'Interface LGPD compliant'
+    ],
+    status: 'completed',
+    year: 2025,
+    createdAt: '2025-01-05',
+    client: 'Lapec Laboratórios',
+    duration: '3 meses',
+    testimonial: 'O portal transformou nossa operação. Os pacientes adoram a conveniência de agendar online e acessar resultados de forma segura.',
+    results: {
+      automation: '60% redução ligações',
+      availability: '24/7 agendamento',
+      security: '100% LGPD'
+    }
+  },
   {
     id: 'abrastandard',
     name: 'AbraStandard',
