@@ -11,6 +11,10 @@
     "preview": "vite preview",
     "test": "vitest"
   },
+  "engines": {
+    "node": ">=20.19.0",
+    "npm": ">=10.0.0"
+  },
   "dependencies": {
     "axios": "^1.7.9",
     "framer-motion": "^12.1.0",
