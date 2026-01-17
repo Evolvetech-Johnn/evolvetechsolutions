@@ -165,6 +165,8 @@
   height: 200px;
   overflow: hidden;
   background: var(--gray-100);
+  /* Prevent CLS */
+  aspect-ratio: 3 / 2;
 }
 
 .projectImage {
@@ -172,6 +174,9 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+  /* Prevent CLS - reserve space */
+  min-height: 200px;
+  display: block;
 }
 
 .projectCard:hover .projectImage {
