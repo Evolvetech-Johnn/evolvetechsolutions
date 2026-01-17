@@ -22,7 +22,7 @@ const projects = [
     category: 'E-commerce',
     description: 'Loja virtual completa de materiais elétricos e iluminação LED, oferecendo uma ampla variedade de produtos com sistema de busca avançado, carrinho inteligente e checkout otimizado para melhor experiência do usuário.',
     summary: 'E-commerce de materiais elétricos e iluminação LED profissional.',
-    image: '/images/projects/eletrostart.jpg',
+    image: 'https://placehold.co/600x400/667eea/fff?text=Eletrostart',
     internalUrl: urlMapping['eletrostart'],
     technologies: ['React', 'Vite', 'CSS Modules', 'React Router', 'Context API', 'LocalStorage'],
     features: [
@@ -60,7 +60,7 @@ const projects = [
     category: 'Saúde',
     description: 'Portal institucional moderno para laboratório de análises clínicas, com informações sobre exames, agendamento online, resultados digitais e área do paciente. Plataforma que moderniza a experiência do usuário com serviços de saúde.',
     summary: 'Portal de laboratório com agendamento e resultados online.',
-    image: '/images/projects/lapec.jpg',
+    image: 'https://placehold.co/600x400/10b981/fff?text=Lapec',
     internalUrl: urlMapping['lapec'],
     technologies: ['React', 'Node.js', 'Express', 'PostgreSQL', 'JWT', 'Material-UI', 'AWS S3'],
     features: [
@@ -98,7 +98,7 @@ const projects = [
     category: 'Site Institucional',
     description: 'Site institucional moderno para empresa de padronização e certificação, com foco em performance e SEO. Desenvolvido com as mais modernas tecnologias web, oferece uma experiência única para usuários que buscam informações sobre certificações e padrões técnicos.',
     summary: 'Plataforma web responsiva com sistema de certificações e padrões técnicos.',
-    image: '/images/projects/abrastandard.jpg',
+    image: 'https://placehold.co/600x400/f59e0b/fff?text=AbraStandard',
     // URL real protegida - não exposta no frontend
     internalUrl: urlMapping['abrastandard'],
     technologies: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Prisma', 'PostgreSQL'],
@@ -137,7 +137,7 @@ const projects = [
     category: 'Energia Renovável',
     description: 'Plataforma digital inovadora para empresa de energia renovável e sustentabilidade. Desenvolvida com foco em educação ambiental, simulação de economia energética e promoção de soluções sustentáveis para o mercado brasileiro.',
     summary: 'Portal de energia renovável com simuladores e conteúdo educativo.',
-    image: '/images/projects/abraenergia.jpg',
+    image: 'https://placehold.co/600x400/3b82f6/fff?text=AbraEnergia',
     // URL real protegida - não exposta no frontend
     internalUrl: urlMapping['abraenergia'],
     technologies: ['Vue.js', 'Nuxt.js', 'Node.js', 'MongoDB', 'Chart.js', 'Leaflet', 'PWA'],
@@ -215,7 +215,7 @@ const projects = [
     category: 'Educação Ambiental',
     description: 'Site institucional para instituto de educação ambiental e sustentabilidade, com foco em cursos online, projetos educativos e conscientização ecológica. Plataforma que promove a educação ambiental através de conteúdo interativo e engajador.',
     summary: 'Instituto de educação ambiental com cursos e projetos sustentáveis.',
-    image: '/images/projects/instituto-ecovitta.jpg',
+    image: 'https://placehold.co/600x400/059669/fff?text=EcoVitta',
     // URL real protegida - não exposta no frontend
     internalUrl: urlMapping['instituto-ecovitta'],
     technologies: ['WordPress', 'PHP', 'MySQL', 'LearnDash', 'WooCommerce', 'Elementor'],
@@ -332,7 +332,7 @@ const projects = [
     category: 'E-commerce Fashion',
     description: 'Loja virtual moderna de moda streetwear com design arrojado e experiência de compra única. E-commerce completo com sistema de personalização, programa de fidelidade e integração com redes sociais.',
     summary: 'E-commerce de moda streetwear com experiência premium.',
-    image: '/images/projects/holy-street-store.jpg',
+    image: 'https://placehold.co/600x400/dc2626/fff?text=Holy+Street',
     // URL real protegida - não exposta no frontend
     internalUrl: urlMapping['holy-street-store'],
     technologies: ['Shopify Plus', 'React', 'Node.js', 'GraphQL', 'Klaviyo', 'Instagram API'],
