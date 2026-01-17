@@ -20,6 +20,11 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
+    } else {
+      // Reset state when modal closes
+      setShowIframe(false);
+      setProjectUrl(null);
+      setLoadingUrl(false);
     }
 
     return () => {
@@ -32,16 +37,26 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
   const loadProjectUrl = async () => {
     if (!project || projectUrl) return;
     
+    console.log('🔍 Carregando URL do projeto:', project.id);
     setLoadingUrl(true);
     try {
-      const response = await fetch(buildApiUrl(API_ENDPOINTS.projectUrl(project.id)));
+      const url = buildApiUrl(API_ENDPOINTS.projectUrl(project.id));
+      console.log('📡 Fazendo request para:', url);
+      
+      const response = await fetch(url);
       const data = await response.json();
       
+      console.log('📦 Resposta da API:', data);
+      
       if (data.success && data.url) {
-        setProjectUrl(`https://${data.url}`);
+        const fullUrl = data.url.startsWith('http') ? data.url : `https://${data.url}`;
+        console.log('✅ URL carregada:', fullUrl);
+        setProjectUrl(fullUrl);
+      } else {
+        console.error('❌ API não retornou URL válida:', data);
       }
     } catch (error) {
-      console.error('Erro ao carregar URL do projeto:', error);
+      console.error('❌ Erro ao carregar URL do projeto:', error);
     } finally {
       setLoadingUrl(false);
     }

@@ -23,6 +23,17 @@
   overflow: hidden;
   z-index: 9999;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  /* Ensure modal stays within viewport */
+  margin: auto;
+}
+
+/* Ensure modal scrolls if content is too tall */
+@media (max-height: 700px) {
+  .modal {
+    max-height: 95vh;
+    top: 2.5vh;
+    transform: translateX(-50%);
+  }
 }
 
 .modalHeader {
