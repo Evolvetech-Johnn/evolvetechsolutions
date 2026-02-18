@@ -1,62 +1,66 @@
-import { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Loader, Info, Monitor } from 'lucide-react';
-import { buildApiUrl, API_ENDPOINTS } from '../config/api';
-import styles from './ProjectModal.module.css';
+import type { FC, MouseEvent, KeyboardEvent } from "react";
+import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Loader, Info, Monitor } from "lucide-react";
+import type { Project, ProjectResult } from "@shared/types";
+import { buildApiUrl, API_ENDPOINTS } from "../config/api";
+import styles from "./ProjectModal.module.css";
 
-const ProjectModal = ({ project, isOpen, onClose }) => {
+type ProjectModalProps = {
+  project: Project | null;
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+type UrlResponse = {
+  success: boolean;
+  url?: string;
+};
+
+const ProjectModal: FC<ProjectModalProps> = ({ project, isOpen, onClose }) => {
   const [showIframe, setShowIframe] = useState(false);
-  const [projectUrl, setProjectUrl] = useState(null);
+  const [projectUrl, setProjectUrl] = useState<string | null>(null);
   const [loadingUrl, setLoadingUrl] = useState(false);
-  const iframeRef = useRef(null);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') {
+    const handleEscape = (e: KeyboardEvent | KeyboardEventInit | any) => {
+      if (e.key === "Escape") {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleEscape as any);
+      document.body.style.overflow = "hidden";
     } else {
-      // Reset state when modal closes
       setShowIframe(false);
       setProjectUrl(null);
       setLoadingUrl(false);
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleEscape as any);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
 
-  // Fetch real URL when iframe mode is activated
   const loadProjectUrl = async () => {
     if (!project || projectUrl) return;
-    
-    console.log('🔍 Carregando URL do projeto:', project.id);
+
     setLoadingUrl(true);
     try {
       const url = buildApiUrl(API_ENDPOINTS.projectUrl(project.id));
-      console.log('📡 Fazendo request para:', url);
-      
       const response = await fetch(url);
-      const data = await response.json();
-      
-      console.log('📦 Resposta da API:', data);
-      
+      const data = (await response.json()) as UrlResponse;
+
       if (data.success && data.url) {
-        const fullUrl = data.url.startsWith('http') ? data.url : `https://${data.url}`;
-        console.log('✅ URL carregada:', fullUrl);
+        const fullUrl = data.url.startsWith("http")
+          ? data.url
+          : `https://${data.url}`;
         setProjectUrl(fullUrl);
-      } else {
-        console.error('❌ API não retornou URL válida:', data);
       }
-    } catch (error) {
-      console.error('❌ Erro ao carregar URL do projeto:', error);
+    } catch {
     } finally {
       setLoadingUrl(false);
     }
@@ -73,11 +77,15 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
   if (!project) return null;
 
+  const resultEntries = Object.entries(project.results ?? {}) as [
+    string,
+    string,
+  ][];
+
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             className={styles.backdrop}
             initial={{ opacity: 0 }}
@@ -86,13 +94,12 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
             onClick={onClose}
           />
 
-          {/* Modal */}
           <motion.div
             className={styles.modal}
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 50 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
           >
             <div className={styles.modalHeader}>
               <div className={styles.modalTitle}>
@@ -122,16 +129,15 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
             <div className={styles.modalBody}>
               {!showIframe ? (
-                /* Project Information View */
                 <div className={styles.projectInfo}>
                   <p className={styles.description}>{project.description}</p>
-                  
+
                   {project.technologies && (
                     <div className={styles.technologies}>
                       <h3>Tecnologias</h3>
                       <div className={styles.techTags}>
-                        {project.technologies.map((tech, index) => (
-                          <span key={index} className={styles.techTag}>
+                        {project.technologies.map((tech) => (
+                          <span key={tech} className={styles.techTag}>
                             {tech}
                           </span>
                         ))}
@@ -143,18 +149,18 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                     <div className={styles.features}>
                       <h3>Funcionalidades</h3>
                       <ul>
-                        {project.features.slice(0, 6).map((feature, index) => (
-                          <li key={index}>{feature}</li>
+                        {project.features.slice(0, 6).map((feature) => (
+                          <li key={feature}>{feature}</li>
                         ))}
                       </ul>
                     </div>
                   )}
 
-                  {project.results && (
+                  {resultEntries.length > 0 && (
                     <div className={styles.results}>
                       <h3>Resultados</h3>
                       <div className={styles.resultCards}>
-                        {Object.entries(project.results).map(([key, value]) => (
+                        {resultEntries.map(([key, value]) => (
                           <div key={key} className={styles.resultCard}>
                             <div className={styles.resultValue}>{value}</div>
                           </div>
@@ -176,7 +182,6 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   </div>
                 </div>
               ) : (
-                /* Iframe Preview View */
                 <div className={styles.iframeContainer}>
                   {loadingUrl ? (
                     <div className={styles.loadingIframe}>
@@ -195,7 +200,10 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   ) : (
                     <div className={styles.iframeError}>
                       <p>Não foi possível carregar o preview do site.</p>
-                      <button onClick={loadProjectUrl} className={styles.retryButton}>
+                      <button
+                        onClick={loadProjectUrl}
+                        className={styles.retryButton}
+                      >
                         Tentar novamente
                       </button>
                     </div>

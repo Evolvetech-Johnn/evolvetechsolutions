@@ -1,44 +1,44 @@
-import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Github, 
-  Linkedin, 
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
   Instagram,
   ArrowUp,
-  Heart
-} from 'lucide-react'
-import styles from './Footer.module.css'
+  Heart,
+} from "lucide-react";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Instagram, href: '#', label: 'Instagram' }
-  ]
+    { icon: Github, href: "#", label: "GitHub" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Instagram, href: "#", label: "Instagram" },
+  ];
 
   const quickLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/portfolio', label: 'Portfólio' },
-    { path: '/about', label: 'Sobre' },
-    { path: '/contact', label: 'Contato' }
-  ]
+    { path: "/", label: "Home" },
+    { path: "/portfolio", label: "Portfólio" },
+    { path: "/about", label: "Sobre" },
+    { path: "/contact", label: "Contato" },
+  ];
 
   const services = [
-    'Desenvolvimento Web',
-    'Aplicativos Mobile',
-    'APIs e Backend',
-    'E-commerce',
-    'Dashboards'
-  ]
+    "Desenvolvimento Web",
+    "Aplicativos Mobile",
+    "APIs e Backend",
+    "E-commerce",
+    "Dashboards",
+  ];
 
   return (
     <footer className={styles.footer}>
@@ -48,33 +48,57 @@ const Footer = () => {
           {/* Company Info */}
           <div className={styles.section}>
             <div className={styles.brand}>
+              <img
+                src="/img/logo_evolve-removebg-preview.png"
+                alt="EvolveTech Solutions"
+                className={styles.brandLogo}
+              />
               <h3 className={styles.brandName}>
                 <span className={styles.brandText}>Evolve</span>
                 <span className={styles.brandAccent}>Tech</span>
               </h3>
               <p className={styles.description}>
-                Transformando ideias em soluções digitais inovadoras. 
-                Desenvolvemos tecnologia que impulsiona o crescimento do seu negócio.
+                Transformando ideias em soluções digitais inovadoras.
+                Desenvolvemos tecnologia que impulsiona o crescimento do seu
+                negócio.
               </p>
+              <a
+                href="https://www.evolvetechsolutions.com.br"
+                className={styles.contactLink}
+                target="_blank"
+                rel="noreferrer"
+              >
+                www.evolvetechsolutions.com.br
+              </a>
             </div>
 
             {/* Contact Info */}
             <div className={styles.contact}>
               <div className={styles.contactItem}>
                 <Mail size={18} />
-                <a href="mailto:contato@evolvetech.com" className={styles.contactLink}>
-                  contato@evolvetech.com
+                <a
+                  href="mailto:contato@evolvetechsolutions.com.br"
+                  className={styles.contactLink}
+                >
+                  contato@evolvetechsolutions.com.br
                 </a>
               </div>
               <div className={styles.contactItem}>
                 <Phone size={18} />
-                <a href="tel:+5511999999999" className={styles.contactLink}>
-                  (11) 99999-9999
+                <a
+                  href="https://wa.me/5543988704856"
+                  className={styles.contactLink}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  (43) 98870-4856
                 </a>
               </div>
               <div className={styles.contactItem}>
                 <MapPin size={18} />
-                <span className={styles.contactText}>São Paulo, SP - Brasil</span>
+                <span className={styles.contactText}>
+                  Londrina, PR - Brasil
+                </span>
               </div>
             </div>
           </div>
@@ -132,7 +156,8 @@ const Footer = () => {
               © {currentYear} EvolveTech. Todos os direitos reservados.
             </p>
             <p className={styles.madeWith}>
-              Feito com <Heart size={16} className={styles.heart} /> pela equipe EvolveTech
+              Feito com <Heart size={16} className={styles.heart} /> pela equipe
+              EvolveTech
             </p>
           </div>
 
@@ -149,7 +174,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

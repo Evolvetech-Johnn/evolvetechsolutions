@@ -1,0 +1,59 @@
+{
+  "contact": {
+    "title": "Entre em Contato",
+    "subtitle": "Pronto para transformar sua ideia em realidade? Nossa equipe está aqui para ajudar você a criar soluções digitais incríveis.",
+    "success": "Mensagem enviada com sucesso! Entraremos em contato em breve.",
+    "error": "Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente."
+  },
+  "home": {
+    "heroTitlePrefix": "Transformamos suas ideias em",
+    "heroSubtitle": "Desenvolvemos aplicações web, mobile e sistemas personalizados que impulsionam o crescimento do seu negócio com tecnologia de ponta.",
+    "ctaTitle": "Pronto para começar seu projeto?",
+    "ctaSubtitle": "Entre em contato conosco e vamos transformar sua ideia em realidade",
+    "ctaPrimary": "Iniciar Projeto",
+    "portfolioButton": "Ver Portfólio",
+    "contactButton": "Fale Conosco",
+    "servicesTitle": "Nossos Serviços",
+    "servicesDescription": "Oferecemos soluções completas para todas as suas necessidades digitais",
+    "serviceLearnMore": "Saiba mais"
+  },
+  "about": {
+    "title": "Sobre a EvolveTech",
+    "subtitle": "Somos uma empresa especializada em desenvolvimento de soluções tecnológicas inovadoras, focada em transformar ideias em realidade digital."
+  },
+  "portfolio": {
+    "title": "Nosso Portfólio",
+    "subtitle": "Conheça nossos projetos e as soluções que desenvolvemos para nossos clientes. Cada projeto é único e desenvolvido com as melhores práticas do mercado.",
+    "filtersTitle": "Filtrar por Plataforma",
+    "emptyTitle": "Nenhum projeto encontrado",
+    "emptyDescription": "Não encontramos projetos para os filtros selecionados. Tente ajustar os filtros.",
+    "liveKicker": "Em produção",
+    "liveTitle": "Projetos em produção",
+    "liveSubtitle": "Alguns cases que estão rodando hoje em ambiente real, gerando resultado para nossos clientes.",
+    "liveViewSite": "Ver site"
+  },
+  "platformDetail": {
+    "errorLoading": "Erro ao carregar dados da plataforma",
+    "errorTitle": "Erro ao carregar plataforma",
+    "errorNotFound": "Plataforma não encontrada",
+    "backToPortfolio": "Voltar ao Portfólio",
+    "heroProjects": "Projetos",
+    "heroYears": "Anos",
+    "heroSuccess": "Sucesso",
+    "aboutTitle": "Sobre esta Plataforma",
+    "technologiesTitle": "Tecnologias Utilizadas",
+    "technologiesDescription": "Conheça as principais tecnologias que utilizamos nesta plataforma",
+    "projectsTitle": "Projetos Realizados",
+    "projectsDescription": "Veja alguns dos projetos que desenvolvemos nesta plataforma",
+    "ctaTitle": "Interessado nesta plataforma?",
+    "ctaSubtitle": "Entre em contato conosco e vamos conversar sobre como podemos ajudar seu projeto",
+    "ctaPrimary": "Falar com Especialista",
+    "ctaSecondary": "Ver Mais Projetos"
+  },
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfólio",
+    "about": "Sobre",
+    "contact": "Contato"
+  }
+}

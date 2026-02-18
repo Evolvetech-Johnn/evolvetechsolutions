@@ -75,6 +75,99 @@
   letter-spacing: 0.5px;
 }
 
+.liveSection {
+  padding: 48px 0 32px;
+  background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent),
+              radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.06), transparent);
+}
+
+.liveSectionContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.liveSectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.liveSectionKicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary-600);
+}
+
+.liveSectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.liveSectionSubtitle {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  max-width: 520px;
+}
+
+.liveProjectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.liveProjectCard {
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--gray-200);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.liveProjectHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.liveProjectYear {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gray-500);
+}
+
+.liveProjectTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.liveProjectCategory {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-600);
+}
+
+.liveProjectDescription {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+.liveProjectFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+
 /* Filters Section */
 .filters {
   padding: 60px 0 40px;
@@ -169,6 +262,33 @@
   aspect-ratio: 3 / 2;
 }
 
+.projectLiveBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--emerald-600, #059669);
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  z-index: 2;
+}
+
+.projectLiveBadgeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--emerald-500, #10b981);
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8);
+  animation: livePulse 1.5s ease-out infinite;
+}
+
 .projectImage {
   width: 100%;
   height: 100%;
@@ -207,6 +327,28 @@
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
+}
+
+.projectLiveLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-600);
+  text-decoration: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: var(--primary-50);
+  border: 1px solid var(--primary-100);
+  transition: all 0.2s ease;
+}
+
+.projectLiveLink:hover {
+  background: var(--primary-100);
+  border-color: var(--primary-200);
+  color: var(--primary-700);
+  transform: translateY(-1px);
 }
 
 .projectContent {
@@ -377,6 +519,21 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes livePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
 }
 
 /* Responsive Design */

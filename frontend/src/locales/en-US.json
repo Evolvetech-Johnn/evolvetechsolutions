@@ -1,0 +1,59 @@
+{
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Ready to turn your idea into reality? Our team is here to help you build amazing digital solutions.",
+    "success": "Message sent successfully! We will contact you soon.",
+    "error": "Error sending message. Please try again or contact us directly."
+  },
+  "home": {
+    "heroTitlePrefix": "We turn your ideas into",
+    "heroSubtitle": "We build web, mobile and custom systems that drive your business growth with cutting-edge technology.",
+    "ctaTitle": "Ready to start your project?",
+    "ctaSubtitle": "Get in touch and let’s turn your idea into reality",
+    "ctaPrimary": "Start Project",
+    "portfolioButton": "View Portfolio",
+    "contactButton": "Contact Us",
+    "servicesTitle": "Our Services",
+    "servicesDescription": "We offer end-to-end solutions for all your digital needs",
+    "serviceLearnMore": "Learn more"
+  },
+  "about": {
+    "title": "About EvolveTech",
+    "subtitle": "We specialize in building innovative technology solutions, turning ideas into digital reality."
+  },
+  "portfolio": {
+    "title": "Our Portfolio",
+    "subtitle": "Explore our projects and the solutions we’ve delivered for our clients. Each project is unique and built with best practices.",
+    "filtersTitle": "Filter by Platform",
+    "emptyTitle": "No projects found",
+    "emptyDescription": "We couldn’t find projects for the selected filters. Try adjusting them.",
+    "liveKicker": "In production",
+    "liveTitle": "Live projects",
+    "liveSubtitle": "Some cases currently running in real environments, delivering results for our clients.",
+    "liveViewSite": "View site"
+  },
+  "platformDetail": {
+    "errorLoading": "Error loading platform data",
+    "errorTitle": "Error loading platform",
+    "errorNotFound": "Platform not found",
+    "backToPortfolio": "Back to Portfolio",
+    "heroProjects": "Projects",
+    "heroYears": "Years",
+    "heroSuccess": "Success",
+    "aboutTitle": "About this Platform",
+    "technologiesTitle": "Technologies Used",
+    "technologiesDescription": "Discover the main technologies we use on this platform",
+    "projectsTitle": "Delivered Projects",
+    "projectsDescription": "See some of the projects we have built on this platform",
+    "ctaTitle": "Interested in this platform?",
+    "ctaSubtitle": "Get in touch and let's talk about how we can help your project",
+    "ctaPrimary": "Talk to a Specialist",
+    "ctaSecondary": "View More Projects"
+  },
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "contact": "Contact"
+  }
+}

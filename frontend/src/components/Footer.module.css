@@ -32,6 +32,12 @@
   gap: 1rem;
 }
 
+.brandLogo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
 .brandName {
   font-size: 2rem;
   font-weight: 700;
@@ -247,6 +253,10 @@
 @media (max-width: 480px) {
   .brandName {
     font-size: 1.5rem;
+  }
+  
+  .brandLogo {
+    height: 32px;
   }
   
   .social {

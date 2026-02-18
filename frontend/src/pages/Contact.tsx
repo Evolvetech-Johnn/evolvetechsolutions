@@ -1,93 +1,113 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
+import type { FC, ChangeEvent, FormEvent } from "react"
+import { useState } from "react"
+import { motion } from "framer-motion"
+import {
+  Mail,
+  Phone,
+  MapPin,
   Clock,
   Send,
   CheckCircle,
-  AlertCircle
-} from 'lucide-react'
-import axios from 'axios'
-import styles from './Contact.module.css'
+  AlertCircle,
+  Globe,
+} from "lucide-react"
+import { submitContact } from "@domains/lead/services/gateway"
+import { t } from "@app/i18n"
+import styles from "./Contact.module.css"
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    subject: '',
-    message: ''
+type ContactFormData = {
+  name: string
+  email: string
+  company: string
+  phone: string
+  subject: string
+  message: string
+}
+
+type SubmitStatus = "success" | "error" | null
+
+type ContactInfoItem = {
+  icon: typeof Mail
+  title: string
+  value: string
+  link: string | null
+}
+
+const Contact: FC = () => {
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    subject: "",
+    message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState(null) // 'success', 'error', null
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null)
 
-  const contactInfo = [
+  const contactInfo: ContactInfoItem[] = [
     {
       icon: Mail,
-      title: 'Email',
-      value: 'contato@evolvetech.com.br',
-      link: 'mailto:contato@evolvetech.com.br'
+      title: "Email",
+      value: "contato@evolvetechsolutions.com.br",
+      link: "mailto:contato@evolvetechsolutions.com.br",
     },
     {
       icon: Phone,
-      title: 'Telefone',
-      value: '+55 (11) 99999-9999',
-      link: 'tel:+5511999999999'
+      title: "WhatsApp",
+      value: "+55 (43) 98870-4856",
+      link: "https://wa.me/5543988704856",
     },
     {
       icon: MapPin,
-      title: 'Localização',
-      value: 'São Paulo, SP - Brasil',
-      link: null
+      title: "Localização",
+      value: "Londrina, PR - Brasil",
+      link: null,
     },
     {
       icon: Clock,
-      title: 'Horário',
-      value: 'Seg - Sex: 9h às 18h',
-      link: null
-    }
+      title: "Horário",
+      value: "Seg - Sex: 9h às 18h",
+      link: null,
+    },
+    {
+      icon: Globe,
+      title: "Website",
+      value: "www.evolvetechsolutions.com.br",
+      link: "https://www.evolvetechsolutions.com.br",
+    },
   ]
 
-  const _services = [
-    'Desenvolvimento Web',
-    'Aplicativos Mobile',
-    'APIs e Backend',
-    'E-commerce',
-    'Dashboards e BI',
-    'Sites Institucionais',
-    'Consultoria Técnica',
-    'Manutenção e Suporte'
-  ]
-
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus(null)
 
     try {
-      await axios.post('http://localhost:5000/api/contact', formData)
-      setSubmitStatus('success')
+      const res = await submitContact(formData)
+      if (res?.success) {
+        setSubmitStatus("success")
+      } else {
+        setSubmitStatus("error")
+      }
       setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        subject: '',
-        message: ''
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        subject: "",
+        message: "",
       })
     } catch {
-      setSubmitStatus('error')
+      setSubmitStatus("error")
     } finally {
       setIsSubmitting(false)
     }
@@ -95,7 +115,6 @@ const Contact = () => {
 
   return (
     <div className={styles.contact}>
-      {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContainer}>
           <motion.div
@@ -103,20 +122,15 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className={styles.heroTitle}>Entre em Contato</h1>
-            <p className={styles.heroSubtitle}>
-              Pronto para transformar sua ideia em realidade? Nossa equipe está 
-              aqui para ajudar você a criar soluções digitais incríveis.
-            </p>
+            <h1 className={styles.heroTitle}>{t("contact.title")}</h1>
+            <p className={styles.heroSubtitle}>{t("contact.subtitle")}</p>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Content */}
       <section className={styles.contactContent}>
         <div className={styles.contactContainer}>
           <div className={styles.contactGrid}>
-            {/* Contact Form */}
             <motion.div
               className={styles.contactForm}
               initial={{ opacity: 0, x: -30 }}
@@ -129,17 +143,17 @@ const Contact = () => {
                 Preencha o formulário abaixo e entraremos em contato em até 24 horas.
               </p>
 
-              {submitStatus === 'success' && (
+              {submitStatus === "success" && (
                 <div className={`${styles.message} ${styles.messageSuccess}`}>
                   <CheckCircle size={20} />
-                  Mensagem enviada com sucesso! Entraremos em contato em breve.
+                  {t("contact.success")}
                 </div>
               )}
 
-              {submitStatus === 'error' && (
+              {submitStatus === "error" && (
                 <div className={`${styles.message} ${styles.messageError}`}>
                   <AlertCircle size={20} />
-                  Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente.
+                  {t("contact.error")}
                 </div>
               )}
 
@@ -202,7 +216,7 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     className={styles.formInput}
-                    placeholder="(11) 99999-9999"
+                    placeholder="(43) 98870-4856"
                   />
                 </div>
 
@@ -234,7 +248,7 @@ const Contact = () => {
                     required
                     className={styles.formTextarea}
                     placeholder="Descreva seu projeto ou dúvida..."
-                    rows="5"
+                    rows={5}
                   />
                 </div>
 
@@ -258,7 +272,6 @@ const Contact = () => {
               </form>
             </motion.div>
 
-            {/* Contact Info */}
             <motion.div
               className={styles.contactInfo}
               initial={{ opacity: 0, x: 30 }}
@@ -272,28 +285,32 @@ const Contact = () => {
               </p>
 
               <div className={styles.contactMethods}>
-                {contactInfo.map((info, index) => (
-                  <div key={index} className={styles.contactMethod}>
-                    <div className={styles.contactMethodIcon}>
-                      <info.icon size={24} />
+                {contactInfo.map((info, index) => {
+                  const Icon = info.icon
+                  const isExternalLink = info.link?.startsWith("http")
+                  return (
+                    <div key={`${info.title}-${index}`} className={styles.contactMethod}>
+                      <div className={styles.contactMethodIcon}>
+                        <Icon size={24} />
+                      </div>
+                      <div className={styles.contactMethodContent}>
+                        <div className={styles.contactMethodLabel}>{info.title}</div>
+                        {info.link ? (
+                          <a
+                            href={info.link}
+                            className={styles.contactMethodValue}
+                            target={isExternalLink ? "_blank" : undefined}
+                            rel={isExternalLink ? "noopener noreferrer" : undefined}
+                          >
+                            {info.value}
+                          </a>
+                        ) : (
+                          <div className={styles.contactMethodValue}>{info.value}</div>
+                        )}
+                      </div>
                     </div>
-                    <div className={styles.contactMethodContent}>
-                      <div className={styles.contactMethodLabel}>{info.title}</div>
-                      {info.link ? (
-                        <a 
-                          href={info.link} 
-                          className={styles.contactMethodValue}
-                          target={info.link.startsWith('http') ? '_blank' : undefined}
-                          rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <div className={styles.contactMethodValue}>{info.value}</div>
-                      )}
-                    </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </motion.div>
           </div>

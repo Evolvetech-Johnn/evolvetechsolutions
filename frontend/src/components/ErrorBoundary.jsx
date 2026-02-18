@@ -1,31 +1,29 @@
-import React from 'react'
-import { AlertTriangle, RefreshCw, Home } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import styles from './ErrorBoundary.module.css'
+import React from "react";
+import PropTypes from "prop-types";
+import { AlertTriangle, RefreshCw, Home } from "lucide-react";
+import { Link } from "react-router-dom";
+import styles from "./ErrorBoundary.module.css";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = { hasError: false, error: null, errorInfo: null }
+    super(props);
+    this.state = { hasError: false, error: null, errorInfo: null };
   }
 
-  static getDerivedStateFromError(error) {
-    // Atualiza o state para mostrar a UI de erro
-    return { hasError: true }
+  static getDerivedStateFromError(_error) {
+    return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
-    // Você pode registrar o erro em um serviço de relatório de erro
-    console.error('ErrorBoundary capturou um erro:', error, errorInfo)
     this.setState({
       error: error,
-      errorInfo: errorInfo
-    })
+      errorInfo: errorInfo,
+    });
   }
 
   handleReload = () => {
-    window.location.reload()
-  }
+    window.location.reload();
+  };
 
   render() {
     if (this.state.hasError) {
@@ -35,23 +33,24 @@ class ErrorBoundary extends React.Component {
             <div className={styles.errorIcon}>
               <AlertTriangle size={64} />
             </div>
-            
+
             <div className={styles.errorContent}>
               <h1 className={styles.errorTitle}>Oops! Algo deu errado</h1>
               <p className={styles.errorMessage}>
-                Encontramos um erro inesperado. Nossa equipe foi notificada e está trabalhando para resolver o problema.
+                Encontramos um erro inesperado. Nossa equipe foi notificada e
+                está trabalhando para resolver o problema.
               </p>
-              
+
               <div className={styles.errorActions}>
-                <button 
+                <button
                   onClick={this.handleReload}
                   className={`${styles.errorButton} ${styles.errorButtonPrimary}`}
                 >
                   <RefreshCw size={20} />
                   Recarregar Página
                 </button>
-                
-                <Link 
+
+                <Link
                   to="/"
                   className={`${styles.errorButton} ${styles.errorButtonSecondary}`}
                 >
@@ -59,8 +58,8 @@ class ErrorBoundary extends React.Component {
                   Voltar ao Início
                 </Link>
               </div>
-              
-              {process.env.NODE_ENV === 'development' && this.state.error && (
+
+              {import.meta.env.DEV && this.state.error && (
                 <details className={styles.errorDetails}>
                   <summary>Detalhes do erro (desenvolvimento)</summary>
                   <pre className={styles.errorStack}>
@@ -73,11 +72,15 @@ class ErrorBoundary extends React.Component {
             </div>
           </div>
         </div>
-      )
+      );
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }
 
-export default ErrorBoundary
+ErrorBoundary.propTypes = {
+  children: PropTypes.node,
+};
+
+export default ErrorBoundary;

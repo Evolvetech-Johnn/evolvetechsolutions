@@ -13,11 +13,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware de segurança e performance
 app.use(helmet());
 app.use(compression());
 
-// CORS - permitir múltiplos domínios
 const allowedOrigins = [
   'http://localhost:5173',
   'https://evolvetechsolutions.netlify.app',
@@ -27,14 +25,10 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Permitir requests sem origin (mobile apps, Postman, etc)
     if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
+    if (origin.startsWith('http://localhost')) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) return callback(null, true);
+    callback(new Error('Not allowed by CORS'));
   },
   credentials: true
 }));
