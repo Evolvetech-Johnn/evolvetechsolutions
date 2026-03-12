@@ -132,23 +132,24 @@ const Portfolio: FC = () => {
   if (loading) {
     return (
       <div className={styles.loading}>
-        <Loader className={styles.spinner} size={48} />
-        <p>Carregando portfólio...</p>
+        <Loader className={styles.spinner} size={64} />
+        <p style={{ fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.8 }}>
+          Sincronizando Portfólio Premium...
+        </p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className={styles.emptyState}>
-        <div className={styles.emptyStateTitle}>Erro ao carregar portfólio</div>
-        <p className={styles.emptyStateDescription}>{error}</p>
+      <div style={{ height: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Sistemas Temporariamente Indisponíveis</h2>
+        <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>{error}</p>
         <button
           onClick={() => window.location.reload()}
-          className={styles.loadMoreButton}
-          aria-label="Recarregar página"
+          className="btn-premium"
         >
-          Tentar novamente
+          Tentar Reconexão
         </button>
       </div>
     );

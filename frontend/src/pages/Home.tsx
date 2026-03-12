@@ -214,14 +214,18 @@ const Home: FC = () => {
               <motion.div
                 key={service.title}
                 className={styles.serviceCard}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
               >
-                <div className={styles.serviceCardIcon} aria-hidden>
-                  <service.icon size={48} />
-                </div>
+                <motion.div 
+                  className={styles.serviceCardIcon} 
+                  aria-hidden
+                  whileHover={{ rotate: 15, scale: 1.2 }}
+                >
+                  <service.icon size={56} color={service.color} />
+                </motion.div>
                 <h3 className={styles.serviceCardTitle}>{service.title}</h3>
                 <p className={styles.serviceCardDescription}>
                   {service.description}
@@ -232,7 +236,7 @@ const Home: FC = () => {
                   aria-label={`Saiba mais sobre ${service.title}`}
                 >
                   {t("home.serviceLearnMore")}
-                  <ArrowRight size={16} aria-hidden />
+                  <ArrowRight size={18} aria-hidden />
                 </Link>
               </motion.div>
             ))}

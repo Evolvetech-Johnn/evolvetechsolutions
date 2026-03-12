@@ -1,265 +1,206 @@
-/* Footer Styles */
 .footer {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  color: #ffffff;
-  padding: 4rem 0 2rem;
-  margin-top: auto;
+  background: var(--bg-dark);
+  padding: 10rem 0 4rem;
+  border-top: 1px solid var(--border-glass);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 1px;
+  background: var(--grad-premium);
+  opacity: 0.3;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
 .content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
-  margin-bottom: 3rem;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr;
+  gap: 6rem;
+  margin-bottom: 6rem;
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
 }
 
-/* Brand Section */
 .brand {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .brandLogo {
-  height: 40px;
+  height: 48px;
   width: auto;
   object-fit: contain;
+  align-self: flex-start;
 }
 
 .brandName {
   font-size: 2rem;
-  font-weight: 700;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.brandText {
-  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .brandAccent {
-  color: #00d4ff;
+  background: var(--grad-premium);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .description {
-  color: #b0b0b0;
-  line-height: 1.6;
-  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-size: 1.1rem;
 }
 
-/* Contact Section */
-.contact {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.contactItem {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: #b0b0b0;
-}
-
-.contactItem svg {
-  color: #00d4ff;
-  flex-shrink: 0;
-}
-
-.contactLink {
-  color: #b0b0b0;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.contactLink:hover {
-  color: #00d4ff;
-}
-
-.contactText {
-  color: #b0b0b0;
-}
-
-/* Links Section */
 .title {
   font-size: 1.25rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin: 0 0 1rem 0;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .links {
   list-style: none;
   padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-}
-
-.linkItem {
-  margin: 0;
+  gap: 1.25rem;
 }
 
 .link {
-  color: #b0b0b0;
+  color: var(--text-muted);
   text-decoration: none;
-  transition: color 0.3s ease;
-  display: block;
-  padding: 0.25rem 0;
+  transition: all 0.3s ease;
+  font-size: 1.05rem;
 }
 
 .link:hover {
-  color: #00d4ff;
+  color: white;
+  transform: translateX(8px);
 }
 
 .service {
-  color: #b0b0b0;
-  display: block;
-  padding: 0.25rem 0;
+  color: var(--text-muted);
+  font-size: 1rem;
 }
 
-/* Social Links */
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-muted);
+}
+
+.contactItem svg {
+  color: var(--primary);
+}
+
+.contactLink {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contactLink:hover {
+  color: white;
+}
+
 .social {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .socialLink {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  color: #b0b0b0;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  color: var(--text-muted);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .socialLink:hover {
-  background: #00d4ff;
-  color: #ffffff;
+  background: var(--grad-premium);
+  color: white;
+  transform: translateY(-5px) rotate(8deg);
+  border-color: transparent;
 }
 
-/* Footer Bottom */
 .bottom {
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-glass);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  gap: 2rem;
 }
 
-.bottomContent {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.copyright,
-.madeWith {
-  color: #888888;
-  font-size: 0.875rem;
-  margin: 0;
-}
-
-.madeWith {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.heart {
-  color: #ff4757;
-  animation: heartbeat 2s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
+.copyright {
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 
 .backToTop {
+  width: 56px;
+  height: 56px;
+  background: var(--grad-premium);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: #00d4ff;
-  border: none;
-  border-radius: 50%;
-  color: #ffffff;
-  cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .backToTop:hover {
-  background: #00b8e6;
-  transform: translateY(-2px);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .footer {
-    padding: 3rem 0 1.5rem;
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
   }
-  
-  .container {
-    padding: 0 1rem;
-  }
-  
+}
+
+@media (max-width: 640px) {
   .content {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
   }
-  
   .bottom {
     flex-direction: column;
     text-align: center;
-    gap: 1.5rem;
-  }
-  
-  .bottomContent {
-    order: 2;
-  }
-  
-  .backToTop {
-    order: 1;
-  }
-}
-
-@media (max-width: 480px) {
-  .brandName {
-    font-size: 1.5rem;
-  }
-  
-  .brandLogo {
-    height: 32px;
-  }
-  
-  .social {
-    justify-content: center;
+    gap: 2rem;
   }
 }
