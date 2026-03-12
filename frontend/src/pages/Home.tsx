@@ -1,7 +1,7 @@
-import type { FC } from "react"
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import { motion } from "framer-motion"
+import type { FC } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   Code,
@@ -10,31 +10,42 @@ import {
   ShoppingCart,
   BarChart3,
   Globe,
+  Video,
+  Palette,
+  Camera,
+  Package,
   MessageCircle,
   Star,
   Users,
   Award,
   Zap,
-} from "lucide-react"
-import styles from "./Home.module.css"
-import { t } from "@app/i18n"
+} from "lucide-react";
+import styles from "./Home.module.css";
+import { getLocale, t } from "@app/i18n";
 
 type Service = {
-  icon: typeof Code
-  title: string
-  description: string
-  color: string
-}
+  icon: typeof Code;
+  title: string;
+  description: string;
+  color: string;
+};
+
+type PositioningService = {
+  icon: typeof Code;
+  title: string;
+  description: string;
+};
 
 type Stat = {
-  icon: typeof Users
-  value: string
-  label: string
-}
+  icon: typeof Users;
+  value: string;
+  label: string;
+};
 
 const Home: FC = () => {
-  const [typedText, setTypedText] = useState("")
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [typedText, setTypedText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const locale = getLocale();
 
   useEffect(() => {
     const texts = [
@@ -43,25 +54,25 @@ const Home: FC = () => {
       "APIs e Backend",
       "E-commerce",
       "Dashboards",
-    ]
+    ];
 
-    const currentText = texts[currentIndex]
-    let charIndex = 0
+    const currentText = texts[currentIndex];
+    let charIndex = 0;
 
     const typeInterval = setInterval(() => {
       if (charIndex <= currentText.length) {
-        setTypedText(currentText.slice(0, charIndex))
-        charIndex++
+        setTypedText(currentText.slice(0, charIndex));
+        charIndex++;
       } else {
-        clearInterval(typeInterval)
+        clearInterval(typeInterval);
         setTimeout(() => {
-          setCurrentIndex((prev) => (prev + 1) % texts.length)
-        }, 2000)
+          setCurrentIndex((prev) => (prev + 1) % texts.length);
+        }, 2000);
       }
-    }, 100)
+    }, 100);
 
-    return () => clearInterval(typeInterval)
-  }, [currentIndex])
+    return () => clearInterval(typeInterval);
+  }, [currentIndex]);
 
   const services: Service[] = [
     {
@@ -105,14 +116,42 @@ const Home: FC = () => {
       description: "Presença digital profissional para sua empresa ou marca.",
       color: "var(--accent-teal)",
     },
-  ]
+  ];
+
+  const positioningServices: PositioningService[] = [
+    {
+      icon: Video,
+      title: t("positioning.videoPlanning.title"),
+      description: t("positioning.videoPlanning.shortDescription"),
+    },
+    {
+      icon: Smartphone,
+      title: t("positioning.mobileVideo.title"),
+      description: t("positioning.mobileVideo.shortDescription"),
+    },
+    {
+      icon: Palette,
+      title: t("positioning.socialDesign.title"),
+      description: t("positioning.socialDesign.shortDescription"),
+    },
+    {
+      icon: Camera,
+      title: t("positioning.corporatePhoto.title"),
+      description: t("positioning.corporatePhoto.shortDescription"),
+    },
+    {
+      icon: Package,
+      title: t("positioning.productPhoto.title"),
+      description: t("positioning.productPhoto.shortDescription"),
+    },
+  ];
 
   const stats: Stat[] = [
     { icon: Users, value: "50+", label: "Clientes Satisfeitos" },
     { icon: Award, value: "100+", label: "Projetos Entregues" },
     { icon: Star, value: "5.0", label: "Avaliação Média" },
     { icon: Zap, value: "24h", label: "Suporte Rápido" },
-  ]
+  ];
 
   return (
     <div className={styles.home}>
@@ -201,6 +240,81 @@ const Home: FC = () => {
         </div>
       </section>
 
+      <section
+        className={styles.positioning}
+        aria-labelledby="positioning-title"
+      >
+        <div className={styles.servicesContainer}>
+          <motion.div
+            className={styles.servicesHeader}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 id="positioning-title" className={styles.servicesTitle}>
+              {t("positioning.sectionTitle")}
+            </h2>
+            <p className={styles.servicesDescription}>
+              {t("positioning.sectionDescription")}
+            </p>
+          </motion.div>
+
+          <div className={styles.servicesGrid}>
+            {positioningServices.map((service, index) => (
+              <motion.div
+                key={service.title}
+                className={styles.serviceCard}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.08 }}
+                viewport={{ once: true }}
+              >
+                <div className={styles.serviceCardIcon} aria-hidden>
+                  <service.icon size={48} />
+                </div>
+                <h3 className={styles.serviceCardTitle}>{service.title}</h3>
+                <p className={styles.serviceCardDescription}>
+                  {service.description}
+                </p>
+                <Link
+                  to="/services#posicionamento-digital"
+                  className={styles.serviceCardLink}
+                  aria-label={
+                    locale === "en-US"
+                      ? `View details about ${service.title}`
+                      : `Ver detalhes sobre ${service.title}`
+                  }
+                >
+                  {t("home.serviceLearnMore")}
+                  <ArrowRight size={16} aria-hidden />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className={styles.positioningCta}>
+            <div className={styles.positioningCtaContent}>
+              <h3 className={styles.positioningCtaTitle}>
+                {t("positioning.ctaTitle")}
+              </h3>
+              <p className={styles.positioningCtaDescription}>
+                {t("positioning.ctaDescription")}
+              </p>
+            </div>
+            <Link
+              to="/contact"
+              className={styles.positioningCtaButton}
+              aria-label={t("positioning.ctaButton")}
+            >
+              <MessageCircle size={20} aria-hidden />
+              {t("positioning.ctaButton")}
+              <ArrowRight size={20} aria-hidden />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className={styles.stats} aria-label="Estatísticas da empresa">
         <div className={styles.statsContainer}>
           <div className={styles.statsGrid}>
@@ -229,7 +343,9 @@ const Home: FC = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className={styles.ctaTitle}>Pronto para começar seu projeto?</h2>
+            <h2 className={styles.ctaTitle}>
+              Pronto para começar seu projeto?
+            </h2>
             <p className={styles.ctaDescription}>{t("home.ctaSubtitle")}</p>
             <Link
               to="/contact"
@@ -244,7 +360,7 @@ const Home: FC = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

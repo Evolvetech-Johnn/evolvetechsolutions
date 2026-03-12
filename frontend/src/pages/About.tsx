@@ -1,8 +1,9 @@
 import type { FC } from "react"
+import { useEffect } from "react"
 import { motion } from "framer-motion"
 import { Users, Code2, Rocket, CheckCircle } from "lucide-react"
 import styles from "./About.module.css"
-import { t } from "@app/i18n"
+import { getLocale, t } from "@app/i18n"
 
 type Value = {
   icon: typeof Users
@@ -11,6 +12,17 @@ type Value = {
 }
 
 const About: FC = () => {
+  const locale = getLocale()
+
+  useEffect(() => {
+    document.title =
+      locale === "en-US"
+        ? "About | EvolveTech Solutions"
+        : "Sobre | EvolveTech Solutions"
+    const meta = document.querySelector('meta[name="description"]')
+    if (meta) meta.setAttribute("content", t("about.subtitle"))
+  }, [locale])
+
   const values: Value[] = [
     {
       icon: Code2,

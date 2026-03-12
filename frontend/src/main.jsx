@@ -7,6 +7,7 @@ import "./styles/globals.css";
 
 // Lazy load pages for code splitting
 const Home = lazy(() => import("./pages/Home.tsx"));
+const Services = lazy(() => import("./pages/Services.tsx"));
 const Portfolio = lazy(() => import("./pages/Portfolio.tsx"));
 const PlatformDetail = lazy(() => import("./pages/PlatformDetail.tsx"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail.tsx"));
@@ -29,7 +30,7 @@ const PageLoader = () => (
   </div>
 );
 
-const router = createBrowserRouter([
+export const routes = [
   {
     path: "/",
     element: <App />,
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <Home />
+          </Suspense>
+        ),
+      },
+      {
+        path: "services",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <Services />
           </Suspense>
         ),
       },
@@ -85,10 +94,18 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
-);
+const router =
+  typeof window !== "undefined" ? createBrowserRouter(routes) : null;
+
+const rootElement =
+  typeof document !== "undefined" ? document.getElementById("root") : null;
+
+if (rootElement && router) {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>,
+  );
+}

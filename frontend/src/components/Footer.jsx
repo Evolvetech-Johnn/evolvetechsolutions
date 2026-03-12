@@ -27,6 +27,7 @@ const Footer = () => {
 
   const quickLinks = [
     { path: "/", label: "Home" },
+    { path: "/services", label: "Serviços" },
     { path: "/portfolio", label: "Portfólio" },
     { path: "/about", label: "Sobre" },
     { path: "/contact", label: "Contato" },
@@ -36,8 +37,10 @@ const Footer = () => {
     "Desenvolvimento Web",
     "Aplicativos Mobile",
     "APIs e Backend",
-    "E-commerce",
-    "Dashboards",
+    "Planejamento de Conteúdo em Vídeo",
+    "Design para Redes Sociais",
+    "Fotografia Corporativa",
+    "Fotografia de Produtos",
   ];
 
   return (

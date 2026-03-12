@@ -17,7 +17,7 @@ import type { Platform, Project } from "@shared/types";
 import { buildApiUrl, API_ENDPOINTS } from "../config/api";
 import ProjectModal from "../components/ProjectModal";
 import styles from "./Portfolio.module.css";
-import { t } from "@app/i18n";
+import { getLocale, t } from "@app/i18n";
 
 type ApiListResponse<T> = {
   success: boolean;
@@ -25,6 +25,7 @@ type ApiListResponse<T> = {
 };
 
 const Portfolio: FC = () => {
+  const locale = getLocale()
   const [platforms, setPlatforms] = useState<Platform[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
@@ -42,6 +43,15 @@ const Portfolio: FC = () => {
     dashboard: BarChart3,
     sites: Globe,
   };
+
+  useEffect(() => {
+    document.title =
+      locale === "en-US"
+        ? "Portfolio | EvolveTech Solutions"
+        : "Portfólio | EvolveTech Solutions";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", t("portfolio.subtitle"));
+  }, [locale]);
 
   useEffect(() => {
     const fetchData = async () => {

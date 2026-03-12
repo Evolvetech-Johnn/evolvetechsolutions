@@ -18,6 +18,9 @@ export default defineConfig({
       "@locales": path.resolve(__dirname, "src/locales"),
     },
   },
+  test: {
+    environment: "node",
+  },
   server: {
     proxy: {
       "/api": "http://localhost:5000",

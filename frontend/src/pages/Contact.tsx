@@ -1,5 +1,5 @@
 import type { FC, ChangeEvent, FormEvent } from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import {
   Mail,
@@ -12,7 +12,7 @@ import {
   Globe,
 } from "lucide-react"
 import { submitContact } from "@domains/lead/services/gateway"
-import { t } from "@app/i18n"
+import { getLocale, t } from "@app/i18n"
 import styles from "./Contact.module.css"
 
 type ContactFormData = {
@@ -34,6 +34,7 @@ type ContactInfoItem = {
 }
 
 const Contact: FC = () => {
+  const locale = getLocale()
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -44,6 +45,15 @@ const Contact: FC = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null)
+
+  useEffect(() => {
+    document.title =
+      locale === "en-US"
+        ? "Contact | EvolveTech Solutions"
+        : "Contato | EvolveTech Solutions"
+    const meta = document.querySelector('meta[name="description"]')
+    if (meta) meta.setAttribute("content", t("contact.subtitle"))
+  }, [locale])
 
   const contactInfo: ContactInfoItem[] = [
     {

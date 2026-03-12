@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, Briefcase, User, Mail } from "lucide-react";
+import { Menu, X, Home, Briefcase, Layers, User, Mail } from "lucide-react";
 import styles from "./Navbar.module.css";
 import { t, getLocale, setLocale } from "@app/i18n";
 
@@ -34,6 +34,7 @@ const Navbar = () => {
 
   const navItems = [
     { path: "/", labelKey: "nav.home", icon: Home },
+    { path: "/services", labelKey: "nav.services", icon: Layers },
     { path: "/portfolio", labelKey: "nav.portfolio", icon: Briefcase },
     { path: "/about", labelKey: "nav.about", icon: User },
     { path: "/contact", labelKey: "nav.contact", icon: Mail },
