@@ -1,21 +1,24 @@
+import type { FC } from "react";
 import { StrictMode, Suspense, lazy } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.jsx";
-import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  type RouteObject,
+} from "react-router-dom";
+import App from "./App";
+import ErrorBoundary from "./components/ErrorBoundary";
 import "./styles/globals.css";
 
-// Lazy load pages for code splitting
-const Home = lazy(() => import("./pages/Home.tsx"));
-const Services = lazy(() => import("./pages/Services.tsx"));
-const Portfolio = lazy(() => import("./pages/Portfolio.tsx"));
-const PlatformDetail = lazy(() => import("./pages/PlatformDetail.tsx"));
-const ProjectDetail = lazy(() => import("./pages/ProjectDetail.tsx"));
-const About = lazy(() => import("./pages/About.tsx"));
-const Contact = lazy(() => import("./pages/Contact.tsx"));
+const Home = lazy(() => import("./pages/Home"));
+const Services = lazy(() => import("./pages/Services"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const PlatformDetail = lazy(() => import("./pages/PlatformDetail"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
 
-// Loading component
-const PageLoader = () => (
+const PageLoader: FC = () => (
   <div
     style={{
       display: "flex",
@@ -30,7 +33,7 @@ const PageLoader = () => (
   </div>
 );
 
-export const routes = [
+export const routes: RouteObject[] = [
   {
     path: "/",
     element: <App />,

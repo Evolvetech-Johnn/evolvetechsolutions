@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { routes } from "./main.jsx"
+import { routes } from "./main"
 
 describe("routes", () => {
   it("includes expected top-level routes", () => {
@@ -17,4 +17,3 @@ describe("routes", () => {
     expect(childPaths).toContain("contact")
   })
 })
-

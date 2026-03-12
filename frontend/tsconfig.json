@@ -14,8 +14,7 @@
       "@locales/*": ["locales/*"]
     },
     "types": ["vite/client"],
-    "allowJs": true,
-    "checkJs": false,
+    "allowJs": false,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,

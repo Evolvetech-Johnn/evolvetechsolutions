@@ -1,11 +1,26 @@
-import { useState, useEffect } from "react";
+import type { FC } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Home, Briefcase, Layers, User, Mail } from "lucide-react";
 import styles from "./Navbar.module.css";
-import { t, getLocale, setLocale } from "@app/i18n";
+import { getLocale, setLocale, t } from "@app/i18n";
 
-const Navbar = () => {
+type NavItem = {
+  path: string;
+  labelKey: string;
+  icon: typeof Home;
+};
+
+const navItems: NavItem[] = [
+  { path: "/", labelKey: "nav.home", icon: Home },
+  { path: "/services", labelKey: "nav.services", icon: Layers },
+  { path: "/portfolio", labelKey: "nav.portfolio", icon: Briefcase },
+  { path: "/about", labelKey: "nav.about", icon: User },
+  { path: "/contact", labelKey: "nav.contact", icon: Mail },
+];
+
+const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [locale, setLocaleState] = useState(getLocale());
@@ -32,16 +47,8 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location]);
 
-  const navItems = [
-    { path: "/", labelKey: "nav.home", icon: Home },
-    { path: "/services", labelKey: "nav.services", icon: Layers },
-    { path: "/portfolio", labelKey: "nav.portfolio", icon: Briefcase },
-    { path: "/about", labelKey: "nav.about", icon: User },
-    { path: "/contact", labelKey: "nav.contact", icon: Mail },
-  ];
-
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   return (
@@ -68,7 +75,6 @@ const Navbar = () => {
             </motion.div>
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className={styles.navbarNav}>
             {navItems.map((item) => {
               const IconComponent = item.icon;
@@ -94,22 +100,26 @@ const Navbar = () => {
             >
               <button
                 type="button"
-                className={`${styles.localeButton} ${locale === "pt-BR" ? styles.localeButtonActive : ""}`}
+                className={`${styles.localeButton} ${
+                  locale === "pt-BR" ? styles.localeButtonActive : ""
+                }`}
                 onClick={() => setLocale("pt-BR")}
               >
                 PT
               </button>
               <button
                 type="button"
-                className={`${styles.localeButton} ${locale === "en-US" ? styles.localeButtonActive : ""}`}
+                className={`${styles.localeButton} ${
+                  locale === "en-US" ? styles.localeButtonActive : ""
+                }`}
                 onClick={() => setLocale("en-US")}
               >
                 EN
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
+              type="button"
               className={styles.navbarToggle}
               onClick={toggleMenu}
               aria-label="Toggle navigation menu"
@@ -119,7 +129,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.nav
@@ -149,7 +158,6 @@ const Navbar = () => {
         </AnimatePresence>
       </motion.header>
 
-      {/* Mobile Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

@@ -25,7 +25,7 @@ type ApiListResponse<T> = {
 };
 
 const Portfolio: FC = () => {
-  const locale = getLocale()
+  const locale = getLocale();
   const [platforms, setPlatforms] = useState<Platform[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
@@ -79,7 +79,7 @@ const Portfolio: FC = () => {
         setPlatforms(platformsList);
         setProjects(projectsList);
         setFilteredProjects(projectsList);
-      } catch (err) {
+      } catch {
         setError(
           "Não foi possível carregar o portfólio. Tente novamente mais tarde.",
         );
@@ -106,10 +106,8 @@ const Portfolio: FC = () => {
   const liveProjects = projects
     .filter((project) => project.liveUrl)
     .sort((a, b) => {
-      const yearA =
-        a.year || new Date(a.createdAt).getFullYear();
-      const yearB =
-        b.year || new Date(b.createdAt).getFullYear();
+      const yearA = a.year || new Date(a.createdAt).getFullYear();
+      const yearB = b.year || new Date(b.createdAt).getFullYear();
       return yearB - yearA;
     })
     .slice(0, 4);
@@ -219,8 +217,7 @@ const Portfolio: FC = () => {
             <div className={styles.liveProjectsGrid}>
               {liveProjects.map((project) => {
                 const year =
-                  project.year ||
-                  new Date(project.createdAt).getFullYear();
+                  project.year || new Date(project.createdAt).getFullYear();
                 const liveUrl = project.liveUrl
                   ? project.liveUrl.startsWith("http")
                     ? project.liveUrl
@@ -228,25 +225,16 @@ const Portfolio: FC = () => {
                   : "";
 
                 return (
-                  <article
-                    key={project.id}
-                    className={styles.liveProjectCard}
-                  >
+                  <article key={project.id} className={styles.liveProjectCard}>
                     <div className={styles.liveProjectHeader}>
                       <div className={styles.projectLiveBadge}>
-                        <span
-                          className={styles.projectLiveBadgeDot}
-                        />
+                        <span className={styles.projectLiveBadgeDot} />
                         Online
                       </div>
-                      <span className={styles.liveProjectYear}>
-                        {year}
-                      </span>
+                      <span className={styles.liveProjectYear}>{year}</span>
                     </div>
 
-                    <h3 className={styles.liveProjectTitle}>
-                      {project.name}
-                    </h3>
+                    <h3 className={styles.liveProjectTitle}>{project.name}</h3>
                     <p className={styles.liveProjectCategory}>
                       {project.category}
                     </p>

@@ -1,54 +1,64 @@
+import type { FC } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  Mail,
-  Phone,
-  MapPin,
-  Github,
-  Linkedin,
-  Instagram,
   ArrowUp,
+  Github,
   Heart,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
 } from "lucide-react";
 import styles from "./Footer.module.css";
 
-const Footer = () => {
+type SocialLink = {
+  icon: typeof Github;
+  href: string;
+  label: string;
+};
+
+type QuickLink = {
+  path: string;
+  label: string;
+};
+
+const socialLinks: SocialLink[] = [
+  { icon: Github, href: "#", label: "GitHub" },
+  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Instagram, href: "#", label: "Instagram" },
+];
+
+const quickLinks: QuickLink[] = [
+  { path: "/", label: "Home" },
+  { path: "/services", label: "Serviços" },
+  { path: "/portfolio", label: "Portfólio" },
+  { path: "/about", label: "Sobre" },
+  { path: "/contact", label: "Contato" },
+];
+
+const services: string[] = [
+  "Desenvolvimento Web",
+  "Aplicativos Mobile",
+  "APIs e Backend",
+  "Planejamento de Conteúdo em Vídeo",
+  "Design para Redes Sociais",
+  "Fotografia Corporativa",
+  "Fotografia de Produtos",
+];
+
+const Footer: FC = () => {
   const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-  ];
-
-  const quickLinks = [
-    { path: "/", label: "Home" },
-    { path: "/services", label: "Serviços" },
-    { path: "/portfolio", label: "Portfólio" },
-    { path: "/about", label: "Sobre" },
-    { path: "/contact", label: "Contato" },
-  ];
-
-  const services = [
-    "Desenvolvimento Web",
-    "Aplicativos Mobile",
-    "APIs e Backend",
-    "Planejamento de Conteúdo em Vídeo",
-    "Design para Redes Sociais",
-    "Fotografia Corporativa",
-    "Fotografia de Produtos",
-  ];
-
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        {/* Main Footer Content */}
         <div className={styles.content}>
-          {/* Company Info */}
           <div className={styles.section}>
             <div className={styles.brand}>
               <img
@@ -75,7 +85,6 @@ const Footer = () => {
               </a>
             </div>
 
-            {/* Contact Info */}
             <div className={styles.contact}>
               <div className={styles.contactItem}>
                 <Mail size={18} />
@@ -106,7 +115,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div className={styles.section}>
             <h4 className={styles.title}>Navegação</h4>
             <ul className={styles.links}>
@@ -120,7 +128,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
           <div className={styles.section}>
             <h4 className={styles.title}>Serviços</h4>
             <ul className={styles.links}>
@@ -132,7 +139,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social Links */}
           <div className={styles.section}>
             <h4 className={styles.title}>Redes Sociais</h4>
             <div className={styles.social}>
@@ -152,7 +158,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Footer Bottom */}
         <div className={styles.bottom}>
           <div className={styles.bottomContent}>
             <p className={styles.copyright}>
@@ -164,8 +169,8 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Back to Top Button */}
           <motion.button
+            type="button"
             className={styles.backToTop}
             onClick={scrollToTop}
             aria-label="Voltar ao topo"

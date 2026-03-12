@@ -1,24 +1,34 @@
+import type { ErrorInfo, ReactNode } from "react";
 import React from "react";
-import PropTypes from "prop-types";
 import { AlertTriangle, RefreshCw, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import styles from "./ErrorBoundary.module.css";
 
-class ErrorBoundary extends React.Component {
-  constructor(props) {
+type ErrorBoundaryProps = {
+  children?: ReactNode;
+};
+
+type ErrorBoundaryState = {
+  hasError: boolean;
+  error: Error | null;
+  errorInfo: ErrorInfo | null;
+};
+
+class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: null, errorInfo: null };
   }
 
-  static getDerivedStateFromError(_error) {
+  static getDerivedStateFromError(_error: unknown): Partial<ErrorBoundaryState> {
     return { hasError: true };
   }
 
-  componentDidCatch(error, errorInfo) {
-    this.setState({
-      error: error,
-      errorInfo: errorInfo,
-    });
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    this.setState({ error, errorInfo });
   }
 
   handleReload = () => {
@@ -43,6 +53,7 @@ class ErrorBoundary extends React.Component {
 
               <div className={styles.errorActions}>
                 <button
+                  type="button"
                   onClick={this.handleReload}
                   className={`${styles.errorButton} ${styles.errorButtonPrimary}`}
                 >
@@ -63,9 +74,9 @@ class ErrorBoundary extends React.Component {
                 <details className={styles.errorDetails}>
                   <summary>Detalhes do erro (desenvolvimento)</summary>
                   <pre className={styles.errorStack}>
-                    {this.state.error && this.state.error.toString()}
+                    {this.state.error.toString()}
                     <br />
-                    {this.state.errorInfo.componentStack}
+                    {this.state.errorInfo?.componentStack}
                   </pre>
                 </details>
               )}
@@ -75,12 +86,8 @@ class ErrorBoundary extends React.Component {
       );
     }
 
-    return this.props.children;
+    return this.props.children ?? null;
   }
 }
-
-ErrorBoundary.propTypes = {
-  children: PropTypes.node,
-};
 
 export default ErrorBoundary;

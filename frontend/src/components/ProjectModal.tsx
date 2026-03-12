@@ -1,8 +1,8 @@
-import type { FC, MouseEvent, KeyboardEvent } from "react";
+import type { FC } from "react";
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Loader, Info, Monitor } from "lucide-react";
-import type { Project, ProjectResult } from "@shared/types";
+import type { Project } from "@shared/types";
 import { buildApiUrl, API_ENDPOINTS } from "../config/api";
 import styles from "./ProjectModal.module.css";
 
@@ -24,14 +24,14 @@ const ProjectModal: FC<ProjectModalProps> = ({ project, isOpen, onClose }) => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent | KeyboardEventInit | any) => {
+    const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener("keydown", handleEscape as any);
+      document.addEventListener("keydown", handleEscape);
       document.body.style.overflow = "hidden";
     } else {
       setShowIframe(false);
@@ -40,7 +40,7 @@ const ProjectModal: FC<ProjectModalProps> = ({ project, isOpen, onClose }) => {
     }
 
     return () => {
-      document.removeEventListener("keydown", handleEscape as any);
+      document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
@@ -60,7 +60,8 @@ const ProjectModal: FC<ProjectModalProps> = ({ project, isOpen, onClose }) => {
           : `https://${data.url}`;
         setProjectUrl(fullUrl);
       }
-    } catch {
+    } catch (_err) {
+      void _err;
     } finally {
       setLoadingUrl(false);
     }

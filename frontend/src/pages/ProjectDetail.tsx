@@ -82,7 +82,9 @@ const ProjectDetail: FC = () => {
             if (urlResponse.success) {
               setProjectUrl(urlResponse.url);
             }
-          } catch {}
+            } catch (_err) {
+              void _err;
+            }
         }
       } catch {
         setError("Erro ao carregar dados do projeto");
