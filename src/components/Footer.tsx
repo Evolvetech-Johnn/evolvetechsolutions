@@ -15,7 +15,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3">
               <img
-                src="/logo.png"
+                src="/LogoVF.png"
                 alt="EVOLVETECH SOLUTIONS"
                 className="h-11 w-11 rounded-xl object-contain bg-white/5 ring-1 ring-white/10 p-1"
               />

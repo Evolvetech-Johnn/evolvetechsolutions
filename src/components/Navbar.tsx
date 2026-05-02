@@ -24,7 +24,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between gap-3">
           <a href="#topo" className="group inline-flex items-center gap-3">
             <img
-              src="/logo.png"
+              src="/LogoVF.png"
               alt="EVOLVETECH SOLUTIONS"
               className="h-10 w-10 rounded-xl object-contain bg-white/5 ring-1 ring-white/10 p-1"
               loading="eager"
