@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import Card from "@/components/Card";
+import { AlertTriangle, Sparkles } from "lucide-react";
 
 const pains = [
   {
@@ -33,25 +34,6 @@ const solutions = [
   }
 ];
 
-function IconAlert() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 text-white/80" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M12 9v4m0 4h.01" />
-      <path d="M10.29 3.86l-8.4 14.52A2 2 0 003.62 21h16.76a2 2 0 001.73-2.62l-8.4-14.52a2 2 0 00-3.42 0z" />
-    </svg>
-  );
-}
-
-function IconSpark() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 text-white/80" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M12 2l1.2 4.2L17 7.4l-3.8 1.2L12 13l-1.2-4.4L7 7.4l3.8-1.2L12 2z" />
-      <path d="M5 13l.7 2.5L8 16.2l-2.3.7L5 19l-.7-2.1L2 16.2l2.3-.7L5 13z" />
-      <path d="M19 13l.7 2.5 2.3.7-2.3.7L19 19l-.7-2.1-2.3-.7 2.3-.7L19 13z" />
-    </svg>
-  );
-}
-
 export default function ProblemSolution() {
   return (
     <section className="relative border-y border-white/5 bg-ink-950">
@@ -75,11 +57,14 @@ export default function ProblemSolution() {
             viewport={{ once: true, margin: "-20% 0px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="text-sm font-semibold text-white/60">DORES REAIS</div>
+            <div className="inline-flex items-center gap-2 text-sm font-semibold text-white/70">
+              <AlertTriangle className="h-4 w-4 text-neon-purple/90" />
+              Dores reais
+            </div>
             {pains.map((p) => (
               <Card
                 key={p.title}
-                icon={<IconAlert />}
+                icon={<AlertTriangle className="h-5 w-5 text-white/80" />}
                 title={p.title}
                 description={p.desc}
               />
@@ -93,11 +78,14 @@ export default function ProblemSolution() {
             viewport={{ once: true, margin: "-20% 0px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.06 }}
           >
-            <div className="text-sm font-semibold text-white/60">SOLUÇÃO DIRETA</div>
+            <div className="inline-flex items-center gap-2 text-sm font-semibold text-white/70">
+              <Sparkles className="h-4 w-4 text-neon-cyan/90" />
+              Solução direta
+            </div>
             {solutions.map((s) => (
               <Card
                 key={s.title}
-                icon={<IconSpark />}
+                icon={<Sparkles className="h-5 w-5 text-white/80" />}
                 title={s.title}
                 description={s.desc}
               />

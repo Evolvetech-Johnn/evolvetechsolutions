@@ -15,19 +15,19 @@ export default function Card({
   return (
     <div
       className={[
-        "group relative overflow-hidden rounded-2xl bg-white/3 ring-1 ring-white/10 shadow-glow backdrop-blur transition hover:ring-white/20",
+        "group relative overflow-hidden rounded-3xl bg-white/[0.03] ring-1 ring-white/10 shadow-glow backdrop-blur transition hover:ring-white/20",
         className
       ].join(" ")}
     >
       <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100">
-        <div className="absolute -top-24 left-1/4 h-48 w-48 rounded-full bg-neon-cyan/10 blur-3xl" />
-        <div className="absolute -bottom-28 right-1/4 h-56 w-56 rounded-full bg-neon-purple/10 blur-3xl" />
+        <div className="absolute -top-24 left-1/4 h-48 w-48 rounded-full bg-neon-cyan/[0.10] blur-3xl" />
+        <div className="absolute -bottom-28 right-1/4 h-56 w-56 rounded-full bg-neon-purple/[0.10] blur-3xl" />
       </div>
       <div className="relative p-6 md:p-7">
         {(icon || title || description) && (
           <div className="mb-5 flex items-start gap-4">
             {icon && (
-              <div className="mt-0.5 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10">
+              <div className="mt-0.5 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-white/10">
                 {icon}
               </div>
             )}

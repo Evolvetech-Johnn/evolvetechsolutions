@@ -1,18 +1,18 @@
 # EVOLVETECH SOLUTIONS — Site institucional
 
-- React + Vite + TypeScript
+- Next.js (App Router) + React + TypeScript
 - Tailwind CSS
 - Framer Motion
+- Lucide (ícones)
 
 ## Rodar localmente
 
 1. Instalar dependências: `npm install`
 2. Ambiente de desenvolvimento: `npm run dev`
 3. Build de produção: `npm run build`
-4. Preview do build: `npm run preview`
+4. Rodar build: `npm run start`
 
 ## Configurações rápidas
 
 - WhatsApp e dados da empresa: `src/config/site.ts`
-- Imagens: pasta `img/` (servida direto na raiz do site)
-
+- Assets públicos: `public/` (imagens e ícones)

@@ -19,14 +19,14 @@ export default function Navbar() {
   });
 
   return (
-    <div className="sticky top-0 z-40 border-b border-white/5 bg-ink-950/70 backdrop-blur">
+    <div className="sticky top-0 z-40 border-b border-white/[0.08] bg-ink-950/[0.55] backdrop-blur">
       <Container className="py-3">
         <div className="flex items-center justify-between gap-3">
           <a href="#topo" className="group inline-flex items-center gap-3">
             <img
               src="/LogoVF.png"
               alt="EVOLVETECH SOLUTIONS"
-              className="h-10 w-10 rounded-xl object-contain bg-white/5 ring-1 ring-white/10 p-1"
+              className="h-10 w-10 rounded-2xl object-contain bg-white/[0.06] ring-1 ring-white/[0.12] p-1 shadow-glow"
               loading="eager"
             />
             <div className="hidden sm:block">
@@ -48,9 +48,10 @@ export default function Navbar() {
                 <a
                   key={l.href}
                   href={l.href}
-                  className="transition hover:text-white"
+                  className="group relative transition hover:text-white"
                 >
                   {l.label}
+                  <span className="absolute -bottom-2 left-0 h-px w-0 bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
             </nav>

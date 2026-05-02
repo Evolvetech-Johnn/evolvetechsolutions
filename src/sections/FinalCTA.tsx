@@ -14,15 +14,15 @@ export default function FinalCTA() {
   return (
     <section id="contato" className="relative overflow-hidden bg-ink-950">
       <div className="absolute inset-0">
-        <div className="absolute -top-28 left-1/4 h-72 w-72 rounded-full bg-neon-cyan/12 blur-3xl" />
-        <div className="absolute -bottom-28 right-1/4 h-72 w-72 rounded-full bg-neon-purple/12 blur-3xl" />
+        <div className="absolute -top-28 left-1/4 h-72 w-72 rounded-full bg-neon-cyan/[0.12] blur-3xl" />
+        <div className="absolute -bottom-28 right-1/4 h-72 w-72 rounded-full bg-neon-purple/[0.12] blur-3xl" />
       </div>
 
       <Container className="relative py-16 md:py-24">
-        <div className="relative overflow-hidden rounded-[32px] bg-white/3 ring-1 ring-white/10 shadow-glowStrong backdrop-blur">
+        <div className="relative overflow-hidden rounded-[32px] bg-white/[0.03] ring-1 ring-white/10 shadow-glowStrong backdrop-blur">
           <div className="absolute inset-0 opacity-60">
-            <div className="absolute -top-24 right-[-80px] h-56 w-56 rounded-full bg-neon-green/14 blur-3xl" />
-            <div className="absolute -bottom-28 left-[-80px] h-64 w-64 rounded-full bg-neon-cyan/14 blur-3xl" />
+            <div className="absolute -top-24 right-[-80px] h-56 w-56 rounded-full bg-neon-green/[0.14] blur-3xl" />
+            <div className="absolute -bottom-28 left-[-80px] h-64 w-64 rounded-full bg-neon-cyan/[0.14] blur-3xl" />
           </div>
 
           <div className="relative p-8 md:p-12">
@@ -66,7 +66,7 @@ export default function FinalCTA() {
               ].map((i) => (
                 <div
                   key={i.t}
-                  className="rounded-2xl bg-white/3 p-5 ring-1 ring-white/10"
+                  className="rounded-3xl bg-white/[0.03] p-5 ring-1 ring-white/10"
                 >
                   <div className="text-sm font-semibold text-white">{i.t}</div>
                   <div className="mt-2 text-sm text-white/70">{i.d}</div>

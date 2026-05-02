@@ -27,7 +27,7 @@ export default function CookieBanner() {
         label: "Recusar",
         value: "rejected" as const,
         className:
-          "inline-flex h-11 items-center justify-center rounded-xl bg-white/5 px-5 text-sm font-semibold text-white ring-1 ring-white/10 transition hover:bg-white/8 hover:ring-white/20"
+          "inline-flex h-11 items-center justify-center rounded-xl bg-white/5 px-5 text-sm font-semibold text-white ring-1 ring-white/10 transition hover:bg-white/[0.08] hover:ring-white/20"
       },
       {
         label: "Aceitar",
@@ -93,4 +93,3 @@ export default function CookieBanner() {
     </div>
   );
 }
-

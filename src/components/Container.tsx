@@ -5,7 +5,7 @@ export default function Container({
   className
 }: PropsWithChildren<{ className?: string }>) {
   return (
-    <div className={["mx-auto w-full max-w-6xl px-4 md:px-6", className].join(" ")}>
+    <div className={["mx-auto w-full max-w-7xl px-4 md:px-6", className].join(" ")}>
       {children}
     </div>
   );

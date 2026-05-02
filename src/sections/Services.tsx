@@ -3,6 +3,7 @@ import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import Card from "@/components/Card";
 import { ButtonLink } from "@/components/Button";
+import { Bolt, Code2, Globe, ArrowRight } from "lucide-react";
 
 type Service = {
   title: string;
@@ -43,38 +44,6 @@ const services: Service[] = [
   }
 ];
 
-function IconBrackets() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 text-white/80" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h2" />
-      <path d="M16 4h2a2 2 0 012 2v12a2 2 0 01-2 2h-2" />
-      <path d="M12 6v12" />
-    </svg>
-  );
-}
-
-function IconGlobe() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 text-white/80" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M12 21a9 9 0 100-18 9 9 0 000 18z" />
-      <path d="M3.6 9h16.8" />
-      <path d="M3.6 15h16.8" />
-      <path d="M12 3a12 12 0 010 18" />
-      <path d="M12 3a12 12 0 000 18" />
-    </svg>
-  );
-}
-
-function IconBolt() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 text-white/80" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" />
-    </svg>
-  );
-}
-
-const icons = [<IconBrackets key="a" />, <IconGlobe key="b" />, <IconBolt key="c" />];
-
 export default function Services() {
   return (
     <section id="servicos" className="relative bg-ink-950">
@@ -102,10 +71,20 @@ export default function Services() {
               transition={{ duration: 0.6, ease: "easeOut", delay: idx * 0.06 }}
             >
               <Card
-                icon={icons[idx]}
+                icon={
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-white/10">
+                    {idx === 0 ? (
+                      <Code2 className="h-5 w-5 text-neon-cyan/90" />
+                    ) : idx === 1 ? (
+                      <Globe className="h-5 w-5 text-neon-purple/90" />
+                    ) : (
+                      <Bolt className="h-5 w-5 text-neon-green/90" />
+                    )}
+                  </div>
+                }
                 title={s.title}
                 description={s.tagline}
-                className="h-full"
+                className="h-full hover:-translate-y-1 transition-transform duration-300"
               >
                 <ul className="space-y-2 text-sm text-white/70">
                   {s.bullets.map((b) => (
@@ -118,6 +97,7 @@ export default function Services() {
                 <div className="mt-6">
                   <ButtonLink href="#contato" variant="secondary" size="sm">
                     Quero uma proposta
+                    <ArrowRight className="h-4 w-4 opacity-80" />
                   </ButtonLink>
                 </div>
               </Card>

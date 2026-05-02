@@ -7,7 +7,7 @@ export default function Badge({
   return (
     <span
       className={[
-        "inline-flex items-center rounded-full bg-white/5 px-3 py-1 text-xs font-semibold text-white/80 ring-1 ring-white/10 backdrop-blur",
+        "inline-flex items-center rounded-full bg-white/[0.06] px-3 py-1 text-xs font-semibold text-white/80 ring-1 ring-white/10 shadow-glow backdrop-blur",
         className
       ].join(" ")}
     >
