@@ -1,0 +1,174 @@
+.servicesPage {
+  padding: 3rem 1.5rem;
+  color: #111827;
+  background: #f8fafc;
+}
+
+.hero {
+  padding: 3rem 0 2rem;
+}
+
+.heroContainer {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.05;
+  font-weight: 800;
+  margin: 0;
+}
+
+.heroSubtitle {
+  margin-top: 1rem;
+  max-width: 42rem;
+  line-height: 1.8;
+  color: #475569;
+}
+
+.heroActions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.heroPrimary,
+.heroSecondary,
+.sectionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.95rem 1.75rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.heroPrimary {
+  background: #111827;
+  color: #ffffff;
+}
+
+.heroSecondary,
+.sectionButton {
+  background: rgba(15, 23, 42, 0.06);
+  color: #111827;
+}
+
+.section,
+.sectionAlt {
+  padding: 3rem 0;
+}
+
+.sectionAlt {
+  background: #ffffff;
+}
+
+.sectionContainer {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  font-weight: 800;
+  margin: 0;
+}
+
+.sectionDescription {
+  max-width: 42rem;
+  line-height: 1.75;
+  color: #475569;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 1.5rem;
+  padding: 1.75rem;
+  min-height: 240px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.cardIcon {
+  width: 3rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+}
+
+.cardDescription,
+.benefitDescription,
+.inlineCtaDescription {
+  line-height: 1.75;
+  color: #475569;
+  margin: 0;
+}
+
+.benefits {
+  display: grid;
+  gap: 1rem;
+}
+
+.benefitItem {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 1rem;
+}
+
+.benefitIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.inlineCta {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background: #111827;
+  color: #ffffff;
+}
+
+.inlineCtaTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.inlineCtaButton {
+  align-self: start;
+}

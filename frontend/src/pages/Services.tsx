@@ -19,7 +19,7 @@ import {
   Cpu,
 } from "lucide-react";
 import styles from "./Services.module.css";
-import { getLocale, t } from "@app/i18n";
+import { getLocale, t } from "../i18n";
 
 type ServiceCard = {
   icon: typeof Code;
