@@ -3,7 +3,7 @@ import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import Card from "@/components/Card";
 import { ButtonLink } from "@/components/Button";
-import { Bolt, Code2, Globe, ArrowRight } from "lucide-react";
+import { Bolt, Code2, Globe, ArrowRight, Cpu, Server } from "lucide-react";
 
 type Service = {
   title: string;
@@ -41,6 +41,26 @@ const services: Service[] = [
       "Alertas e notificações com regra de negócio",
       "Redução de erros e retrabalho no dia a dia"
     ]
+  },
+  {
+    title: "Aplicativos e Sistemas Embarcados",
+    tagline: "Soluções IoT e firmware para dispositivos inteligentes.",
+    bullets: [
+      "Desenvolvimento de aplicações móveis nativas e híbridas",
+      "Sistemas embarcados para IoT e automação industrial",
+      "Firmware personalizado para hardware específico",
+      "Integração com sensores e dispositivos conectados"
+    ]
+  },
+  {
+    title: "Suporte com Infraestrutura (VPS, VPN, Redes)",
+    tagline: "Infraestrutura robusta e segura para suas aplicações.",
+    bullets: [
+      "Configuração e gerenciamento de servidores VPS",
+      "Implementação de VPN para acesso remoto seguro",
+      "Setup e manutenção de redes corporativas",
+      "Monitoramento e suporte 24/7 para infraestrutura"
+    ]
   }
 ];
 
@@ -77,8 +97,12 @@ export default function Services() {
                       <Code2 className="h-5 w-5 text-neon-cyan/90" />
                     ) : idx === 1 ? (
                       <Globe className="h-5 w-5 text-neon-purple/90" />
-                    ) : (
+                    ) : idx === 2 ? (
                       <Bolt className="h-5 w-5 text-neon-green/90" />
+                    ) : idx === 3 ? (
+                      <Cpu className="h-5 w-5 text-neon-cyan/90" />
+                    ) : (
+                      <Server className="h-5 w-5 text-neon-purple/90" />
                     )}
                   </div>
                 }
