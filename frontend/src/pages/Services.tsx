@@ -16,6 +16,7 @@ import {
   Smartphone,
   Video,
   CheckCircle2,
+  Cpu,
 } from "lucide-react";
 import styles from "./Services.module.css";
 import { getLocale, t } from "@app/i18n";
@@ -88,6 +89,22 @@ const Services: FC = () => {
         locale === "en-US"
           ? "Premium corporate websites that convey trust, positioning and a clear growth narrative."
           : "Sites corporativos premium que comunicam confiança, posicionamento e uma narrativa clara de crescimento.",
+    },
+    {
+      icon: Cpu,
+      title: locale === "en-US" ? "Embedded Systems" : "Sistemas Embarcados",
+      description:
+        locale === "en-US"
+          ? "Development of embedded systems and IoT solutions for smart devices and industrial automation."
+          : "Desenvolvimento de sistemas embarcados e soluções IoT para dispositivos inteligentes e automação industrial.",
+    },
+    {
+      icon: Server,
+      title: locale === "en-US" ? "Infrastructure Support" : "Suporte de Infraestrutura",
+      description:
+        locale === "en-US"
+          ? "VPS management, VPN setup, network configuration and 24/7 infrastructure monitoring."
+          : "Gerenciamento de VPS, configuração de VPN, setup de redes e monitoramento 24/7 de infraestrutura.",
     },
   ];
 
