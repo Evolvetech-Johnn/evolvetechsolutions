@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, Segoe UI,
+    Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-poppins), var(--font-inter), ui-sans-serif, system-ui;
+}
+
+::selection {
+  background: rgba(62, 231, 255, 0.18);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
