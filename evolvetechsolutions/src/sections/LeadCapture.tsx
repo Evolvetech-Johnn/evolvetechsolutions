@@ -6,26 +6,82 @@ import { Button } from "@/components/Button";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { CheckCircle2, Send } from "lucide-react";
+import { CheckCircle2, Send, Loader2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { PatternFormat } from "react-number-format";
+import { supabase } from "@/lib/supabase";
+
+const leadFormSchema = z.object({
+  name: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
+  company: z.string().min(2, "Empresa deve ter pelo menos 2 caracteres"),
+  role: z.string().min(2, "Cargo deve ter pelo menos 2 caracteres"),
+  phone: z.string().regex(/^\(\d{2}\)\s\d{5}-\d{4}$/, "Telefone inválido. Use o formato (00) 00000-0000"),
+  email: z.string().email("E-mail inválido"),
+});
+
+type LeadFormValues = z.infer<typeof leadFormSchema>;
 
 export default function LeadCapture() {
-  const [formData, setFormData] = useState({
-    name: "",
-    company: "",
-    role: "",
-    phone: "",
-    email: "",
-  });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<LeadFormValues>({
+    resolver: zodResolver(leadFormSchema),
+    defaultValues: {
+      name: "",
+      company: "",
+      role: "",
+      phone: "",
+      email: "",
+    },
+  });
+
+  const onSubmit = async (data: LeadFormValues) => {
+    setIsSubmitting(true);
+    setErrorMessage(null);
+    
+    try {
+      console.log("Dados do formulário:", data);
+      
+      // Integração com Supabase - descomente quando as credenciais estiverem configuradas
+      /*
+      const { error } = await supabase.from('leads').insert({
+        name: data.name,
+        company: data.company,
+        role: data.role,
+        phone: data.phone,
+        email: data.email,
+      });
+      
+      if (error) {
+        throw error;
+      }
+      */
+      
+      // Simula envio para demonstração (remova quando a integração com Supabase estiver pronta)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      
+      setSubmitted(true);
+      reset();
+    } catch (error) {
+      console.error("Erro ao enviar formulário:", error);
+      setErrorMessage("Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const resetForm = () => {
+    setSubmitted(false);
   };
 
   return (
@@ -78,7 +134,7 @@ export default function LeadCapture() {
                     Entraremos em contato em breve para agendar seu diagnóstico gratuito.
                   </p>
                   <Button
-                    onClick={() => setSubmitted(false)}
+                    onClick={resetForm}
                     variant="secondary"
                     className="w-full"
                   >
@@ -86,7 +142,7 @@ export default function LeadCapture() {
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="p-8">
+                <form onSubmit={handleSubmit(onSubmit)} className="p-8">
                   <div className="space-y-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-semibold text-primary mb-2">
@@ -94,14 +150,16 @@ export default function LeadCapture() {
                       </label>
                       <input
                         id="name"
-                        name="name"
                         type="text"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
                         placeholder="Seu nome"
-                        className="w-full px-4 py-3 rounded-xl border border-border focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all"
+                        className={`w-full px-4 py-3 rounded-xl border transition-all ${
+                          errors.name ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-border focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
+                        } outline-none`}
+                        {...register("name")}
                       />
+                      {errors.name && (
+                        <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
+                      )}
                     </div>
                     
                     <div>
@@ -110,14 +168,16 @@ export default function LeadCapture() {
                       </label>
                       <input
                         id="company"
-                        name="company"
                         type="text"
-                        required
-                        value={formData.company}
-                        onChange={handleChange}
                         placeholder="Nome da empresa"
-                        className="w-full px-4 py-3 rounded-xl border border-border focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all"
+                        className={`w-full px-4 py-3 rounded-xl border transition-all ${
+                          errors.company ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-border focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
+                        } outline-none`}
+                        {...register("company")}
                       />
+                      {errors.company && (
+                        <p className="mt-1 text-sm text-red-500">{errors.company.message}</p>
+                      )}
                     </div>
                     
                     <div>
@@ -126,30 +186,34 @@ export default function LeadCapture() {
                       </label>
                       <input
                         id="role"
-                        name="role"
                         type="text"
-                        required
-                        value={formData.role}
-                        onChange={handleChange}
                         placeholder="Seu cargo"
-                        className="w-full px-4 py-3 rounded-xl border border-border focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all"
+                        className={`w-full px-4 py-3 rounded-xl border transition-all ${
+                          errors.role ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-border focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
+                        } outline-none`}
+                        {...register("role")}
                       />
+                      {errors.role && (
+                        <p className="mt-1 text-sm text-red-500">{errors.role.message}</p>
+                      )}
                     </div>
                     
                     <div>
                       <label htmlFor="phone" className="block text-sm font-semibold text-primary mb-2">
                         Telefone
                       </label>
-                      <input
+                      <PatternFormat
                         id="phone"
-                        name="phone"
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={handleChange}
+                        format="(##) #####-####"
                         placeholder="(00) 00000-0000"
-                        className="w-full px-4 py-3 rounded-xl border border-border focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all"
+                        className={`w-full px-4 py-3 rounded-xl border transition-all ${
+                          errors.phone ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-border focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
+                        } outline-none`}
+                        {...register("phone")}
                       />
+                      {errors.phone && (
+                        <p className="mt-1 text-sm text-red-500">{errors.phone.message}</p>
+                      )}
                     </div>
                     
                     <div>
@@ -158,25 +222,37 @@ export default function LeadCapture() {
                       </label>
                       <input
                         id="email"
-                        name="email"
                         type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
                         placeholder="seu@email.com"
-                        className="w-full px-4 py-3 rounded-xl border border-border focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all"
+                        className={`w-full px-4 py-3 rounded-xl border transition-all ${
+                          errors.email ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-border focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
+                        } outline-none`}
+                        {...register("email")}
                       />
+                      {errors.email && (
+                        <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+                      )}
                     </div>
                   </div>
                   
                   <Button
                     type="submit"
-                    className="w-full mt-6 bg-gradient-to-r from-brand-600 to-accent hover:from-brand-700 hover:to-brand-600 text-white py-4 text-lg shadow-lg shadow-brand-500/30"
+                    disabled={isSubmitting}
+                    className="w-full mt-6 bg-gradient-to-r from-brand-600 to-accent hover:from-brand-700 hover:to-brand-600 text-white py-4 text-lg shadow-lg shadow-brand-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    <span>Solicitar Diagnóstico Gratuito</span>
-                    <Send className="ml-2 h-5 w-5" />
+                    {isSubmitting ? (
+                      <Loader2 className="animate-spin h-5 w-5" />
+                    ) : (
+                      <>
+                        <span>Solicitar Diagnóstico Gratuito</span>
+                        <Send className="ml-2 h-5 w-5" />
+                      </>
+                    )}
                   </Button>
                   
+                  {errorMessage && (
+                    <p className="mt-4 text-sm text-red-500 text-center">{errorMessage}</p>
+                  )}
                   <p className="text-xs text-text-secondary text-center mt-4">
                     Ao enviar, você concorda com nossa política de privacidade.
                   </p>
