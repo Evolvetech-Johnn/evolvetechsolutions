@@ -1,0 +1,17 @@
+OLD_EMAIL_1="12345678+Evolvetech-Johnn@users.noreply.github.com"
+OLD_EMAIL_2="evolvetechsolutionsldn@gmail.com"
+OLD_EMAIL_3="copilot@github.com"
+CORRECT_NAME="Evolve Tech Solutions"
+CORRECT_EMAIL="contato@evolvetechsolutions.com.br"
+
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL_1" ] || [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL_2" ] || [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL_3" ]
+then
+    export GIT_COMMITTER_NAME="$CORRECT_NAME"
+    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+fi
+
+if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL_1" ] || [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL_2" ] || [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL_3" ]
+then
+    export GIT_AUTHOR_NAME="$CORRECT_NAME"
+    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+fi
