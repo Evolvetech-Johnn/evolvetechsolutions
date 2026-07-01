@@ -12,38 +12,38 @@ export default function FinalCTA() {
   });
 
   return (
-    <section id="contato" className="relative overflow-hidden bg-ink-950">
+    <section id="contato" className="relative overflow-hidden bg-brand-base">
       <div className="absolute inset-0">
         <div className="absolute -top-28 left-1/4 h-72 w-72 rounded-full bg-neon-cyan/[0.12] blur-3xl" />
-        <div className="absolute -bottom-28 right-1/4 h-72 w-72 rounded-full bg-neon-purple/[0.12] blur-3xl" />
+        <div className="absolute -bottom-28 right-1/4 h-72 w-72 rounded-full bg-brand-action/[0.12] blur-3xl" />
       </div>
 
       <Container className="relative py-16 md:py-24">
-        <div className="relative overflow-hidden rounded-[32px] bg-white/[0.03] ring-1 ring-white/10 shadow-glowStrong backdrop-blur">
+        <div className="relative overflow-hidden rounded-[32px] bg-brand-surface ring-1 ring-brand-border shadow-glowStrong backdrop-blur">
           <div className="absolute inset-0 opacity-60">
             <div className="absolute -top-24 right-[-80px] h-56 w-56 rounded-full bg-neon-green/[0.14] blur-3xl" />
-            <div className="absolute -bottom-28 left-[-80px] h-64 w-64 rounded-full bg-neon-cyan/[0.14] blur-3xl" />
+            <div className="absolute -bottom-28 left-[-80px] h-64 w-64 rounded-full bg-brand-accent/[0.14] blur-3xl" />
           </div>
 
           <div className="relative p-8 md:p-12">
             <div className="flex flex-wrap items-center gap-2">
               <Badge>Orçamento rápido</Badge>
-              <Badge className="text-white/90">Diagnóstico + proposta</Badge>
-              <Badge className="text-white/90">Tickets R$3k–R$15k+</Badge>
+              <Badge className="text-brand-text-muted">Diagnóstico + proposta</Badge>
+              <Badge className="text-brand-text-muted">Tickets R$3k–R$15k+</Badge>
             </div>
 
             <motion.h3
-              className="mt-6 text-balance text-3xl font-semibold tracking-tight text-white md:text-4xl"
+              className="mt-6 text-balance text-3xl font-semibold tracking-tight text-brand-text md:text-4xl"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20% 0px" }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               Se você quer crescimento com controle, o próximo passo é simples:
-              <span className="text-white/70"> conversar com a gente.</span>
+              <span className="text-brand-text/70"> conversar com a gente.</span>
             </motion.h3>
 
-            <p className="mt-4 max-w-2xl text-balance text-base leading-relaxed text-white/70 md:text-lg">
+            <p className="mt-4 max-w-2xl text-balance text-base leading-relaxed text-brand-text/70 md:text-lg">
               Em poucos minutos, entendemos seu cenário e apontamos o caminho: o que
               automatizar, quais indicadores priorizar e qual escopo entrega o melhor
               retorno.
@@ -66,10 +66,10 @@ export default function FinalCTA() {
               ].map((i) => (
                 <div
                   key={i.t}
-                  className="rounded-3xl bg-white/[0.03] p-5 ring-1 ring-white/10"
+                  className="rounded-3xl bg-brand-surface p-5 ring-1 ring-brand-border"
                 >
-                  <div className="text-sm font-semibold text-white">{i.t}</div>
-                  <div className="mt-2 text-sm text-white/70">{i.d}</div>
+                  <div className="text-sm font-semibold text-brand-text">{i.t}</div>
+                  <div className="mt-2 text-sm text-brand-text/70">{i.d}</div>
                 </div>
               ))}
             </div>

@@ -42,21 +42,21 @@ const caseStudies = [
 
 export default function CaseStudies() {
   return (
-    <section id="casos" className="py-20 bg-base">
+    <section id="casos" className="py-12 md:py-20 bg-brand-base overflow-hidden">
       <Container>
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-success/10 px-4 py-2 text-sm font-semibold text-success mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full bg-brand-action/10 px-4 py-2 text-sm font-semibold text-brand-action mb-4">
             Casos de Sucesso
           </div>
-          <h2 className="text-h2 font-bold text-primary mb-4">
+          <h2 className="text-2xl md:text-h2 font-bold text-brand-text mb-4">
             Empresas que transformamos
           </h2>
-          <p className="text-text-secondary text-body max-w-2xl mx-auto">
+          <p className="text-brand-text-muted text-body max-w-2xl mx-auto">
             Veja como nossos clientes alcançaram resultados extraordinários.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {caseStudies.map((study, index) => (
             <CaseStudyCard key={index} study={study} index={index} />
           ))}
@@ -77,36 +77,36 @@ function CaseStudyCard({ study, index }: { study: typeof caseStudies[0]; index: 
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -4 }}
     >
-      <Card className="border border-border overflow-hidden">
-        <div className="bg-gradient-to-r from-accent to-accent-light p-6 text-white">
+      <Card className="border border-brand-border overflow-hidden">
+        <div className="bg-gradient-to-r from-brand-accent to-brand-accent-light p-6 text-white">
           <h3 className="text-xl font-bold">{study.company}</h3>
         </div>
         
         <div className="p-6">
           <div className="mb-4">
             <div className="text-xs font-semibold text-red-400 mb-1">Desafio</div>
-            <p className="text-text-secondary">{study.problem}</p>
+            <p className="text-brand-text-muted">{study.problem}</p>
           </div>
           
           <div className="mb-6">
-            <div className="text-xs font-semibold text-accent mb-1">Solução</div>
-            <p className="text-text-secondary">{study.solution}</p>
+            <div className="text-xs font-semibold text-brand-accent mb-1">Solução</div>
+            <p className="text-brand-text-muted">{study.solution}</p>
           </div>
           
           <div className="grid grid-cols-3 gap-4 mb-6">
             {study.results.map((result, i) => {
               const Icon = result.icon;
               return (
-                <div key={i} className="text-center p-3 bg-surface rounded-xl border border-border">
-                  <Icon className="h-5 w-5 text-success mx-auto mb-1" />
-                  <div className="text-lg font-bold text-text-primary">{result.metric}</div>
-                  <div className="text-xs text-text-secondary">{result.label}</div>
+                <div key={i} className="text-center p-3 bg-brand-surface rounded-xl border border-brand-border">
+                  <Icon className="h-5 w-5 text-brand-action mx-auto mb-1" />
+                  <div className="text-lg font-bold text-brand-text">{result.metric}</div>
+                  <div className="text-xs text-brand-text-muted">{result.label}</div>
                 </div>
               );
             })}
           </div>
           
-          <ButtonLink href="#contato" className="w-full bg-accent hover:bg-accent-light text-white">
+          <ButtonLink href="#contato" className="w-full bg-brand-accent hover:bg-brand-accent-light text-white">
             Ver caso completo
           </ButtonLink>
         </div>

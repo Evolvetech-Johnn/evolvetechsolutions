@@ -18,34 +18,34 @@ const logos = [
 
 export default function SocialProof() {
   return (
-    <section className="py-16 bg-surface border-y border-border">
+    <section className="py-12 md:py-16 bg-brand-surface border-y border-brand-border overflow-hidden">
       <Container>
         <div className="mb-12 text-center">
-          <h2 className="text-h3 font-semibold text-text-primary mb-2">
+          <h2 className="text-2xl md:text-h3 font-semibold text-brand-text mb-2">
             Resultados Comprovados
           </h2>
-          <p className="text-text-secondary">
+          <p className="text-brand-text-muted">
             Empresas que confiaram em nós e transformaram suas operações
           </p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8 mb-12 md:mb-16">
           {metrics.map((metric, index) => (
             <MetricCard key={index} metric={metric} index={index} />
           ))}
         </div>
         
         <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-surface to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-surface to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-r from-brand-surface to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-l from-brand-surface to-transparent z-10" />
           
           <motion.div
-            className="flex gap-16"
-            animate={{ x: [0, -1000] }}
+            className="flex gap-8 md:gap-16"
+            animate={{ x: [0, -800] }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
             {[...logos, ...logos].map((logo, index) => (
-              <div key={index} className="flex-shrink-0 text-text-secondary font-semibold text-lg opacity-60 hover:opacity-100 transition-opacity">
+              <div key={index} className="flex-shrink-0 text-brand-text-muted font-semibold text-sm md:text-lg opacity-60 hover:opacity-100 transition-opacity">
                 {logo}
               </div>
             ))}
@@ -67,14 +67,14 @@ function MetricCard({ metric, index }: { metric: typeof metrics[0]; index: numbe
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="text-center"
     >
-      <div className="text-h1 font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">
+      <div className="text-3xl sm:text-4xl md:text-h1 font-bold bg-gradient-to-r from-brand-accent to-brand-accent-light bg-clip-text text-transparent">
         {inView ? (
           <AnimatedCounter target={metric.value.replace(/\D/g, "")} suffix={metric.suffix} />
         ) : (
-          "0"
-        )}
+            "0"
+          )}
       </div>
-      <div className="text-text-secondary mt-2">{metric.label}</div>
+      <div className="text-xs sm:text-sm text-brand-text-muted mt-2">{metric.label}</div>
     </motion.div>
   );
 }

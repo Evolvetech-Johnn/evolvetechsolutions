@@ -15,22 +15,22 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="processo" className="py-20 bg-surface">
+    <section id="processo" className="py-12 md:py-20 bg-brand-surface overflow-hidden">
       <Container>
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-2 text-sm font-semibold text-accent mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full bg-brand-accent/10 px-4 py-2 text-sm font-semibold text-brand-accent mb-4">
             Como Trabalhamos
           </div>
-          <h2 className="text-h2 font-bold text-text-primary mb-4">
+          <h2 className="text-2xl md:text-h2 font-bold text-brand-text mb-4">
             Processo simples e eficiente
           </h2>
-          <p className="text-text-secondary text-body max-w-2xl mx-auto">
+          <p className="text-brand-text-muted text-body max-w-2xl mx-auto">
             Metodologia testada e aprovada que garante resultados rápidos.
           </p>
         </div>
         
         <div className="relative">
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-border hidden md:block" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-brand-border hidden md:block" />
           
           <div className="space-y-8">
             {steps.map((step, index) => (
@@ -57,13 +57,13 @@ function ProcessStep({ step, index }: { step: typeof steps[0]; index: number }) 
       className="relative flex items-center gap-8 md:gap-16"
     >
       <div className={`flex-1 ${isEven ? 'md:text-right' : 'md:text-left md:order-2'}`}>
-        <div className="bg-surface p-6 rounded-2xl border border-border shadow-sm">
-          <h3 className="text-xl font-bold text-text-primary mb-2">{step.title}</h3>
-          <p className="text-text-secondary">{step.description}</p>
+        <div className="bg-brand-surface p-6 rounded-2xl border border-brand-border shadow-sm">
+          <h3 className="text-xl font-bold text-brand-text mb-2">{step.title}</h3>
+          <p className="text-brand-text-muted">{step.description}</p>
         </div>
       </div>
       
-      <div className="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-accent to-accent-light flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-accent/30">
+      <div className="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-brand-accent to-brand-accent-light flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-brand-accent/30">
         <Icon className="h-6 w-6" />
       </div>
       

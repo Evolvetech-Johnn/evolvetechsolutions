@@ -35,7 +35,7 @@ export default function Navbar() {
     <div
       className={`sticky top-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-base/80 backdrop-blur-md border-b border-border"
+          ? "bg-brand-base/80 backdrop-blur-md border-b border-brand-border"
           : "bg-transparent"
       }`}
     >
@@ -45,13 +45,13 @@ export default function Navbar() {
             <img 
               src="/LogoVF.png" 
               alt="EVOLVETECH SOLUTIONS" 
-              className="h-16 w-auto rounded-2xl object-contain"
+              className="h-10 sm:h-14 md:h-16 w-auto rounded-2xl object-contain"
             />
             <div className="hidden sm:block">
-              <div className="text-base font-bold tracking-tight text-text-primary font-display">
+              <div className="text-base font-bold tracking-tight text-brand-text font-display">
                 EVOLVETECH
               </div>
-              <div className="text-xs text-text-secondary">
+              <div className="text-xs text-brand-text-muted">
                 Sistemas sob medida
               </div>
             </div>
@@ -63,7 +63,7 @@ export default function Navbar() {
                 <a
                   key={l.href}
                   href={l.href}
-                  className="text-text-secondary hover:text-text-primary font-medium text-sm transition-colors"
+                  className="text-brand-text-muted hover:text-brand-text font-medium text-sm transition-colors"
                 >
                   {l.label}
                 </a>

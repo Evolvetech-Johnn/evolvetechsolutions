@@ -100,21 +100,21 @@ const technologies = [
 
 export default function Technologies() {
   return (
-    <section className="py-20 bg-base">
+    <section className="py-12 md:py-20 bg-brand-base overflow-hidden">
       <Container>
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-ink-100 px-4 py-2 text-sm font-semibold text-ink-700 mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-4 py-2 text-sm font-semibold text-brand-accent mb-4">
             Tecnologias
           </div>
-          <h2 className="text-h2 font-bold text-primary mb-4">
+          <h2 className="text-2xl md:text-h2 font-bold text-brand-text mb-4">
             Usamos as melhores ferramentas do mercado
           </h2>
-          <p className="text-text-secondary text-body max-w-2xl mx-auto">
+          <p className="text-brand-text-muted text-body max-w-2xl mx-auto">
             Stack moderna e robusta para garantir performance, segurança e escalabilidade.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {technologies.map((tech, index) => (
             <TechCard key={index} tech={tech} index={index} />
           ))}
@@ -137,12 +137,12 @@ function TechCard({ tech, index }: { tech: typeof technologies[0]; index: number
       whileHover={{ y: -4, scale: 1.02 }}
       className="group"
     >
-      <div className="flex flex-col items-start p-6 rounded-2xl bg-ink-50 border border-border hover:border-brand-200 hover:bg-brand-50 transition-all">
+      <div className="flex flex-col items-start p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-accent hover:bg-brand-accent/5 transition-all">
         <div className="flex items-center gap-3 mb-3">
           <Icon className={`h-10 w-10 ${tech.color} group-hover:scale-110 transition-transform flex-shrink-0`} />
-          <span className="font-bold text-lg text-primary">{tech.name}</span>
+          <span className="font-bold text-lg text-brand-text">{tech.name}</span>
         </div>
-        <p className="text-sm text-ink-500 leading-relaxed">{tech.description}</p>
+        <p className="text-sm text-brand-text-muted leading-relaxed">{tech.description}</p>
       </div>
     </motion.div>
   );

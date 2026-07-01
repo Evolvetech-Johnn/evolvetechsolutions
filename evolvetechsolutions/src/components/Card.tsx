@@ -16,7 +16,7 @@ export default function Card({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-border bg-surface-2 shadow-sm transition-all hover:shadow-md",
+        "rounded-2xl border border-brand-border bg-brand-surface-alt shadow-sm transition-all hover:shadow-md",
         className
       )}
     >
@@ -24,8 +24,8 @@ export default function Card({
         {(icon || title || description) && (
           <div className="mb-6">
             {icon && <div className="mb-4">{icon}</div>}
-            {title && <h3 className="text-xl font-semibold text-primary mb-2">{title}</h3>}
-            {description && <p className="text-text-secondary">{description}</p>}
+            {title && <h3 className="text-xl font-semibold text-brand-text mb-2">{title}</h3>}
+            {description && <p className="text-brand-text-muted">{description}</p>}
           </div>
         )}
         {children}

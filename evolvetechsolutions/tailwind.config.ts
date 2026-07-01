@@ -5,15 +5,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        base: "#050816",
-        surface: "#0B1220",
-        "surface-2": "#111827",
-        "text-primary": "#F9FAFB",
-        "text-secondary": "#94A3B8",
-        accent: "#6366F1",
-        "accent-light": "#818CF8",
-        border: "#1F2937",
-        success: "#22C55E",
+        brand: {
+          base: "#020617", // Azul profundo — tecnologia/fundo
+          surface: "#0B1220", // Superfície de cards
+          "surface-alt": "#0F172A", // Seções alternadas
+          accent: "#0EA5E9", // Ciano — inovação, links, ícones ativos
+          "accent-light": "#38BDF8", // Ciano mais claro para estados hover
+          action: "#10B981", // Verde-esmeralda — evolução, CTA principal, métricas positivas
+          text: "#F9FAFB", // Texto primário sobre fundo escuro
+          "text-muted": "#94A3B8", // Texto secundário/legendas
+          border: "#1E293B", // Divisores e bordas sutis
+        },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

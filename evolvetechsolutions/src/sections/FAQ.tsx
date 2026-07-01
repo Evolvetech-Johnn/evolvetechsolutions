@@ -51,16 +51,16 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="py-20 bg-surface">
+    <section id="faq" className="py-12 md:py-20 bg-brand-surface overflow-hidden">
       <Container>
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-4 py-2 text-sm font-semibold text-brand-700 mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full bg-brand-accent/10 px-4 py-2 text-sm font-semibold text-brand-accent mb-4">
             Dúvidas Frequentes
           </div>
-          <h2 className="text-h2 font-bold text-primary mb-4">
+          <h2 className="text-2xl md:text-h2 font-bold text-brand-text mb-4">
             Respostas para suas perguntas
           </h2>
-          <p className="text-text-secondary text-body max-w-2xl mx-auto">
+          <p className="text-brand-text-muted text-body max-w-2xl mx-auto">
             Aqui estão as dúvidas mais comuns dos nossos clientes.
           </p>
         </div>
@@ -85,17 +85,17 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
-      className="border border-border rounded-2xl overflow-hidden"
+      className="border border-brand-border rounded-2xl overflow-hidden bg-brand-surface"
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-6 text-left bg-ink-50 hover:bg-ink-100 transition-colors"
+        className="w-full flex items-center justify-between p-6 text-left hover:bg-brand-surface-alt transition-colors"
       >
-        <span className="font-semibold text-primary text-lg">{faq.question}</span>
+        <span className="font-semibold text-brand-text text-lg">{faq.question}</span>
         {isOpen ? (
-          <ChevronUp className="h-6 w-6 text-brand-600 flex-shrink-0" />
+          <ChevronUp className="h-6 w-6 text-brand-accent flex-shrink-0" />
         ) : (
-          <ChevronDown className="h-6 w-6 text-brand-600 flex-shrink-0" />
+          <ChevronDown className="h-6 w-6 text-brand-accent flex-shrink-0" />
         )}
       </button>
       
@@ -107,7 +107,7 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="p-6 pt-0 text-text-secondary">
+            <div className="p-6 pt-0 text-brand-text-muted">
               {faq.answer}
             </div>
           </motion.div>

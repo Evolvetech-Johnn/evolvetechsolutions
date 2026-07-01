@@ -10,12 +10,12 @@ type Size = "sm" | "md" | "lg";
 
 function classesForVariant(variant: Variant) {
   if (variant === "primary") {
-    return "bg-accent hover:bg-accent-light text-white shadow-soft";
+    return "bg-brand-action hover:bg-brand-action/90 text-white shadow-soft";
   }
   if (variant === "secondary") {
-    return "bg-surface border border-border hover:bg-surface-2 text-text-primary";
+    return "bg-brand-surface border border-brand-border hover:bg-brand-surface-alt text-brand-text";
   }
-  return "bg-transparent hover:bg-surface text-text-primary";
+  return "bg-transparent hover:bg-brand-surface text-brand-text";
 }
 
 function classesForSize(size: Size) {
@@ -48,7 +48,7 @@ export function Button({
       whileTap={enabled ? "tap" : undefined}
       suppressHydrationWarning
       className={cn(
-        "inline-flex items-center justify-center gap-2 font-semibold transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-base",
+        "inline-flex items-center justify-center gap-2 font-semibold transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:ring-offset-2 focus:ring-offset-brand-base",
         classesForVariant(variant),
         classesForSize(size),
         className
@@ -74,7 +74,7 @@ export function ButtonLink({
       whileTap={enabled ? "tap" : undefined}
       suppressHydrationWarning
       className={cn(
-        "inline-flex items-center justify-center gap-2 font-semibold transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-base",
+        "inline-flex items-center justify-center gap-2 font-semibold transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:ring-offset-2 focus:ring-offset-brand-base",
         classesForVariant(variant),
         classesForSize(size),
         className

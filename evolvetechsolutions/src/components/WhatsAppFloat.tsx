@@ -15,7 +15,7 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noreferrer"
       aria-label="Falar no WhatsApp"
-      className="fixed bottom-6 right-6 z-50 inline-flex h-16 w-16 items-center justify-center rounded-full bg-success text-white shadow-2xl shadow-success/30 border-4 border-white"
+      className="fixed bottom-6 right-6 z-50 inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand-action text-white shadow-2xl shadow-brand-action/30 border-4 border-brand-surface"
       whileHover={{ y: -4, scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, scale: 0.8, y: 20 }}

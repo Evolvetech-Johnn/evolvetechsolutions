@@ -47,21 +47,21 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 bg-surface">
+    <section className="py-12 md:py-20 bg-brand-surface overflow-hidden">
       <Container>
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-success/10 px-4 py-2 text-sm font-semibold text-success mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full bg-brand-action/10 px-4 py-2 text-sm font-semibold text-brand-action mb-4">
             Depoimentos
           </div>
-          <h2 className="text-h2 font-bold text-text-primary mb-4">
+          <h2 className="text-2xl md:text-h2 font-bold text-brand-text mb-4">
             O que nossos clientes dizem
           </h2>
-          <p className="text-text-secondary text-body max-w-2xl mx-auto">
+          <p className="text-brand-text-muted text-body max-w-2xl mx-auto">
             Empresas que confiaram na EvolveTech para transformar seus negócios.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} index={index} />
           ))}
@@ -82,17 +82,17 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -4 }}
     >
-      <Card className="border border-border">
-        <Quote className="h-8 w-8 text-accent/30 mb-4" />
-        <p className="text-text-secondary mb-6 italic">"{testimonial.quote}"</p>
+      <Card className="border border-brand-border">
+        <Quote className="h-8 w-8 text-brand-accent/30 mb-4" />
+        <p className="text-brand-text-muted mb-6 italic">"{testimonial.quote}"</p>
         
         <div className="flex items-center gap-3">
-          <div className="h-12 w-12 rounded-full bg-gradient-to-br from-accent to-accent-light flex items-center justify-center text-white font-bold text-lg">
+          <div className="h-12 w-12 rounded-full bg-gradient-to-br from-brand-accent to-brand-accent-light flex items-center justify-center text-white font-bold text-lg">
             {testimonial.name.charAt(0)}
           </div>
           <div>
-            <div className="font-semibold text-text-primary">{testimonial.name}</div>
-            <div className="text-sm text-text-secondary">
+            <div className="font-semibold text-brand-text">{testimonial.name}</div>
+            <div className="text-sm text-brand-text-muted">
               {testimonial.role}, {testimonial.company}
             </div>
           </div>

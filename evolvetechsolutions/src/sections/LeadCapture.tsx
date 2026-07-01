@@ -85,7 +85,7 @@ export default function LeadCapture() {
   };
 
   return (
-    <section id="contato" className="py-20 bg-gradient-to-br from-base to-surface">
+    <section id="contato" className="py-20 bg-gradient-to-br from-brand-base to-brand-surface">
       <Container>
         <motion.div
           ref={ref}
@@ -94,8 +94,8 @@ export default function LeadCapture() {
           transition={{ duration: 0.6 }}
         >
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-text-primary">
-              <div className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 text-sm font-semibold text-accent mb-6 border border-border">
+            <div className="text-brand-text">
+              <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-4 py-2 text-sm font-semibold text-brand-accent mb-6 border border-brand-border">
                 Próximo Passo
               </div>
               
@@ -103,7 +103,7 @@ export default function LeadCapture() {
                 Vamos transformar seu negócio?
               </h2>
               
-              <p className="text-lg text-text-secondary mb-8">
+              <p className="text-lg text-brand-text-muted mb-8">
                 Solicite um diagnóstico gratuito e sem compromisso. Nossa equipe analisará seus processos e apresentará a melhor solução para você.
               </p>
               
@@ -114,8 +114,8 @@ export default function LeadCapture() {
                   "Sem compromisso algum",
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <CheckCircle2 className="h-6 w-6 text-success flex-shrink-0" />
-                    <span className="text-text-secondary">{item}</span>
+                    <CheckCircle2 className="h-6 w-6 text-brand-action flex-shrink-0" />
+                    <span className="text-brand-text-muted">{item}</span>
                   </div>
                 ))}
               </div>
@@ -124,13 +124,13 @@ export default function LeadCapture() {
             <Card className="border-0 shadow-2xl">
               {submitted ? (
                 <div className="p-8 text-center">
-                  <div className="w-20 h-20 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle2 className="h-10 w-10 text-success" />
+                  <div className="w-20 h-20 bg-brand-action/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle2 className="h-10 w-10 text-brand-action" />
                   </div>
-                  <h3 className="text-2xl font-bold text-text-primary mb-2">
+                  <h3 className="text-2xl font-bold text-brand-text mb-2">
                     Obrigado pelo contato!
                   </h3>
-                  <p className="text-text-secondary mb-6">
+                  <p className="text-brand-text-muted mb-6">
                     Entraremos em contato em breve para agendar seu diagnóstico gratuito.
                   </p>
                   <Button
@@ -145,15 +145,15 @@ export default function LeadCapture() {
                 <form onSubmit={handleSubmit(onSubmit)} className="p-8">
                   <div className="space-y-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-text-primary mb-2">
+                      <label htmlFor="name" className="block text-sm font-semibold text-brand-text mb-2">
                         Nome completo
                       </label>
                       <input
                         id="name"
                         type="text"
                         placeholder="Seu nome"
-                        className={`w-full px-4 py-3 rounded-xl border bg-surface-2 text-text-primary placeholder:text-text-secondary/50 transition-all ${
-                          errors.name ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-border focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        className={`w-full px-4 py-3 rounded-xl border bg-brand-surface-alt text-brand-text placeholder:text-brand-text-muted/50 transition-all ${
+                          errors.name ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
                         } outline-none`}
                         {...register("name")}
                       />
@@ -163,15 +163,15 @@ export default function LeadCapture() {
                     </div>
                     
                     <div>
-                      <label htmlFor="company" className="block text-sm font-semibold text-text-primary mb-2">
+                      <label htmlFor="company" className="block text-sm font-semibold text-brand-text mb-2">
                         Empresa
                       </label>
                       <input
                         id="company"
                         type="text"
                         placeholder="Nome da empresa"
-                        className={`w-full px-4 py-3 rounded-xl border bg-surface-2 text-text-primary placeholder:text-text-secondary/50 transition-all ${
-                          errors.company ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-border focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        className={`w-full px-4 py-3 rounded-xl border bg-brand-surface-alt text-brand-text placeholder:text-brand-text-muted/50 transition-all ${
+                          errors.company ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
                         } outline-none`}
                         {...register("company")}
                       />
@@ -181,15 +181,15 @@ export default function LeadCapture() {
                     </div>
                     
                     <div>
-                      <label htmlFor="role" className="block text-sm font-semibold text-text-primary mb-2">
+                      <label htmlFor="role" className="block text-sm font-semibold text-brand-text mb-2">
                         Cargo
                       </label>
                       <input
                         id="role"
                         type="text"
                         placeholder="Seu cargo"
-                        className={`w-full px-4 py-3 rounded-xl border bg-surface-2 text-text-primary placeholder:text-text-secondary/50 transition-all ${
-                          errors.role ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-border focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        className={`w-full px-4 py-3 rounded-xl border bg-brand-surface-alt text-brand-text placeholder:text-brand-text-muted/50 transition-all ${
+                          errors.role ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
                         } outline-none`}
                         {...register("role")}
                       />
@@ -199,15 +199,15 @@ export default function LeadCapture() {
                     </div>
                     
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-text-primary mb-2">
+                      <label htmlFor="phone" className="block text-sm font-semibold text-brand-text mb-2">
                         Telefone
                       </label>
                       <PatternFormat
                         id="phone"
                         format="(##) #####-####"
                         placeholder="(00) 00000-0000"
-                        className={`w-full px-4 py-3 rounded-xl border bg-surface-2 text-text-primary placeholder:text-text-secondary/50 transition-all ${
-                          errors.phone ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-border focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        className={`w-full px-4 py-3 rounded-xl border bg-brand-surface-alt text-brand-text placeholder:text-brand-text-muted/50 transition-all ${
+                          errors.phone ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
                         } outline-none`}
                         {...register("phone")}
                       />
@@ -217,15 +217,15 @@ export default function LeadCapture() {
                     </div>
                     
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-text-primary mb-2">
+                      <label htmlFor="email" className="block text-sm font-semibold text-brand-text mb-2">
                         E-mail
                       </label>
                       <input
                         id="email"
                         type="email"
                         placeholder="seu@email.com"
-                        className={`w-full px-4 py-3 rounded-xl border bg-surface-2 text-text-primary placeholder:text-text-secondary/50 transition-all ${
-                          errors.email ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-border focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        className={`w-full px-4 py-3 rounded-xl border bg-brand-surface-alt text-brand-text placeholder:text-brand-text-muted/50 transition-all ${
+                          errors.email ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
                         } outline-none`}
                         {...register("email")}
                       />
@@ -238,7 +238,7 @@ export default function LeadCapture() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full mt-6 bg-gradient-to-r from-accent to-accent-light hover:from-accent-light hover:to-accent text-white py-4 text-lg shadow-lg shadow-accent/30 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full mt-6 bg-gradient-to-r from-brand-accent to-brand-accent-light hover:from-brand-accent-light hover:to-brand-accent text-white py-4 text-lg shadow-lg shadow-brand-accent/30 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <Loader2 className="animate-spin h-5 w-5" />
@@ -253,7 +253,7 @@ export default function LeadCapture() {
                   {errorMessage && (
                     <p className="mt-4 text-sm text-red-400 text-center">{errorMessage}</p>
                   )}
-                  <p className="text-xs text-text-secondary text-center mt-4">
+                  <p className="text-xs text-brand-text-muted text-center mt-4">
                     Ao enviar, você concorda com nossa política de privacidade.
                   </p>
                 </form>

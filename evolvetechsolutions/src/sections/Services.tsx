@@ -27,21 +27,21 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="servicos" className="py-20 bg-base">
+    <section id="servicos" className="py-12 md:py-20 bg-brand-base overflow-hidden">
       <Container>
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-4 py-2 text-sm font-semibold text-brand-700 mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full bg-brand-accent/10 px-4 py-2 text-sm font-semibold text-brand-accent mb-4">
             Nossos Serviços
           </div>
-          <h2 className="text-h2 font-bold text-primary mb-4">
+          <h2 className="text-2xl md:text-h2 font-bold text-brand-text mb-4">
             Soluções que impulsionam o crescimento
           </h2>
-          <p className="text-text-secondary text-body max-w-2xl mx-auto">
+          <p className="text-brand-text-muted text-body max-w-2xl mx-auto">
             Oferecemos um portfólio completo de serviços de tecnologia para transformar sua empresa.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} index={index} />
           ))}
@@ -63,13 +63,13 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -4 }}
     >
-      <Card className="border border-border h-full flex flex-col">
-        <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent-light text-white">
+      <Card className="border border-brand-border h-full flex flex-col">
+        <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-accent to-brand-accent-light text-white">
           <Icon className="h-7 w-7" />
         </div>
-        <h3 className="text-xl font-semibold text-text-primary mb-3">{service.title}</h3>
-        <p className="text-text-secondary mb-6 flex-grow">{service.description}</p>
-        <ButtonLink href="#contato" variant="ghost" className="text-accent hover:text-accent-light p-0 h-auto font-semibold">
+        <h3 className="text-xl font-semibold text-brand-text mb-3">{service.title}</h3>
+        <p className="text-brand-text-muted mb-6 flex-grow">{service.description}</p>
+        <ButtonLink href="#contato" variant="ghost" className="text-brand-accent hover:text-brand-accent-light p-0 h-auto font-semibold">
           {service.cta} →
         </ButtonLink>
       </Card>
