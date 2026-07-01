@@ -18,7 +18,7 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <section id="beneficios" className="py-20 bg-white">
+    <section id="beneficios" className="py-20 bg-surface">
       <Container>
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 rounded-full bg-success/10 px-4 py-2 text-sm font-semibold text-success mb-4">

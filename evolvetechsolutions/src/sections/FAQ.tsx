@@ -51,7 +51,7 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="py-20 bg-white">
+    <section id="faq" className="py-20 bg-surface">
       <Container>
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-4 py-2 text-sm font-semibold text-brand-700 mb-4">

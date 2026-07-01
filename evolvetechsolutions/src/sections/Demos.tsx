@@ -41,7 +41,7 @@ const demos = [
 
 export default function Demos() {
   return (
-    <section id="demos" className="py-20 bg-white">
+    <section id="demos" className="py-20 bg-surface">
       <Container>
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-4 py-2 text-sm font-semibold text-brand-700 mb-4">
@@ -77,11 +77,11 @@ function DemoCard({ demo, index }: { demo: typeof demos[0]; index: number }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -4 }}
     >
-      <Card className="bg-white border border-border h-full flex flex-col">
-        <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent text-white">
+      <Card className="border border-border h-full flex flex-col">
+        <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent-light text-white">
           <Icon className="h-7 w-7" />
         </div>
-        <h3 className="text-xl font-semibold text-primary mb-3">{demo.title}</h3>
+        <h3 className="text-xl font-semibold text-text-primary mb-3">{demo.title}</h3>
         <p className="text-text-secondary mb-6 flex-grow">{demo.description}</p>
         <a href={demo.href} target="_blank" rel="noopener noreferrer">
           <Button variant="secondary" className="w-full">

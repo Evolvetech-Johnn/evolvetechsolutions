@@ -27,7 +27,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="servicos" className="py-20 bg-ink-50">
+    <section id="servicos" className="py-20 bg-base">
       <Container>
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-4 py-2 text-sm font-semibold text-brand-700 mb-4">
@@ -63,13 +63,13 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -4 }}
     >
-      <Card className="bg-white border border-border h-full flex flex-col">
-        <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent text-white">
+      <Card className="border border-border h-full flex flex-col">
+        <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent-light text-white">
           <Icon className="h-7 w-7" />
         </div>
-        <h3 className="text-xl font-semibold text-primary mb-3">{service.title}</h3>
+        <h3 className="text-xl font-semibold text-text-primary mb-3">{service.title}</h3>
         <p className="text-text-secondary mb-6 flex-grow">{service.description}</p>
-        <ButtonLink href="#contato" variant="ghost" className="text-brand-600 hover:text-brand-700 p-0 h-auto font-semibold">
+        <ButtonLink href="#contato" variant="ghost" className="text-accent hover:text-accent-light p-0 h-auto font-semibold">
           {service.cta} →
         </ButtonLink>
       </Card>

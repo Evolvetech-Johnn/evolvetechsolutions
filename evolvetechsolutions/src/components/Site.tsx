@@ -18,7 +18,7 @@ import LeadCapture from "@/sections/LeadCapture";
 
 export default function Site() {
   return (
-    <div className="min-h-screen bg-background text-primary">
+    <div className="min-h-screen bg-base text-text-primary">
       <Navbar />
       <main id="topo">
         <Hero />

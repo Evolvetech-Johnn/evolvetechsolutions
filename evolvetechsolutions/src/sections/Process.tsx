@@ -15,13 +15,13 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="processo" className="py-20 bg-ink-50">
+    <section id="processo" className="py-20 bg-surface">
       <Container>
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-4 py-2 text-sm font-semibold text-brand-700 mb-4">
+          <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-2 text-sm font-semibold text-accent mb-4">
             Como Trabalhamos
           </div>
-          <h2 className="text-h2 font-bold text-primary mb-4">
+          <h2 className="text-h2 font-bold text-text-primary mb-4">
             Processo simples e eficiente
           </h2>
           <p className="text-text-secondary text-body max-w-2xl mx-auto">
@@ -57,13 +57,13 @@ function ProcessStep({ step, index }: { step: typeof steps[0]; index: number }) 
       className="relative flex items-center gap-8 md:gap-16"
     >
       <div className={`flex-1 ${isEven ? 'md:text-right' : 'md:text-left md:order-2'}`}>
-        <div className="bg-white p-6 rounded-2xl border border-border shadow-sm">
-          <h3 className="text-xl font-bold text-primary mb-2">{step.title}</h3>
+        <div className="bg-surface p-6 rounded-2xl border border-border shadow-sm">
+          <h3 className="text-xl font-bold text-text-primary mb-2">{step.title}</h3>
           <p className="text-text-secondary">{step.description}</p>
         </div>
       </div>
       
-      <div className="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-brand-500/30">
+      <div className="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-accent to-accent-light flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-accent/30">
         <Icon className="h-6 w-6" />
       </div>
       

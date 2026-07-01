@@ -3,115 +3,136 @@
 import Container from "@/components/Container";
 import { Button, ButtonLink } from "@/components/Button";
 import { motion } from "framer-motion";
-import { ArrowRight, BarChart3, Zap, Database } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Clock, Users, Zap } from "lucide-react";
+import {
+  CONTAINER_VARIANTS,
+  FADE_UP_VARIANTS,
+  useMotionConfig,
+  EASINGS,
+} from "@/lib/motion";
+
+const STATS = [
+  { label: "Horas Economizadas", value: "12.400", icon: Clock },
+  { label: "Clientes Atendidos", value: "+50", icon: Users },
+  { label: "Processos Automatizados", value: "+120", icon: Zap },
+];
 
 export default function Hero() {
+  const { enabled } = useMotionConfig();
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-ink-950 via-primary to-primary py-24 md:py-32">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:40px_40px]" />
+    <section className="relative overflow-hidden py-20 md:py-32">
+      {/* Background sutil */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#6366F1,transparent_50%),radial-gradient(circle_at_70%_80%,#818CF8,transparent_50%)]" />
       </div>
-      
-      <Container className="relative z-10">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 rounded-full bg-brand-500/10 px-4 py-2 text-sm font-semibold text-brand-300 border border-brand-500/20 mb-6">
-              <span className="h-2 w-2 rounded-full bg-success animate-pulse" />
-              Sistemas Sob Medida para Empresas
+
+      <Container>
+        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+          {/* Coluna Esquerda: Conteúdo */}
+          <div className="section-signature pl-6 md:pl-10">
+            <div className="mb-6">
+              <div className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 text-sm font-medium text-text-secondary border border-border">
+                <span className="h-2 w-2 rounded-full bg-success animate-pulse" />
+                Automatize. Escale. Evolua.
+              </div>
             </div>
-            
-            <h1 className="text-hero text-balance font-bold text-white mb-6 leading-tight">
-              Transformamos processos manuais em <span className="text-brand-400">sistemas inteligentes</span> que aumentam a produtividade
+
+            <h1 className="text-display md:text-h1 text-balance font-bold font-display text-text-primary mb-6 leading-tight">
+              Pare de perder tempo com{" "}
+              <span className="text-accent">processos manuais</span>
             </h1>
-            
-            <p className="text-body text-ink-300 mb-8 max-w-xl">
-              Desenvolvimento de softwares, dashboards, plataformas web e automatizações personalizadas para empresas que desejam escalar com tecnologia.
+
+            <p className="text-body text-text-secondary mb-8 max-w-xl">
+              Criamos sistemas sob medida que automatizam tarefas repetitivas, organizam dados e dão
+              a você controle total sobre o crescimento da sua empresa.
             </p>
-            
-            <div className="flex flex-wrap gap-4">
+
+            <div className="flex flex-wrap gap-4 mb-12">
               <Button size="lg">
-                Solicitar Diagnóstico
-                <ArrowRight className="ml-2 h-5 w-5" />
+                Quero automatizar meu negócio
+                <ArrowRight className="h-5 w-5" />
               </Button>
-              
-              <ButtonLink href="#casos" variant="secondary" size="lg" className="border border-white/20 text-white hover:bg-white/10">
-                Ver Casos de Sucesso
+
+              <ButtonLink href="#casos" variant="secondary" size="lg">
+                Ver projetos reais
+                <ArrowUpRight className="h-4 w-4" />
               </ButtonLink>
             </div>
-            
-            <div className="mt-10 flex items-center gap-8">
-              <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="h-10 w-10 rounded-full border-2 border-primary bg-gradient-to-br from-brand-400 to-accent flex items-center justify-center text-xs font-bold text-primary">
-                    {String.fromCharCode(64 + i)}
+
+            <div className="grid grid-cols-3 gap-8">
+              {STATS.map((stat, i) => (
+                <div key={i}>
+                  <div className="text-2xl font-bold font-mono-custom text-accent mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-text-secondary">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Coluna Direita: Card Visual */}
+          <div className="relative">
+            <div className="relative rounded-2xl bg-surface border border-border p-6 shadow-medium overflow-hidden">
+              {/* Detalhe do card */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+              
+              {/* Cabeçalho do card */}
+              <div className="flex items-center justify-between mb-6 relative">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-lg bg-accent flex items-center justify-center">
+                    <img 
+                      src="/LogoVF.png" 
+                      alt="EvolveOS" 
+                      className="h-6 w-6 object-contain"
+                    />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-text-primary">EvolveOS</div>
+                    <div className="text-xs text-text-secondary">Painel de Controle</div>
+                  </div>
+                </div>
+                <div className="flex gap-1.5">
+                  <div className="h-2.5 w-2.5 rounded-full bg-red-500/50" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/50" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-green-500/50" />
+                </div>
+              </div>
+
+              {/* Grid de métricas */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                {[
+                  { label: "Produtividade", value: "+62%", color: "text-accent" },
+                  { label: "Tempo Economizado", value: "18h/semana", color: "text-success" },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="bg-surface-2 rounded-xl p-4 border border-border"
+                  >
+                    <div className="text-xs text-text-secondary mb-1">{item.label}</div>
+                    <div className={`text-xl font-bold font-mono-custom ${item.color}`}>
+                      {item.value}
+                    </div>
                   </div>
                 ))}
               </div>
-              <div className="text-sm text-ink-300">
-                <div className="flex items-center gap-1 text-success font-semibold">
-                  <span>★★★★★</span>
-                </div>
-                +50 Projetos Entregues
-              </div>
-            </div>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="absolute -inset-4 bg-gradient-to-r from-brand-500/20 via-accent/20 to-success/20 rounded-3xl blur-2xl" />
-            <div className="relative rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 shadow-2xl">
-              <div className="bg-ink-900 rounded-2xl p-4 border border-white/10">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex gap-2">
-                    <div className="h-3 w-3 rounded-full bg-red-500" />
-                    <div className="h-3 w-3 rounded-full bg-yellow-500" />
-                    <div className="h-3 w-3 rounded-full bg-green-500" />
-                  </div>
-                  <span className="text-xs text-ink-400">Dashboard EvolveTech</span>
-                </div>
-                
-                <div className="grid grid-cols-3 gap-4 mb-4">
-                  <div className="bg-ink-800/50 rounded-xl p-3 border border-white/5">
-                    <div className="text-xs text-ink-400 mb-1">Receitas</div>
-                    <div className="text-xl font-bold text-success">+32%</div>
-                    <BarChart3 className="mt-1 h-4 w-4 text-success" />
-                  </div>
-                  <div className="bg-ink-800/50 rounded-xl p-3 border border-white/5">
-                    <div className="text-xs text-ink-400 mb-1">Produtividade</div>
-                    <div className="text-xl font-bold text-brand-400">+58%</div>
-                    <Zap className="mt-1 h-4 w-4 text-brand-400" />
-                  </div>
-                  <div className="bg-ink-800/50 rounded-xl p-3 border border-white/5">
-                    <div className="text-xs text-ink-400 mb-1">Processos</div>
-                    <div className="text-xl font-bold text-accent">+120</div>
-                    <Database className="mt-1 h-4 w-4 text-accent" />
-                  </div>
-                </div>
-                
-                <div className="h-32 bg-gradient-to-t from-brand-500/20 to-transparent rounded-xl flex items-end justify-center pb-2">
-                  <div className="flex items-end gap-2">
-                    {[40, 60, 45, 80, 65, 90, 75].map((h, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${h}%` }}
-                        transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                        className="w-4 bg-gradient-to-t from-brand-600 to-brand-400 rounded-t-sm"
-                      />
-                    ))}
-                  </div>
+
+              {/* Gráfico visual simplificado (assinatura) */}
+              <div className="bg-surface-2 rounded-xl p-4 border border-border">
+                <div className="text-xs text-text-secondary mb-3">Fluxo de Processos</div>
+                <div className="flex items-end justify-between gap-2 h-24">
+                  {[30, 55, 40, 75, 60, 85, 70].map((height, i) => (
+                    <div
+                      key={i}
+                      style={{ height: `${height}%` }}
+                      className="flex-1 rounded-t-lg bg-gradient-to-t from-accent to-accent-light opacity-80"
+                    />
+                  ))}
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </Container>
     </section>

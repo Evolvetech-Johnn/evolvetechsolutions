@@ -18,10 +18,10 @@ const logos = [
 
 export default function SocialProof() {
   return (
-    <section className="py-16 bg-white border-y border-border">
+    <section className="py-16 bg-surface border-y border-border">
       <Container>
         <div className="mb-12 text-center">
-          <h2 className="text-h3 font-semibold text-primary mb-2">
+          <h2 className="text-h3 font-semibold text-text-primary mb-2">
             Resultados Comprovados
           </h2>
           <p className="text-text-secondary">
@@ -36,8 +36,8 @@ export default function SocialProof() {
         </div>
         
         <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-surface to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-surface to-transparent z-10" />
           
           <motion.div
             className="flex gap-16"
@@ -67,7 +67,7 @@ function MetricCard({ metric, index }: { metric: typeof metrics[0]; index: numbe
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="text-center"
     >
-      <div className="text-h1 font-bold bg-gradient-to-r from-brand-600 to-accent bg-clip-text text-transparent">
+      <div className="text-h1 font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">
         {inView ? (
           <AnimatedCounter target={metric.value.replace(/\D/g, "")} suffix={metric.suffix} />
         ) : (

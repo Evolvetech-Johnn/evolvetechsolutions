@@ -47,13 +47,13 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 bg-ink-50">
+    <section className="py-20 bg-surface">
       <Container>
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 rounded-full bg-success/10 px-4 py-2 text-sm font-semibold text-success mb-4">
             Depoimentos
           </div>
-          <h2 className="text-h2 font-bold text-primary mb-4">
+          <h2 className="text-h2 font-bold text-text-primary mb-4">
             O que nossos clientes dizem
           </h2>
           <p className="text-text-secondary text-body max-w-2xl mx-auto">
@@ -82,16 +82,16 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -4 }}
     >
-      <Card className="bg-white border border-border">
-        <Quote className="h-8 w-8 text-brand-200 mb-4" />
+      <Card className="border border-border">
+        <Quote className="h-8 w-8 text-accent/30 mb-4" />
         <p className="text-text-secondary mb-6 italic">"{testimonial.quote}"</p>
         
         <div className="flex items-center gap-3">
-          <div className="h-12 w-12 rounded-full bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center text-white font-bold text-lg">
+          <div className="h-12 w-12 rounded-full bg-gradient-to-br from-accent to-accent-light flex items-center justify-center text-white font-bold text-lg">
             {testimonial.name.charAt(0)}
           </div>
           <div>
-            <div className="font-semibold text-primary">{testimonial.name}</div>
+            <div className="font-semibold text-text-primary">{testimonial.name}</div>
             <div className="text-sm text-text-secondary">
               {testimonial.role}, {testimonial.company}
             </div>

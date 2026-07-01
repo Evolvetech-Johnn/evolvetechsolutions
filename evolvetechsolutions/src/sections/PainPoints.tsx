@@ -24,7 +24,7 @@ const painPoints = [
 
 export default function PainPoints() {
   return (
-    <section id="dores" className="py-20 bg-ink-50">
+    <section id="dores" className="py-20 bg-base">
       <Container>
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-4 py-2 text-sm font-semibold text-brand-700 mb-4">
@@ -60,11 +60,11 @@ function PainPointCard({ point, index }: { point: typeof painPoints[0]; index: n
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -4, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
     >
-      <Card className="bg-white border border-border hover:border-brand-200 transition-all">
-        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-50 text-red-600">
+      <Card className="border border-border transition-all">
+        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-red-400">
           <Icon className="h-6 w-6" />
         </div>
-        <h3 className="text-lg font-semibold text-primary mb-2">{point.title}</h3>
+        <h3 className="text-lg font-semibold text-text-primary mb-2">{point.title}</h3>
         <p className="text-text-secondary">{point.description}</p>
       </Card>
     </motion.div>

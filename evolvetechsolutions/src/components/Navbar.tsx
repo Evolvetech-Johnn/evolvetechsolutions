@@ -1,6 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
 import Container from "./Container";
-import Badge from "./Badge";
 import { ButtonLink } from "./Button";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { siteConfig } from "@/config/site";
@@ -34,19 +35,23 @@ export default function Navbar() {
     <div
       className={`sticky top-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm"
+          ? "bg-base/80 backdrop-blur-md border-b border-border"
           : "bg-transparent"
       }`}
     >
       <Container className="py-4">
         <div className="flex items-center justify-between gap-3">
           <a href="#topo" className="group inline-flex items-center gap-3">
-            <img src="/img/LogoVF.png" alt="Evolvetech Solutions" className="h-12 w-auto rounded-2xl" />
+            <img 
+              src="/LogoVF.png" 
+              alt="EVOLVETECH SOLUTIONS" 
+              className="h-16 w-auto rounded-2xl object-contain"
+            />
             <div className="hidden sm:block">
-              <div className="text-lg font-bold tracking-tight text-primary">
+              <div className="text-base font-bold tracking-tight text-text-primary font-display">
                 EVOLVETECH
               </div>
-              <div className="text-sm text-text-secondary">
+              <div className="text-xs text-text-secondary">
                 Sistemas sob medida
               </div>
             </div>
@@ -58,35 +63,28 @@ export default function Navbar() {
                 <a
                   key={l.href}
                   href={l.href}
-                  className="text-text-secondary hover:text-primary font-medium transition-colors"
+                  className="text-text-secondary hover:text-text-primary font-medium text-sm transition-colors"
                 >
                   {l.label}
                 </a>
               ))}
             </nav>
-            <div className="flex items-center gap-3">
-              <ButtonLink
-                href="#contato"
-                variant="secondary"
-                size="sm"
-              >
-                Fale conosco
-              </ButtonLink>
-              <ButtonLink
-                href={wa}
-                target="_blank"
-                rel="noreferrer"
-                size="sm"
-              >
-                WhatsApp
-              </ButtonLink>
-            </div>
+            <ButtonLink
+              href={wa}
+              target="_blank"
+              rel="noreferrer"
+              size="sm"
+            >
+              Falar no WhatsApp
+            </ButtonLink>
           </div>
 
           <ButtonLink
-            href="#contato"
+            href={wa}
+            target="_blank"
+            rel="noreferrer"
             size="sm"
-            className="md:hidden bg-brand-600 hover:bg-brand-700 text-white"
+            className="md:hidden"
           >
             Contato
           </ButtonLink>
