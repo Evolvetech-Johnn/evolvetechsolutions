@@ -6,7 +6,7 @@ type Size = "sm" | "md" | "lg";
 
 function classesForVariant(variant: Variant) {
   if (variant === "primary") {
-    return "bg-brand-600 hover:bg-brand-700 text-white shadow-lg shadow-brand-500/20";
+    return "bg-brand-500 hover:bg-brand-600 text-white shadow-[0_0_40px_rgba(14,165,233,0.4)]";
   }
   if (variant === "secondary") {
     return "bg-white border border-border hover:bg-ink-50 text-primary";

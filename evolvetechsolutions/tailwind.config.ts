@@ -19,7 +19,7 @@ export default {
         },
         background: "#F8FAFC",
         primary: "#0F172A",
-        accent: "#06B6D4",
+        accent: "#0EA5E9",
         success: "#10B981",
         text: {
           primary: "#1E293B",

@@ -41,7 +41,10 @@
   }
   .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;}
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;}
-  .brand .dot{width:10px;height:10px;border-radius:3px;background:var(--cyan);}
+  .brand .logo{height:50px;width:auto;border-radius:50%;}
+  .nav-links{display:flex;align-items:center;gap:16px;}
+  .nav-back{font-size:14px;color:var(--gray-1);transition:color .2s;}
+  .nav-back:hover{color:var(--navy);}
   .nav-cta{
     background:var(--navy);color:var(--white);
     padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;
@@ -181,8 +184,13 @@
 
 <header>
   <div class="nav wrap">
-    <div class="brand"><span class="dot"></span>Evolvetech <span style="color:var(--cyan)">Solutions</span></div>
-    <a href="#contato" class="nav-cta">Falar com a Evolvetech</a>
+    <a href="/" class="brand">
+      <img src="/img/LogoVF.png" alt="Evolvetech Solutions" class="logo">
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-back">Voltar ao site principal</a>
+      <a href="#contato" class="nav-cta">Falar com a Evolvetech</a>
+    </div>
   </div>
 </header>
 
@@ -296,12 +304,12 @@
 <footer>
   <div class="wrap footer-row">
     <span>© 2026 Evolvetech Solutions — MEI360</span>
-    <span>Londrina, PR</span>
+    <span>Londrina - PR</span>
   </div>
 </footer>
 
 <script>
-  const WHATSAPP_NUMBER = "5543900000000"; // TODO: substitua pelo seu número com DDI+DDD
+  const WHATSAPP_NUMBER = "5543988704856";
   document.getElementById('leadForm').addEventListener('submit', function(e){
     e.preventDefault();
     const nome = document.getElementById('nome').value;

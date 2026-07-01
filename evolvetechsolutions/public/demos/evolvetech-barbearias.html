@@ -29,7 +29,10 @@
   header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--gray-2);}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;}
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;}
-  .brand .dot{width:10px;height:10px;border-radius:3px;background:var(--cyan);}
+  .brand .logo{height:50px;width:auto;border-radius:50%;}
+  .nav-links{display:flex;align-items:center;gap:16px;}
+  .nav-back{font-size:14px;color:var(--gray-1);transition:color .2s;}
+  .nav-back:hover{color:var(--navy);}
   .nav-cta{background:var(--navy);color:var(--white);padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;transition:background .2s;}
   .nav-cta:hover{background:var(--cyan);color:var(--navy);}
 
@@ -96,17 +99,32 @@
   .field input, .field textarea{width:100%;padding:13px 14px;border:1.5px solid var(--gray-2);border-radius:9px;font-family:'Inter',sans-serif;font-size:14px;color:var(--navy);transition:border-color .15s;}
   .field input:focus, .field textarea:focus{outline:none;border-color:var(--cyan);}
   .field textarea{resize:vertical;min-height:90px;}
-  .submit-btn{width:100%;background:var(--navy);color:var(--white);font-weight:700;padding:16px;border-radius:9px;border:none;font-size:15px;cursor:pointer;transition:background .2s;}
-  .submit-btn:hover{background:var(--cyan);color:var(--navy);}
+  .submit-btn{width:100%;background:var(--brand-600);color:var(--white);font-weight:700;padding:16px;border-radius:12px;border:none;font-size:15px;cursor:pointer;transition:background .2s, transform .2s; box-shadow: 0 4px 20px rgba(14,165,233,0.4);}
+  .submit-btn:hover{background:var(--brand-700);transform: translateY(-2px);}
   .form-note{font-size:12px;color:var(--gray-1);margin-top:14px;text-align:center;}
 
-  footer{background:var(--navy-deep);color:#8893A8;padding:36px 0;font-size:13px;}
-  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer{background:var(--ink-950);color:white;padding:64px 0;font-size:14px;border-top:1px solid var(--ink-800);}
+  .footer-grid{display:grid;gap:48px;grid-template-columns:2fr 1fr 1fr;}
+  .footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+  .footer-brand .logo{height:48px;width:auto;border-radius:16px;}
+  .footer-brand h4{font-size:18px;font-weight:bold;}
+  .footer-brand span{display:block;font-size:14px;color:var(--ink-400);}
+  .footer-desc{color:var(--ink-300);max-width:400px;margin-bottom:24px;}
+  .footer-cta{background:var(--brand-600);color:white;padding:10px 20px;border-radius:12px;font-weight:600;font-size:14px;display:inline-block;transition:background .2s, transform .2s;}
+  .footer-cta:hover{background:var(--brand-700);transform: translateY(-2px);}
+  .footer-col h4{font-size:14px;font-weight:bold;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-400);margin-bottom:16px;}
+  .footer-links{display:flex;flex-direction:column;gap:8px;}
+  .footer-links a{color:var(--ink-300);transition:color .2s;}
+  .footer-links a:hover{color:white;}
+  .footer-bottom{margin-top:48px;padding-top:32px;border-top:1px solid var(--ink-800);display:flex;justify-content:space-between;align-items:center;color:var(--ink-500);font-size:14px;flex-wrap:wrap;gap:16px;}
+  .footer-bottom-links{display:flex;gap:24px;}
+  .footer-bottom-links a:hover{color:white;transition:color .2s;}
 
   @media(max-width:860px){
     .hero-grid{grid-template-columns:1fr;}
     .problem-grid,.features-grid,.proof-grid{grid-template-columns:1fr;}
     .form-card{padding:28px;}
+    .footer-grid{grid-template-columns:1fr;}
   }
   @media (prefers-reduced-motion: reduce){*{transition:none!important;}}
 </style>
@@ -115,8 +133,13 @@
 
 <header>
   <div class="nav wrap">
-    <div class="brand"><span class="dot"></span>Evolvetech <span style="color:var(--cyan)">Solutions</span></div>
-    <a href="#contato" class="nav-cta">Falar com a Evolvetech</a>
+    <a href="/" class="brand">
+      <img src="/img/LogoVF.png" alt="Evolvetech Solutions" class="logo">
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-back">Voltar ao site principal</a>
+      <a href="#contato" class="nav-cta">Falar com a Evolvetech</a>
+    </div>
   </div>
 </header>
 
@@ -221,13 +244,13 @@
 
 <footer>
   <div class="wrap footer-row">
-    <span>© 2026 Evolvetech Solutions — Sistema para Barbearias</span>
-    <span>Londrina, PR</span>
+    <span>© 2026 Evolvetech Solutions — Sistemas para Barbearias</span>
+    <span>Londrina - PR</span>
   </div>
 </footer>
 
 <script>
-  const WHATSAPP_NUMBER = "5543900000000"; // TODO: substitua pelo seu número com DDI+DDD
+  const WHATSAPP_NUMBER = "5543988704856";
   document.getElementById('leadForm').addEventListener('submit', function(e){
     e.preventDefault();
     const nome = document.getElementById('nome').value;

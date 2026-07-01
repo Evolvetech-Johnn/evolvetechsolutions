@@ -41,9 +41,7 @@ export default function Navbar() {
       <Container className="py-4">
         <div className="flex items-center justify-between gap-3">
           <a href="#topo" className="group inline-flex items-center gap-3">
-            <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-brand-600 to-accent flex items-center justify-center p-2 shadow-lg shadow-brand-500/30">
-              <span className="text-white font-bold text-lg">ET</span>
-            </div>
+            <img src="/img/LogoVF.png" alt="Evolvetech Solutions" className="h-12 w-auto rounded-2xl" />
             <div className="hidden sm:block">
               <div className="text-lg font-bold tracking-tight text-primary">
                 EVOLVETECH

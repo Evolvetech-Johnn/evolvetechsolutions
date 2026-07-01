@@ -33,8 +33,8 @@ export default function Hero() {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-brand-500 hover:bg-brand-600 text-white shadow-lg shadow-brand-500/30">
-                Agendar Diagnóstico Gratuito
+              <Button size="lg">
+                Solicitar Diagnóstico
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
