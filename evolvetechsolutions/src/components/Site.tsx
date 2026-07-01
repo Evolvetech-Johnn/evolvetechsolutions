@@ -8,6 +8,7 @@ import SocialProof from "@/sections/SocialProof";
 import PainPoints from "@/sections/PainPoints";
 import Benefits from "@/sections/Benefits";
 import Services from "@/sections/Services";
+import Demos from "@/sections/Demos";
 import CaseStudies from "@/sections/CaseStudies";
 import Process from "@/sections/Process";
 import Technologies from "@/sections/Technologies";
@@ -25,6 +26,7 @@ export default function Site() {
         <PainPoints />
         <Benefits />
         <Services />
+        <Demos />
         <CaseStudies />
         <Process />
         <Technologies />

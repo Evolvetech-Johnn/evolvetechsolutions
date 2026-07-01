@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema para Barbearias — Agenda Cheia, Fila Organizada | Evolvetech Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1B3F;
+    --navy-deep:#071227;
+    --white:#FFFFFF;
+    --cyan:#15C2E8;
+    --cyan-dim: rgba(21,194,232,0.14);
+    --gray-1:#5B6472;
+    --gray-2:#E8EAEE;
+    --gray-3:#F7F8FA;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;color:var(--navy);background:var(--white);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;text-decoration:none;}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--gray-2);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;}
+  .brand .dot{width:10px;height:10px;border-radius:3px;background:var(--cyan);}
+  .nav-cta{background:var(--navy);color:var(--white);padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;transition:background .2s;}
+  .nav-cta:hover{background:var(--cyan);color:var(--navy);}
+
+  .hero{background:linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);color:var(--white);padding:84px 0 100px;position:relative;overflow:hidden;}
+  .hero::before{content:"";position:absolute;top:-120px;right:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle, var(--cyan-dim) 0%, transparent 70%);}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;position:relative;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:var(--cyan);background:rgba(21,194,232,0.1);border:1px solid rgba(21,194,232,0.3);padding:6px 12px;border-radius:100px;margin-bottom:24px;}
+  .hero h1{font-size:clamp(32px,4.2vw,52px);line-height:1.08;font-weight:700;margin-bottom:20px;}
+  .hero h1 span{color:var(--cyan);}
+  .hero p.lead{font-size:18px;color:#C7CEDC;max-width:480px;margin-bottom:32px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-primary{background:var(--cyan);color:var(--navy-deep);font-weight:700;padding:15px 28px;border-radius:9px;font-size:15px;border:none;cursor:pointer;transition:transform .15s, box-shadow .15s;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(21,194,232,0.35);}
+  .btn-ghost{border:1px solid rgba(255,255,255,0.25);color:var(--white);padding:15px 24px;border-radius:9px;font-weight:600;font-size:15px;}
+
+  /* SIGNATURE: agenda do dia */
+  .agenda-card{background:var(--white);border-radius:18px;padding:24px;box-shadow:0 30px 60px rgba(0,0,0,0.35);color:var(--navy);}
+  .agenda-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+  .agenda-top .label{font-size:12px;color:var(--gray-1);font-family:'JetBrains Mono',monospace;}
+  .agenda-top .pill{background:#E8FFF6;color:#0A8A5C;font-size:11px;font-weight:700;padding:4px 9px;border-radius:100px;font-family:'JetBrains Mono',monospace;}
+  .slot{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--gray-2);}
+  .slot:first-of-type{border-top:none;}
+  .slot .time{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gray-1);width:46px;flex-shrink:0;}
+  .slot .who{flex:1;}
+  .slot .who b{font-size:14px;display:block;}
+  .slot .who span{font-size:12px;color:var(--gray-1);}
+  .slot .status{font-size:11px;font-weight:700;padding:4px 9px;border-radius:100px;}
+  .status.confirmado{background:#E8FFF6;color:#0A8A5C;}
+  .status.aguardando{background:var(--cyan-dim);color:#0E8AA8;}
+  .status.vazio{background:var(--gray-3);color:var(--gray-1);border:1px dashed var(--gray-2);}
+
+  section{padding:88px 0;}
+  .section-head{max-width:600px;margin-bottom:48px;}
+  .eyebrow-dark{font-family:'JetBrains Mono',monospace;font-size:12px;color:#0E8AA8;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px;display:block;font-weight:600;}
+  .section-head h2{font-size:clamp(26px,3vw,38px);font-weight:700;margin-bottom:14px;}
+  .section-head p{color:var(--gray-1);font-size:16px;}
+
+  .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .problem-card{background:var(--gray-3);border-radius:var(--radius);padding:28px;border:1px solid var(--gray-2);}
+  .problem-card .num{font-family:'JetBrains Mono',monospace;color:var(--cyan);font-weight:700;font-size:13px;margin-bottom:14px;}
+  .problem-card h3{font-size:18px;margin-bottom:8px;}
+  .problem-card p{font-size:14px;color:var(--gray-1);}
+
+  .features-bg{background:var(--navy);color:var(--white);}
+  .features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,0.1);border-radius:var(--radius);overflow:hidden;}
+  .feature{background:var(--navy);padding:32px;}
+  .feature h3{font-size:17px;margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+  .feature h3::before{content:"";width:8px;height:8px;background:var(--cyan);border-radius:2px;flex-shrink:0;}
+  .feature p{font-size:14px;color:#AEB7C8;}
+
+  .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .proof-card{border:1px solid var(--gray-2);border-radius:var(--radius);padding:26px;transition:border-color .2s;}
+  .proof-card:hover{border-color:var(--cyan);}
+  .proof-card .site{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);margin-bottom:10px;}
+  .proof-card h3{font-size:17px;margin-bottom:8px;}
+  .proof-card p{font-size:14px;color:var(--gray-1);}
+
+  .form-section{background:var(--gray-3);}
+  .form-card{background:var(--white);border-radius:18px;padding:44px;box-shadow:0 20px 50px rgba(11,27,63,0.08);max-width:640px;margin:0 auto;border:1px solid var(--gray-2);}
+  .form-card h2{font-size:26px;margin-bottom:8px;}
+  .form-card>p{color:var(--gray-1);margin-bottom:28px;font-size:15px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:7px;color:var(--navy);}
+  .field input, .field textarea{width:100%;padding:13px 14px;border:1.5px solid var(--gray-2);border-radius:9px;font-family:'Inter',sans-serif;font-size:14px;color:var(--navy);transition:border-color .15s;}
+  .field input:focus, .field textarea:focus{outline:none;border-color:var(--cyan);}
+  .field textarea{resize:vertical;min-height:90px;}
+  .submit-btn{width:100%;background:var(--navy);color:var(--white);font-weight:700;padding:16px;border-radius:9px;border:none;font-size:15px;cursor:pointer;transition:background .2s;}
+  .submit-btn:hover{background:var(--cyan);color:var(--navy);}
+  .form-note{font-size:12px;color:var(--gray-1);margin-top:14px;text-align:center;}
+
+  footer{background:var(--navy-deep);color:#8893A8;padding:36px 0;font-size:13px;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .problem-grid,.features-grid,.proof-grid{grid-template-columns:1fr;}
+    .form-card{padding:28px;}
+  }
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="brand"><span class="dot"></span>Evolvetech <span style="color:var(--cyan)">Solutions</span></div>
+    <a href="#contato" class="nav-cta">Falar com a Evolvetech</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">● Feito para barbearias</span>
+      <h1>Agenda cheia, fila organizada,<br><span>cliente sempre voltando.</span></h1>
+      <p class="lead">Sistema de agendamento online, controle de fila e gestão de comissões para barbearias que querem parar de perder cliente por mensagem perdida no WhatsApp.</p>
+      <div class="hero-actions">
+        <a href="#contato"><button class="btn-primary">Quero esse sistema na minha barbearia</button></a>
+        <a href="#como-funciona" class="btn-ghost">Ver como funciona</a>
+      </div>
+    </div>
+    <div class="agenda-card">
+      <div class="agenda-top">
+        <span class="label">AGENDA · HOJE</span>
+        <span class="pill">9 de 12 horários ocupados</span>
+      </div>
+      <div class="slot"><span class="time">09:00</span><div class="who"><b>Rafael M.</b><span>Corte + Barba — João</span></div><span class="status confirmado">Confirmado</span></div>
+      <div class="slot"><span class="time">09:40</span><div class="who"><b>Lucas F.</b><span>Corte navalhado — Diego</span></div><span class="status confirmado">Confirmado</span></div>
+      <div class="slot"><span class="time">10:20</span><div class="who"><b>Pedro A.</b><span>Barba — João</span></div><span class="status aguardando">Aguardando</span></div>
+      <div class="slot"><span class="time">11:00</span><div class="who"><b style="color:var(--gray-1)">Horário livre</b></div><span class="status vazio">Disponível</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow-dark">O problema da agenda no WhatsApp</span>
+      <h2>Cada mensagem perdida é um cliente que vai pro concorrente</h2>
+      <p>Sem um sistema, a barbearia perde tempo confirmando horário por horário — e perde cliente quando ninguém responde a tempo.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="num">01</div>
+        <h3>Conflito de horário</h3>
+        <p>Dois clientes marcados no mesmo horário porque a agenda está na cabeça do barbeiro ou em conversas separadas.</p>
+      </div>
+      <div class="problem-card">
+        <div class="num">02</div>
+        <h3>Cliente esquecido</h3>
+        <p>Sem lembrete automático, falta aumenta — e cada falta é uma cadeira vazia que já era hora de faturamento.</p>
+      </div>
+      <div class="problem-card">
+        <div class="num">03</div>
+        <h3>Comissão no olho</h3>
+        <p>Calcular comissão de cada barbeiro manualmente, no fim do mês, é fonte certa de erro e de discussão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features-bg">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow-dark" style="color:var(--cyan)">O que o sistema resolve</span>
+      <h2 style="color:var(--white)">Tudo que a barbearia precisa, em um só lugar</h2>
+      <p style="color:#AEB7C8">Pensado para o dia a dia da cadeira, não para manuais de software.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature"><h3>Agendamento online 24h</h3><p>O cliente marca o próprio horário pelo link, sem precisar mandar mensagem.</p></div>
+      <div class="feature"><h3>Fila e horários em tempo real</h3><p>Cada barbeiro vê sua própria agenda do dia, sem conflito.</p></div>
+      <div class="feature"><h3>Lembrete automático</h3><p>Mensagem automática antes do horário marcado, reduzindo faltas.</p></div>
+      <div class="feature"><h3>Comissão calculada sozinha</h3><p>Cada corte já entra na comissão do barbeiro certo, sem planilha no fim do mês.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow-dark">Quem está por trás</span>
+      <h2>Projetos reais entregues pela Evolvetech</h2>
+      <p>Sistemas e plataformas no ar, atendendo negócios de verdade.</p>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card"><div class="site">startsolar.com.br</div><h3>Start Solar</h3><p>Plataforma institucional para soluções de energia fotovoltaica.</p></div>
+      <div class="proof-card"><div class="site">inovalondrina.com.br</div><h3>Inova Londrina</h3><p>Portal de inovação e tecnologia desenvolvido do zero.</p></div>
+      <div class="proof-card"><div class="site">eletrostart.com.br</div><h3>Eletrostart</h3><p>Site institucional para soluções elétricas e técnicas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="form-section" id="contato">
+  <div class="wrap">
+    <div class="form-card">
+      <h2>Quero esse sistema na minha barbearia</h2>
+      <p>Preencha os dados abaixo e fale direto comigo no WhatsApp para conhecer o sistema.</p>
+      <form id="leadForm">
+        <div class="field"><label>Nome</label><input type="text" id="nome" required placeholder="Seu nome"></div>
+        <div class="field"><label>WhatsApp</label><input type="tel" id="telefone" required placeholder="(43) 90000-0000"></div>
+        <div class="field"><label>Nome da barbearia</label><input type="text" id="barbearia" placeholder="Ex: Barbearia Vintage"></div>
+        <div class="field"><label>Quantos barbeiros trabalham com você?</label><input type="text" id="barbeiros" placeholder="Ex: 3"></div>
+        <button type="submit" class="submit-btn">Enviar e falar no WhatsApp</button>
+      </form>
+      <p class="form-note">Ao enviar, você será redirecionado ao WhatsApp da Evolvetech Solutions com seus dados preenchidos.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Evolvetech Solutions — Sistema para Barbearias</span>
+    <span>Londrina, PR</span>
+  </div>
+</footer>
+
+<script>
+  const WHATSAPP_NUMBER = "5543900000000"; // TODO: substitua pelo seu número com DDI+DDD
+  document.getElementById('leadForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const nome = document.getElementById('nome').value;
+    const telefone = document.getElementById('telefone').value;
+    const barbearia = document.getElementById('barbearia').value;
+    const barbeiros = document.getElementById('barbeiros').value;
+    let texto = `Olá! Vim pela landing page do sistema para barbearias.%0A%0ANome: ${nome}%0AWhatsApp: ${telefone}%0ABarbearia: ${barbearia}%0ANúmero de barbeiros: ${barbeiros}`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`, '_blank');
+  });
+</script>
+
+</body>
+</html>
