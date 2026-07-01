@@ -40,6 +40,9 @@ export function buildBarConfigs(heights: number[]): BarAnimConfig[] {
  * Bar variant using custom props to dynamically set the animation.
  */
 export const barVariants: Variants = {
+  initial: (cfg: BarAnimConfig) => ({
+    scaleY: cfg.scaleMin,
+  }),
   animate: (cfg: BarAnimConfig) => ({
     scaleY: [cfg.scaleMin, cfg.scaleMax],
     transition: {

@@ -52,48 +52,35 @@ export function useLiveMetric({
   const currentValue = useRef(initial);
 
   useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout>;
+    // Tick every intervalMs to guarantee movement
+    const intervalId = setInterval(() => {
+      const range = max - min;
+      const step = Math.max(1, Math.round(range * 0.12));
+      const center = (min + max) / 2;
+      
+      const bias = (center - currentValue.current) * 0.25;
+      let delta = (Math.random() * step * 2 - step) + bias;
+      
+      if (Math.abs(Math.round(delta)) === 0) {
+        delta = Math.random() > 0.5 ? 1 : -1;
+      }
 
-    function scheduleNext() {
-      // Jitter: actual wait is intervalMs ± 20 %
-      const jitter = intervalMs * 0.2;
-      const wait = intervalMs + (Math.random() * jitter * 2 - jitter);
+      let next = Math.round(
+        Math.min(max, Math.max(min, currentValue.current + delta))
+      );
+      
+      if (next === currentValue.current) {
+        if (next >= max) next = max - 1;
+        else if (next <= min) next = min + 1;
+        else next = next + (Math.random() > 0.5 ? 1 : -1);
+      }
 
-      timeoutId = setTimeout(() => {
-        const range = max - min;
-        const step = Math.max(1, Math.round(range * 0.12)); // ~12 % of range
-        const center = (min + max) / 2;
+      currentValue.current = next;
+      setValue(next);
+      setKey((k) => k + 1);
+    }, intervalMs);
 
-        // Bias: pull toward centre so metric doesn't drift to extremes
-        const bias = (center - currentValue.current) * 0.25;
-        let delta = (Math.random() * step * 2 - step) + bias;
-        
-        // Force a change if delta is too small to round to a different integer
-        if (Math.abs(Math.round(delta)) === 0) {
-          delta = Math.random() > 0.5 ? 1 : -1;
-        }
-
-        let next = Math.round(
-          Math.min(max, Math.max(min, currentValue.current + delta))
-        );
-        
-        // If we hit the boundary and it didn't change, force a bounce inwards
-        if (next === currentValue.current) {
-          if (next >= max) next = max - 1;
-          else if (next <= min) next = min + 1;
-          else next = next + (Math.random() > 0.5 ? 1 : -1);
-        }
-
-        currentValue.current = next;
-        setValue(next);
-        setKey((k) => k + 1);
-
-        scheduleNext();
-      }, wait);
-    }
-
-    scheduleNext();
-    return () => clearTimeout(timeoutId);
+    return () => clearInterval(intervalId);
   }, [min, max, intervalMs]);
 
   return { value, key };

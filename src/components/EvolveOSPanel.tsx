@@ -201,7 +201,7 @@ export default function EvolveOSPanel() {
                   }}
                   variants={barVariants}
                   custom={cfg}
-                  initial={false}
+                  initial="initial"
                   animate="animate"
                 />
               );
