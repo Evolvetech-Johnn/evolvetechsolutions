@@ -10,14 +10,16 @@ import { CheckCircle2, Send, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { PatternFormat } from "react-number-format";
-import { supabase } from "@/lib/supabase";
+import { createLead } from "@/drizzle/repository";
+import { createLeadAction } from "@/actions/create-lead";
 
 const leadFormSchema = z.object({
   name: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
   company: z.string().min(2, "Empresa deve ter pelo menos 2 caracteres"),
   role: z.string().min(2, "Cargo deve ter pelo menos 2 caracteres"),
-  phone: z.string().regex(/^\(\d{2}\)\s\d{5}-\d{4}$/, "Telefone inválido. Use o formato (00) 00000-0000"),
+  phone: z
+    .string()
+    .min(11, "O telefone deve conter todos os dígitos, incluindo o DDD."),
   email: z.string().email("E-mail inválido"),
 });
 
@@ -48,33 +50,25 @@ export default function LeadCapture() {
   const onSubmit = async (data: LeadFormValues) => {
     setIsSubmitting(true);
     setErrorMessage(null);
-    
+
     try {
-      console.log("Dados do formulário:", data);
-      
-      // Integração com Supabase - descomente quando as credenciais estiverem configuradas
-      /*
-      const { error } = await supabase.from('leads').insert({
+      const lead = {
+        id: crypto.randomUUID(),
         name: data.name,
         company: data.company,
-        role: data.role,
-        phone: data.phone,
         email: data.email,
-      });
-      
-      if (error) {
-        throw error;
-      }
-      */
-      
-      // Simula envio para demonstração (remova quando a integração com Supabase estiver pronta)
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
+        role: data.role,
+        phone: data.phone.replaceAll(/[+()\s-]/g, ""),
+      };
+      const response = await createLeadAction(lead);
+
       setSubmitted(true);
       reset();
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
-      setErrorMessage("Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.");
+      setErrorMessage(
+        "Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -85,7 +79,10 @@ export default function LeadCapture() {
   };
 
   return (
-    <section id="contato" className="py-20 bg-gradient-to-br from-brand-base to-brand-surface">
+    <section
+      id="contato"
+      className="py-20 bg-gradient-to-br from-brand-base to-brand-surface"
+    >
       <Container>
         <motion.div
           ref={ref}
@@ -98,15 +95,17 @@ export default function LeadCapture() {
               <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-4 py-2 text-sm font-semibold text-brand-accent mb-6 border border-brand-border">
                 Próximo Passo
               </div>
-              
+
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 Vamos transformar seu negócio?
               </h2>
-              
+
               <p className="text-lg text-brand-text-muted mb-8">
-                Solicite um diagnóstico gratuito e sem compromisso. Nossa equipe analisará seus processos e apresentará a melhor solução para você.
+                Solicite um diagnóstico gratuito e sem compromisso. Nossa equipe
+                analisará seus processos e apresentará a melhor solução para
+                você.
               </p>
-              
+
               <div className="space-y-4">
                 {[
                   "Diagnóstico completo de seus processos",
@@ -120,7 +119,7 @@ export default function LeadCapture() {
                 ))}
               </div>
             </div>
-            
+
             <Card className="border-0 shadow-2xl">
               {submitted ? (
                 <div className="p-8 text-center">
@@ -131,7 +130,8 @@ export default function LeadCapture() {
                     Obrigado pelo contato!
                   </h3>
                   <p className="text-brand-text-muted mb-6">
-                    Entraremos em contato em breve para agendar seu diagnóstico gratuito.
+                    Entraremos em contato em breve para agendar seu diagnóstico
+                    gratuito.
                   </p>
                   <Button
                     onClick={resetForm}
@@ -145,7 +145,10 @@ export default function LeadCapture() {
                 <form onSubmit={handleSubmit(onSubmit)} className="p-8">
                   <div className="space-y-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-brand-text mb-2">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-semibold text-brand-text mb-2"
+                      >
                         Nome completo
                       </label>
                       <input
@@ -153,17 +156,24 @@ export default function LeadCapture() {
                         type="text"
                         placeholder="Seu nome"
                         className={`w-full px-4 py-3 rounded-xl border bg-brand-surface-alt text-brand-text placeholder:text-brand-text-muted/50 transition-all ${
-                          errors.name ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
+                          errors.name
+                            ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                            : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
                         } outline-none`}
                         {...register("name")}
                       />
                       {errors.name && (
-                        <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>
+                        <p className="mt-1 text-sm text-red-400">
+                          {errors.name.message}
+                        </p>
                       )}
                     </div>
-                    
+
                     <div>
-                      <label htmlFor="company" className="block text-sm font-semibold text-brand-text mb-2">
+                      <label
+                        htmlFor="company"
+                        className="block text-sm font-semibold text-brand-text mb-2"
+                      >
                         Empresa
                       </label>
                       <input
@@ -171,17 +181,24 @@ export default function LeadCapture() {
                         type="text"
                         placeholder="Nome da empresa"
                         className={`w-full px-4 py-3 rounded-xl border bg-brand-surface-alt text-brand-text placeholder:text-brand-text-muted/50 transition-all ${
-                          errors.company ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
+                          errors.company
+                            ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                            : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
                         } outline-none`}
                         {...register("company")}
                       />
                       {errors.company && (
-                        <p className="mt-1 text-sm text-red-400">{errors.company.message}</p>
+                        <p className="mt-1 text-sm text-red-400">
+                          {errors.company.message}
+                        </p>
                       )}
                     </div>
-                    
+
                     <div>
-                      <label htmlFor="role" className="block text-sm font-semibold text-brand-text mb-2">
+                      <label
+                        htmlFor="role"
+                        className="block text-sm font-semibold text-brand-text mb-2"
+                      >
                         Cargo
                       </label>
                       <input
@@ -189,35 +206,48 @@ export default function LeadCapture() {
                         type="text"
                         placeholder="Seu cargo"
                         className={`w-full px-4 py-3 rounded-xl border bg-brand-surface-alt text-brand-text placeholder:text-brand-text-muted/50 transition-all ${
-                          errors.role ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
+                          errors.role
+                            ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                            : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
                         } outline-none`}
                         {...register("role")}
                       />
                       {errors.role && (
-                        <p className="mt-1 text-sm text-red-400">{errors.role.message}</p>
+                        <p className="mt-1 text-sm text-red-400">
+                          {errors.role.message}
+                        </p>
                       )}
                     </div>
-                    
+
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-brand-text mb-2">
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-semibold text-brand-text mb-2"
+                      >
                         Telefone
                       </label>
-                      <PatternFormat
+                      <input
                         id="phone"
-                        format="(##) #####-####"
                         placeholder="(00) 00000-0000"
                         className={`w-full px-4 py-3 rounded-xl border bg-brand-surface-alt text-brand-text placeholder:text-brand-text-muted/50 transition-all ${
-                          errors.phone ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
+                          errors.phone
+                            ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                            : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
                         } outline-none`}
                         {...register("phone")}
                       />
                       {errors.phone && (
-                        <p className="mt-1 text-sm text-red-400">{errors.phone.message}</p>
+                        <p className="mt-1 text-sm text-red-400">
+                          {errors.phone.message}
+                        </p>
                       )}
                     </div>
-                    
+
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-brand-text mb-2">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-semibold text-brand-text mb-2"
+                      >
                         E-mail
                       </label>
                       <input
@@ -225,16 +255,20 @@ export default function LeadCapture() {
                         type="email"
                         placeholder="seu@email.com"
                         className={`w-full px-4 py-3 rounded-xl border bg-brand-surface-alt text-brand-text placeholder:text-brand-text-muted/50 transition-all ${
-                          errors.email ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20" : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
+                          errors.email
+                            ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                            : "border-brand-border focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
                         } outline-none`}
                         {...register("email")}
                       />
                       {errors.email && (
-                        <p className="mt-1 text-sm text-red-400">{errors.email.message}</p>
+                        <p className="mt-1 text-sm text-red-400">
+                          {errors.email.message}
+                        </p>
                       )}
                     </div>
                   </div>
-                  
+
                   <Button
                     type="submit"
                     disabled={isSubmitting}
@@ -249,9 +283,11 @@ export default function LeadCapture() {
                       </>
                     )}
                   </Button>
-                  
+
                   {errorMessage && (
-                    <p className="mt-4 text-sm text-red-400 text-center">{errorMessage}</p>
+                    <p className="mt-4 text-sm text-red-400 text-center">
+                      {errorMessage}
+                    </p>
                   )}
                   <p className="text-xs text-brand-text-muted text-center mt-4">
                     Ao enviar, você concorda com nossa política de privacidade.
