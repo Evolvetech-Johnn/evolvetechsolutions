@@ -6,20 +6,21 @@ import { ButtonLink } from "@/components/Button";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { siteConfig } from "@/config/site";
 import TechBackground from "@/components/TechBackground";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import EvolveOSPanel from "@/components/EvolveOSPanel";
 
 export default function Hero() {
   const rootRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: rootRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
   const mockupY = useTransform(scrollYProgress, [0, 1], [0, -28]);
   const mockupRotate = useTransform(scrollYProgress, [0, 1], [0, -2]);
 
   const wa = buildWhatsAppUrl({
     phoneE164: siteConfig.whatsapp.phoneE164,
-    message: siteConfig.whatsapp.defaultMessage
+    message: siteConfig.whatsapp.defaultMessage,
   });
 
   return (
@@ -28,6 +29,7 @@ export default function Hero() {
 
       <Container className="relative py-16 md:py-24">
         <div className="grid items-center gap-12 md:grid-cols-2">
+          {/* ── Left column — copy ──────────────────────────────────────── */}
           <div>
             <div className="flex flex-wrap items-center gap-2">
               <Badge>Software sob medida</Badge>
@@ -86,7 +88,7 @@ export default function Hero() {
               {[
                 { k: "Diagnóstico", v: "entendemos o fluxo antes de construir" },
                 { k: "Entrega premium", v: "UX/UI + performance + clareza" },
-                { k: "ROI", v: "redução de custo invisível e retrabalho" }
+                { k: "ROI", v: "redução de custo invisível e retrabalho" },
               ].map((i) => (
                 <div
                   key={i.k}
@@ -99,84 +101,20 @@ export default function Hero() {
             </div>
           </div>
 
+          {/* ── Right column — animated panel ───────────────────────────── */}
           <div className="relative">
+            {/* Glow halo behind the card */}
             <div className="absolute -inset-8 rounded-[40px] bg-gradient-to-r from-neon-cyan/18 via-neon-blue/10 to-neon-purple/18 blur-2xl" />
+
+            {/* Scroll-parallax + hover-tilt wrapper */}
             <motion.div
-              className="relative overflow-hidden rounded-[32px] bg-white/[0.04] ring-1 ring-white/[0.12] shadow-glowStrong backdrop-blur"
               initial={{ opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
               whileHover={{ rotateX: -2, rotateY: 3, scale: 1.01 }}
               style={{ y: mockupY, rotate: mockupRotate, transformStyle: "preserve-3d" }}
             >
-              <div className="absolute inset-0 opacity-70">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(62,231,255,0.22),transparent_55%),radial-gradient(circle_at_90%_30%,rgba(167,139,250,0.16),transparent_55%)]" />
-                <motion.div
-                  className="absolute -left-1/2 top-0 h-full w-1/2 bg-white/10 blur-sm"
-                  animate={{ x: ["0%", "240%"] }}
-                  transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-                  style={{ transform: "skewX(-20deg)" }}
-                />
-              </div>
-
-              <div className="relative flex items-center justify-between border-b border-white/10 px-5 py-4">
-                <div className="flex items-center gap-3">
-                  <div className="h-2.5 w-2.5 rounded-full bg-white/25" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-white/18" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-white/[0.12]" />
-                </div>
-                <div className="flex items-center gap-2 text-xs font-semibold text-white/70">
-                  <Sparkles className="h-4 w-4 text-neon-cyan/90" />
-                  Dashboard futurista
-                </div>
-              </div>
-
-              <div className="relative p-6">
-                <div className="grid gap-4 md:grid-cols-2">
-                  {[
-                    { label: "Eficiência operacional", value: "+38%", tone: "from-neon-cyan to-neon-blue" },
-                    { label: "Retrabalho", value: "-52%", tone: "from-neon-green to-neon-cyan" },
-                    { label: "Tempo por operação", value: "-31%", tone: "from-neon-purple to-neon-blue" },
-                    { label: "Visibilidade do caixa", value: "Diária", tone: "from-neon-cyan to-neon-purple" }
-                  ].map((m) => (
-                    <div
-                      key={m.label}
-                      className="rounded-3xl bg-white/[0.04] p-5 ring-1 ring-white/10"
-                    >
-                      <div className="text-xs font-semibold text-white/60">{m.label}</div>
-                      <div
-                        className={[
-                          "mt-3 inline-flex items-center rounded-2xl bg-gradient-to-r px-4 py-2 text-lg font-semibold text-ink-950 shadow-glow",
-                          m.tone
-                        ].join(" ")}
-                      >
-                        {m.value}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-4 rounded-3xl bg-white/[0.04] p-5 ring-1 ring-white/10">
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm font-semibold text-white">Indicadores em tempo real</div>
-                    <Badge className="text-white/90">Automação + integrações</Badge>
-                  </div>
-                  <div className="mt-4 grid grid-cols-12 gap-2">
-                    {[9, 6, 10, 7, 11, 5, 8, 4, 9, 6, 10, 7].map((h, idx) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ height: 12, opacity: 0.4 }}
-                        animate={{ height: `${h * 10}px`, opacity: 1 }}
-                        transition={{ delay: 0.08 + idx * 0.02, duration: 0.7, ease: "easeOut" }}
-                        className={[
-                          "col-span-1 rounded-2xl bg-gradient-to-t from-white/5 to-white/0 ring-1 ring-white/10",
-                          idx % 3 === 0 ? "from-neon-cyan/30" : idx % 3 === 1 ? "from-neon-purple/25" : "from-neon-green/25"
-                        ].join(" ")}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <EvolveOSPanel />
             </motion.div>
           </div>
         </div>
