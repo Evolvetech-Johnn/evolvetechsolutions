@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import Badge from "@/components/Badge";
 import { useLiveMetric } from "@/components/useLiveMetric";
@@ -51,7 +51,6 @@ const BAR_CONFIGS = buildBarConfigs(BAR_HEIGHTS as unknown as number[]);
  *  • useLiveMetric.ts             — oscillating number logic
  */
 export default function EvolveOSPanel() {
-  const shouldReduceMotion = useReducedMotion();
 
   // Live metrics ——————————————————————————————————————————
   const productivity = useLiveMetric({
@@ -75,14 +74,12 @@ export default function EvolveOSPanel() {
       <div className="absolute inset-0 opacity-70 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(62,231,255,0.22),transparent_55%),radial-gradient(circle_at_90%_30%,rgba(167,139,250,0.16),transparent_55%)]" />
         {/* Shimmer sweep */}
-        {!shouldReduceMotion && (
-          <motion.div
-            className="absolute -left-1/2 top-0 h-full w-1/2 bg-white/10 blur-sm"
-            animate={{ x: ["0%", "240%"] }}
-            transition={shimmerTransition}
-            style={{ transform: "skewX(-20deg)" }}
-          />
-        )}
+        <motion.div
+          className="absolute -left-1/2 top-0 h-full w-1/2 bg-white/10 blur-sm"
+          animate={{ x: ["0%", "240%"] }}
+          transition={shimmerTransition}
+          style={{ transform: "skewX(-20deg)" }}
+        />
       </div>
 
       {/* ── Window bar (static — not animated per spec) ────────────────── */}
@@ -138,7 +135,7 @@ export default function EvolveOSPanel() {
                     animate="animate"
                     exit="exit"
                     transition={numberTickerTransition}
-                    className="tabular-nums"
+                    className="tabular-nums inline-block"
                   >
                     {productivity.value}
                   </motion.span>
@@ -164,7 +161,7 @@ export default function EvolveOSPanel() {
                     animate="animate"
                     exit="exit"
                     transition={numberTickerTransition}
-                    className="tabular-nums"
+                    className="tabular-nums inline-block"
                   >
                     {timeSaved.value}
                   </motion.span>
@@ -205,7 +202,7 @@ export default function EvolveOSPanel() {
                   variants={barVariants}
                   custom={cfg}
                   initial={false}
-                  animate={shouldReduceMotion ? { scaleY: 1 } : "animate"}
+                  animate="animate"
                 />
               );
             })}

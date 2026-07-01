@@ -49,18 +49,9 @@ export function useLiveMetric({
   const [value, setValue] = useState(initial);
   const [key, setKey] = useState(0);
 
-  // Read the media query once so we don't start timers when motion is reduced
-  const reducedMotion = useRef(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    reducedMotion.current = mq.matches;
-  }, []);
-
   const currentValue = useRef(initial);
 
   useEffect(() => {
-    if (reducedMotion.current) return; // static — no timer
-
     let timeoutId: ReturnType<typeof setTimeout>;
 
     function scheduleNext() {
