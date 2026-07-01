@@ -75,10 +75,23 @@ export function useLiveMetric({
 
         // Bias: pull toward centre so metric doesn't drift to extremes
         const bias = (center - currentValue.current) * 0.25;
-        const delta = (Math.random() * step * 2 - step) + bias;
-        const next = Math.round(
+        let delta = (Math.random() * step * 2 - step) + bias;
+        
+        // Force a change if delta is too small to round to a different integer
+        if (Math.abs(Math.round(delta)) === 0) {
+          delta = Math.random() > 0.5 ? 1 : -1;
+        }
+
+        let next = Math.round(
           Math.min(max, Math.max(min, currentValue.current + delta))
         );
+        
+        // If we hit the boundary and it didn't change, force a bounce inwards
+        if (next === currentValue.current) {
+          if (next >= max) next = max - 1;
+          else if (next <= min) next = min + 1;
+          else next = next + (Math.random() > 0.5 ? 1 : -1);
+        }
 
         currentValue.current = next;
         setValue(next);

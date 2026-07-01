@@ -37,24 +37,20 @@ export function buildBarConfigs(heights: number[]): BarAnimConfig[] {
 }
 
 /**
- * Build the `animate` target for a single bar.
- * Used directly in JSX: <motion.div animate={barAnimTarget(cfg)} …>
+ * Bar variant using custom props to dynamically set the animation.
  */
-export function barAnimTarget(cfg: BarAnimConfig) {
-  return {
+export const barVariants: Variants = {
+  animate: (cfg: BarAnimConfig) => ({
     scaleY: [cfg.scaleMin, cfg.scaleMax],
-  };
-}
-
-export function barAnimTransition(cfg: BarAnimConfig): Transition {
-  return {
-    duration: cfg.duration,
-    delay: cfg.delay,
-    repeat: Infinity,
-    repeatType: "reverse" as const,
-    ease: [0.45, 0.0, 0.55, 1.0], // smooth cubic-bezier — organic, not linear
-  };
-}
+    transition: {
+      duration: cfg.duration,
+      delay: cfg.delay,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: [0.45, 0.0, 0.55, 1.0],
+    },
+  }),
+};
 
 // ---------------------------------------------------------------------------
 // Number-ticker AnimatePresence variants

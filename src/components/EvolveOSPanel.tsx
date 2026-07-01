@@ -6,8 +6,7 @@ import Badge from "@/components/Badge";
 import { useLiveMetric } from "@/components/useLiveMetric";
 import {
   buildBarConfigs,
-  barAnimTarget,
-  barAnimTransition,
+  barVariants,
   numberTickerVariants,
   numberTickerTransition,
   shimmerTransition,
@@ -59,14 +58,14 @@ export default function EvolveOSPanel() {
     min: 58,
     max: 64,
     initial: 62,
-    intervalMs: 4200,
+    intervalMs: 2500, // Faster interval so visitors notice the live data
   });
 
   const timeSaved = useLiveMetric({
     min: 17,
     max: 19,
     initial: 18,
-    intervalMs: 6500, // updates slower — this metric changes less often
+    intervalMs: 4000,
   });
 
   return (
@@ -202,10 +201,11 @@ export default function EvolveOSPanel() {
                   style={{
                     height: `${h * 7}px`,
                     transformOrigin: "bottom",
-                    originY: 1,
                   }}
-                  animate={shouldReduceMotion ? { scaleY: 1 } : barAnimTarget(cfg)}
-                  transition={shouldReduceMotion ? { duration: 0 } : barAnimTransition(cfg)}
+                  variants={barVariants}
+                  custom={cfg}
+                  initial={false}
+                  animate={shouldReduceMotion ? { scaleY: 1 } : "animate"}
                 />
               );
             })}

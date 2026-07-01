@@ -38,6 +38,7 @@ export function Button({
   variant = "primary",
   size = "md",
   className,
+  children,
   ...props
 }: CommonProps & ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
@@ -52,7 +53,9 @@ export function Button({
         classesForSize(size),
         className
       ].join(" ")}
-    />
+    >
+      {children}
+    </button>
   );
 }
 
@@ -60,6 +63,7 @@ export function ButtonLink({
   variant = "primary",
   size = "md",
   className,
+  children,
   ...props
 }: CommonProps & AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
@@ -74,7 +78,9 @@ export function ButtonLink({
         classesForSize(size),
         className
       ].join(" ")}
-    />
+    >
+      {children}
+    </a>
   );
 }
 

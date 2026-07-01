@@ -11,6 +11,13 @@
     --navy:#0B1B3F; --navy-deep:#071227; --white:#FFFFFF;
     --cyan:#15C2E8; --cyan-dim: rgba(21,194,232,0.14);
     --gray-1:#5B6472; --gray-2:#E8EAEE; --gray-3:#F7F8FA; --radius:14px;
+    --brand-600: #15C2E8;
+    --brand-700: #0E8AA8;
+    --ink-950: #05060A;
+    --ink-800: #0B1020;
+    --ink-500: rgba(255,255,255,0.5);
+    --ink-400: rgba(255,255,255,0.6);
+    --ink-300: rgba(255,255,255,0.7);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -19,15 +26,17 @@
   .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
   a{color:inherit;text-decoration:none;}
 
-  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--gray-2);}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;}
-  .brand .logo{height:50px;width:auto;border-radius:50%;}
+  header{position:sticky;top:0;z-index:50;background:rgba(5, 6, 10, 0.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.08);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:14px;color:var(--white);}
+  .brand .logo{height:40px;width:auto;border-radius:12px;background:rgba(255,255,255,0.06);padding:4px;border:1px solid rgba(255,255,255,0.12);}
+  .brand .brand-text span{display:block;}
+  .brand .brand-sub{font-size:12px;color:var(--ink-400);font-weight:400;}
   .nav-links{display:flex;align-items:center;gap:16px;}
-  .nav-back{font-size:14px;color:var(--gray-1);transition:color .2s;}
-  .nav-back:hover{color:var(--navy);}
-  .nav-cta{background:var(--navy);color:var(--white);padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;transition:background .2s;}
-  .nav-cta:hover{background:var(--cyan);color:var(--navy);}
+  .nav-back{font-size:14px;color:var(--ink-400);transition:color .2s;}
+  .nav-back:hover{color:var(--white);}
+  .nav-cta{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:8px 16px;border-radius:12px;font-weight:600;font-size:14px;transition:background .2s;}
+  .nav-cta:hover{background:rgba(255,255,255,0.08);}
 
   .hero{background:linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);color:var(--white);padding:84px 0 100px;position:relative;overflow:hidden;}
   .hero::before{content:"";position:absolute;top:-120px;right:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle, var(--cyan-dim) 0%, transparent 70%);}
@@ -123,10 +132,14 @@
   <div class="nav wrap">
     <a href="/" class="brand">
       <img src="/img/LogoVF.png" alt="Evolvetech Solutions" class="logo">
+      <div class="brand-text">
+        <span>EVOLVETECH SOLUTIONS</span>
+        <span class="brand-sub">Sistemas sob medida • Dashboards</span>
+      </div>
     </a>
     <div class="nav-links">
-      <a href="/" class="nav-back">Voltar ao site principal</a>
-      <a href="#contato" class="nav-cta">Falar com a Evolvetech</a>
+      <a href="/" class="nav-back">Voltar ao site</a>
+      <a href="#contato" class="nav-cta">Orçamento</a>
     </div>
   </div>
 </header>
@@ -236,9 +249,42 @@
 </section>
 
 <footer>
-  <div class="wrap footer-row">
-    <span>© 2026 Evolvetech Solutions — Sites para Advogados</span>
-    <span>Londrina - PR</span>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="/img/LogoVF.png" alt="Evolvetech Solutions" class="logo">
+          <div>
+            <h4>EVOLVETECH SOLUTIONS</h4>
+            <span>evolvetechsolutions.com.br</span>
+          </div>
+        </div>
+        <p class="footer-desc">Software house focada em sistemas sob medida que aumentam lucro, reduzem retrabalho e trazem controle real para a operação.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <div class="footer-links">
+          <a href="mailto:contato@evolvetechsolutions.com.br">contato@evolvetechsolutions.com.br</a>
+          <a href="https://wa.me/5543988704856" target="_blank">WhatsApp (resposta rápida)</a>
+          <span>Londrina • Atendimento Brasil</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <div class="footer-links">
+          <a href="/#servicos">Sistemas personalizados</a>
+          <a href="/#servicos">Dashboards & BI</a>
+          <a href="/#servicos">Automações</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EVOLVETECH SOLUTIONS. Todos os direitos reservados.</span>
+      <div class="footer-bottom-links">
+        <a href="#topo">Voltar ao topo</a>
+        <a href="#contato">Solicitar orçamento</a>
+      </div>
+    </div>
   </div>
 </footer>
 
