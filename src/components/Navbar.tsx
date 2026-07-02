@@ -6,6 +6,7 @@ import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { siteConfig } from "@/config/site";
 
 const navLinks = [
+  { href: "/crm", label: "CRM" },
   { href: "#servicos", label: "Serviços" },
   { href: "#portfolio", label: "Portfólio" },
   { href: "#processo", label: "Processo" },

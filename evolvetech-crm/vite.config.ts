@@ -12,7 +12,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: '../evolvetechsolutions/public/crm',
+    outDir: '../public/crm',
     emptyOutDir: true,
   },
 });
