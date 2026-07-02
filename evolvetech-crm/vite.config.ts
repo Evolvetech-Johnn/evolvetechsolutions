@@ -5,9 +5,14 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '/crm/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+  },
+  build: {
+    outDir: '../evolvetechsolutions/public/crm',
+    emptyOutDir: true,
   },
 });
