@@ -8,6 +8,7 @@ import { siteConfig } from "@/config/site";
 import { useState, useEffect } from "react";
 
 const navLinks = [
+  { href: "/crm", label: "CRM" },
   { href: "#servicos", label: "Serviços" },
   { href: "#demos", label: "Demos" },
   { href: "#casos", label: "Casos" },
