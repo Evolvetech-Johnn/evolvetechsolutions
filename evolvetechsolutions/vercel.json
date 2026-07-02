@@ -1,0 +1,12 @@
+{
+  "buildCommand": "cd ../evolvetech-crm && npm run build && npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "cd ../evolvetech-crm && npm install && npm install",
+  "rewrites": [
+    {
+      "source": "/crm/:path*",
+      "destination": "/crm/index.html"
+    }
+  ]
+}
