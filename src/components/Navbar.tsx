@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import Container from "./Container";
 import Badge from "./Badge";

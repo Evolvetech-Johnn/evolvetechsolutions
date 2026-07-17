@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { siteConfig } from "@/config/site";
