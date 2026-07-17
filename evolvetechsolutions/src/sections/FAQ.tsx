@@ -8,50 +8,47 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 
 const faqs = [
   {
-    question: "Quanto tempo leva para desenvolver um sistema?",
-    answer: "O prazo varia de acordo com a complexidade do projeto. Projetos simples levam em média 4 a 8 semanas, enquanto projetos mais complexos podem levar de 3 a 6 meses. Durante o diagnóstico gratuito, definimos um cronograma detalhado.",
+    question: "Quanto tempo leva para desenvolver um sistema sob medida?",
+    answer: "O prazo varia de acordo com a complexidade, mas projetos iniciais costumam levar de 4 a 8 semanas. Após entendermos sua necessidade, definimos um cronograma claro e entregamos em etapas funcionais.",
   },
   {
-    question: "Vocês oferecem suporte após a implantação?",
-    answer: "Sim! Oferecemos planos de suporte contínuo com diferentes níveis de atendimento, desde suporte básico até suporte dedicado 24/7. Todos os nossos projetos incluem um período de garantia inicial.",
+    question: "Qual a diferença entre um sistema sob medida e um SaaS pronto?",
+    answer: "Um SaaS pronto obriga sua empresa a adaptar seus processos ao software. Já o sistema sob medida é construído exatamente para o seu fluxo de trabalho, garantindo 100% de aderência e sem taxas mensais por usuário.",
   },
   {
-    question: "Posso integrar o novo sistema com ferramentas que já uso?",
-    answer: "Absolutamente! Nossas soluções são desenvolvidas para se integrar perfeitamente com as ferramentas que você já utiliza, como ERP's, CRM's, plataformas de e-commerce, entre outras.",
+    question: "Como funciona o suporte depois da entrega?",
+    answer: "Oferecemos um período de garantia para qualquer correção necessária e planos de manutenção flexíveis. Nossa equipe continua à disposição para evoluir o sistema conforme seu negócio cresce.",
   },
   {
-    question: "Qual o investimento necessário para um sistema sob medida?",
-    answer: "O investimento depende do escopo do projeto. Oferecemos soluções para empresas de todos os tamanhos, com opções de pagamento flexíveis. Entre em contato para um diagnóstico gratuito e orçamento personalizado.",
+    question: "Quais tecnologias vocês usam?",
+    answer: "Trabalhamos com as stacks mais modernas e consolidadas do mercado, como React, Next.js, Node.js e bancos de dados em nuvem. Isso garante que seu sistema seja rápido, seguro e escalável.",
   },
   {
-    question: "Vocês atendem empresas de qualquer setor?",
-    answer: "Sim! Já atendemos clientes de diversos setores como varejo, manufatura, serviços, saúde, educação, entre outros. Nossa metodologia se adapta às particularidades de cada negócio.",
-  },
-  {
-    question: "Como funciona o diagnóstico gratuito?",
-    answer: "O diagnóstico é uma consultoria inicial onde analisamos seus processos, identificamos oportunidades de melhoria e apresentamos uma proposta de solução personalizada. É 100% gratuito e sem compromisso.",
-  },
-  {
-    question: "Os dados da minha empresa estarão seguros?",
-    answer: "Segurança é nossa prioridade! Utilizamos as melhores práticas de segurança da informação, criptografia de dados, servidores seguros (AWS/Azure) e seguimos rigorosamente a LGPD.",
-  },
-  {
-    question: "Posso fazer alterações no projeto durante o desenvolvimento?",
-    answer: "Sim! Trabalhamos com metodologias ágeis que permitem ajustes ao longo do desenvolvimento. Mantemos comunicação constante para garantir que o resultado final seja exatamente o que você precisa.",
-  },
-  {
-    question: "Vocês oferecem treinamento para a equipe?",
-    answer: "Sim! Todos os nossos projetos incluem treinamento completo para sua equipe aprender a usar a nova solução. Também oferecemos materiais de apoio como manuais e videoaulas.",
-  },
-  {
-    question: "Por que escolher a EvolveTech ao invés de uma solução pronta?",
-    answer: "Soluções prontas muitas vezes exigem que você adapte seu negócio ao software. Nós fazemos o contrário: adaptamos o software ao seu negócio, garantindo máxima eficiência e adoção pela equipe.",
+    question: "Como funciona o orçamento (ticket de R$3k–R$15k+)?",
+    answer: "Nosso orçamento é baseado no escopo e nas funcionalidades necessárias, variando tipicamente de R$ 3 mil a R$ 15 mil+ para projetos maiores. Dividimos o valor conforme as entregas para facilitar o investimento.",
   },
 ];
 
 export default function FAQ() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <section id="faq" className="py-12 md:py-20 bg-brand-surface overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Container>
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 rounded-full bg-brand-accent/10 px-4 py-2 text-sm font-semibold text-brand-accent mb-4">
@@ -61,7 +58,7 @@ export default function FAQ() {
             Respostas para suas perguntas
           </h2>
           <p className="text-brand-text-muted text-body max-w-2xl mx-auto">
-            Aqui estão as dúvidas mais comuns dos nossos clientes.
+            Aqui estão as dúvidas mais comuns de quem avalia nossos serviços.
           </p>
         </div>
         

@@ -10,6 +10,7 @@ import { TrendingUp, Target, Zap } from "lucide-react";
 const caseStudies = [
   {
     company: "Compras Londrina",
+    slug: "compras-londrina",
     problem: "Processos de compras descentralizados em planilhas.",
     solution: "Sistema integrado de gestão de compras e fornecedores.",
     results: [
@@ -20,6 +21,7 @@ const caseStudies = [
   },
   {
     company: "Eletrostart",
+    slug: "eletrostart",
     problem: "Falta de visão real-time do estoque e vendas.",
     solution: "Dashboard interativo com BI em tempo real.",
     results: [
@@ -30,6 +32,7 @@ const caseStudies = [
   },
   {
     company: "Start Solar",
+    slug: "start-solar",
     problem: "Processos manuais de instalação e atendimento.",
     solution: "App móvel + CRM personalizado.",
     results: [
@@ -106,7 +109,7 @@ function CaseStudyCard({ study, index }: { study: typeof caseStudies[0]; index: 
             })}
           </div>
           
-          <ButtonLink href="#contato" className="w-full bg-brand-accent hover:bg-brand-accent-light text-white">
+          <ButtonLink href={`/portfolio/${study.slug}`} className="w-full bg-brand-accent hover:bg-brand-accent-light text-white">
             Ver caso completo
           </ButtonLink>
         </div>

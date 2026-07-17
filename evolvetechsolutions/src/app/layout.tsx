@@ -12,7 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.evolvetechsolutions.com.br"),
   title: {
-    default: "EVOLVETECH SOLUTIONS | Sistemas sob medida para empresas",
+    default: "EvolveTech Solutions | Sistemas sob medida com foco em lucro",
     template: "%s | EVOLVETECH SOLUTIONS",
   },
   description:
@@ -37,14 +37,14 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: "https://www.evolvetechsolutions.com.br",
     siteName: "EVOLVETECH SOLUTIONS",
-    title: "EVOLVETECH SOLUTIONS | Sistemas sob medida para empresas",
+    title: "EvolveTech Solutions | Sistemas sob medida com foco em lucro",
     description:
       "Sistemas personalizados, dashboards e automações para aumentar lucro e controle empresarial.",
     images: [{ url: "/banner.jpg", width: 1200, height: 630, alt: "EVOLVETECH SOLUTIONS" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "EVOLVETECH SOLUTIONS | Sistemas sob medida para empresas",
+    title: "EvolveTech Solutions | Sistemas sob medida com foco em lucro",
     description:
       "Sistemas personalizados, dashboards e automações para aumentar lucro e controle empresarial.",
     images: ["/banner.jpg"],
@@ -67,9 +67,22 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "EvolveTech Solutions",
+    url: "https://www.evolvetechsolutions.com.br",
+    logo: "https://www.evolvetechsolutions.com.br/favicon.png",
+    sameAs: [],
+  };
+
   return (
     <html lang="pt-BR" className={`${inter.variable}`}>
       <body className="bg-background text-primary antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         {children}
       </body>
     </html>
