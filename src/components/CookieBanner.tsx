@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 type Consent = "accepted" | "rejected";
 
@@ -40,7 +41,12 @@ export default function CookieBanner() {
     []
   );
 
-  if (!visible) return null;
+  if (!visible) {
+    if (consent === "accepted") {
+      return <GoogleAnalytics gaId="G-Y1NVK8N2YK" />;
+    }
+    return null;
+  }
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4">
@@ -62,12 +68,8 @@ export default function CookieBanner() {
               <p className="mt-2 text-sm leading-relaxed text-white/70">
                 Usamos apenas o essencial para funcionamento do site. Você pode aceitar
                 ou recusar cookies não essenciais. Leia a{" "}
-                <a href="#cookies" className="font-semibold text-white/80 hover:text-white">
-                  política de cookies
-                </a>{" "}
-                e a{" "}
-                <a href="#privacidade" className="font-semibold text-white/80 hover:text-white">
-                  política de privacidade
+                <a href="/privacidade" className="font-semibold text-white/80 hover:text-white">
+                  política de cookies e privacidade
                 </a>
                 .
               </p>

@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value:
               "camera=(), microphone=(), geolocation=(), payment=(), usb=(), xr-spatial-tracking=()"
+          },
+          {
+            key: "Content-Security-Policy",
+            value:
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com; style-src 'self' 'unsafe-inline';"
           }
         ]
       }

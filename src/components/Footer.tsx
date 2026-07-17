@@ -61,13 +61,10 @@ export default function Footer() {
             <div className="mt-3 text-xs font-semibold tracking-wide text-white/60">
               LEGAL
             </div>
-            <a href="#privacidade" className="hover:text-white">
-              Política de privacidade
+            <a href="/privacidade" className="hover:text-white">
+              Política de privacidade e cookies
             </a>
-            <a href="#cookies" className="hover:text-white">
-              Política de cookies
-            </a>
-            <a href="#termos" className="hover:text-white">
+            <a href="/privacidade" className="hover:text-white">
               Termos de uso
             </a>
           </div>
