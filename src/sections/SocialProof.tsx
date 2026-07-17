@@ -6,19 +6,19 @@ import Badge from "@/components/Badge";
 
 const testimonials = [
   {
-    name: "Diretoria • Energia Solar",
+    name: "EletroStart",
     quote:
-      "A gente saiu do “achismo”. Com indicadores diários e fluxo validado, ficou claro onde estava o gargalo — e o time ganhou velocidade sem perder controle."
+      "Site institucional focado em SEO e velocidade que passou a gerar contato qualificado via WhatsApp já no primeiro mês de operação."
   },
   {
-    name: "Operação • Negócio Local",
+    name: "Portal Compras Londrina",
     quote:
-      "O que era planilha virou processo. Menos erro, menos retrabalho e uma rotina que não depende de uma pessoa só."
+      "Modernização do portal de licitações: um sistema mais rápido, acessível e otimizado para os buscadores, facilitando o acesso público."
   },
   {
-    name: "Gestão • Serviços",
+    name: "Start Solar",
     quote:
-      "O sistema trouxe previsibilidade. Hoje eu sei o que está acontecendo, o que falta e o que precisa ser priorizado."
+      "Plataforma desenhada para autoridade e conversão. Reduziu o atrito na comunicação e acelerou a jornada de decisão do cliente final."
   }
 ];
 
@@ -34,9 +34,9 @@ export default function SocialProof() {
     <section className="relative bg-ink-950">
       <Container className="py-16 md:py-24">
         <SectionHeading
-          eyebrow="Prova social"
+          eyebrow="Resultados reais"
           title="Autoridade se constrói com clareza, processo e resultado."
-          subtitle="Nem toda transformação é “marketing”. É operação bem desenhada e tecnologia aplicada do jeito certo. Abaixo, exemplos de percepções e ganhos típicos após a entrega."
+          subtitle="Nem toda transformação é “marketing”. É operação bem desenhada e tecnologia aplicada do jeito certo. Abaixo, exemplos do impacto gerado em nossos clientes reais."
         />
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
@@ -64,7 +64,7 @@ export default function SocialProof() {
                 </p>
                 <div className="mt-6 flex items-center gap-2 text-xs font-semibold text-white/60">
                   <span className="h-1.5 w-1.5 rounded-full bg-neon-cyan/80" />
-                  Depoimento representativo
+                  Projeto verificado
                 </div>
               </Card>
             </motion.div>

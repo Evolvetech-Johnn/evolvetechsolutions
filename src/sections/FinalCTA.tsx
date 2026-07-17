@@ -44,16 +44,14 @@ export default function FinalCTA() {
             </motion.h3>
 
             <p className="mt-4 max-w-2xl text-balance text-base leading-relaxed text-white/70 md:text-lg">
-              Em poucos minutos, entendemos seu cenário e apontamos o caminho: o que
-              automatizar, quais indicadores priorizar e qual escopo entrega o melhor
-              retorno.
+              Em 5 minutos de conversa, você já sabe se vale investir em sistema agora.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href={wa} target="_blank" rel="noreferrer" size="lg">
-                Falar no WhatsApp agora
+                Quero essa conversa
               </ButtonLink>
-              <ButtonLink href="#servicos" variant="secondary" size="lg">
+              <ButtonLink href="/#servicos" variant="secondary" size="lg">
                 Ver serviços
               </ButtonLink>
             </div>

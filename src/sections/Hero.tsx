@@ -43,9 +43,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              Uma operação que cresce com{" "}
+              De processo manual a máquina de decisão:{" "}
               <span className="bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple bg-clip-text text-transparent">
-                controle, dados e margem
+                sistemas, dashboards e automação sob medida
               </span>
               .
             </motion.h1>
@@ -56,9 +56,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.08, ease: "easeOut" }}
             >
-              Sistemas sob medida, dashboards e automações para transformar processos
-              manuais em fluxo inteligente — reduzindo retrabalho, aumentando
-              produtividade e dando visibilidade em tempo real para decisões melhores.
+              Sistemas sob medida que transformam processos manuais em fluxo inteligente —
+              menos retrabalho, mais produtividade, decisões em tempo real.
             </motion.p>
 
             <motion.div
@@ -67,8 +66,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.16, ease: "easeOut" }}
             >
-              <ButtonLink href="#contato" aria-label="Solicitar orçamento" size="lg">
-                Solicitar orçamento
+              <ButtonLink href="/#contato" aria-label="Quero meu diagnóstico gratuito" size="lg">
+                Quero meu diagnóstico gratuito
                 <ArrowRight className="h-5 w-5" />
               </ButtonLink>
 

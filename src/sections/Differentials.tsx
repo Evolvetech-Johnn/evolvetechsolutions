@@ -46,7 +46,7 @@ export default function Differentials() {
               . Não porque quer “um sistema”.
             </>
           }
-          subtitle="Tickets de R$3.000 a R$15.000+ fazem sentido quando a entrega reduz retrabalho, aumenta produtividade e dá controle gerencial. É isso que colocamos no centro do projeto."
+          subtitle="Tickets de R$3.000 a R$15.000+ — porque o retorno vem de retrabalho eliminado e decisão mais rápida, não de 'ter um sistema'."
         />
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">

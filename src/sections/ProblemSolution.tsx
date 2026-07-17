@@ -46,7 +46,7 @@ export default function ProblemSolution() {
               <span className="text-white/70"> É a falta de sistema.</span>
             </>
           }
-          subtitle="Quando processos dependem de planilha e memória, o custo aparece em retrabalho, erro e oportunidades perdidas. A solução é um sistema sob medida com indicadores que orientam a ação."
+          subtitle="Se sua operação depende de WhatsApp, planilha e memória de alguém-chave, você não tem um processo — tem um risco. A solução é um sistema sob medida com indicadores que orientam a ação."
         />
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">

@@ -62,9 +62,9 @@ export default function Navbar() {
                 href="/#contato"
                 variant="secondary"
                 size="sm"
-                aria-label="Solicitar orçamento"
+                aria-label="Diagnóstico Gratuito"
               >
-                Solicitar orçamento
+                Diagnóstico Gratuito
               </ButtonLink>
               <ButtonLink
                 href={wa}
