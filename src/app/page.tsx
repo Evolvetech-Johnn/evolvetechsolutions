@@ -6,7 +6,7 @@ export default function Page() {
     "@type": "LocalBusiness",
     name: "EvolveTech Solutions",
     url: "https://www.evolvetechsolutions.com.br",
-    telephone: "+5543999999999",
+    telephone: "+5543988704856",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Londrina",

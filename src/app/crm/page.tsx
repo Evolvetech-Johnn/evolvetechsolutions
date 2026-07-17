@@ -81,7 +81,7 @@ export default function CRMPage() {
             </div>
             <div className="flex justify-center">
               <Link
-                href="https://wa.me/5543999999999"
+                href="https://wa.me/5543988704856"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-2xl font-semibold transition will-change-transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-neon-cyan/40 before:absolute before:inset-0 before:opacity-0 before:transition before:duration-300 hover:before:opacity-100 before:bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.35),transparent_55%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.18),transparent_50%)] after:absolute after:-left-1/2 after:top-0 after:h-full after:w-1/2 after:skew-x-[-20deg] after:bg-white/20 after:opacity-0 after:transition after:duration-500 group-hover:after:translate-x-[240%] group-hover:after:opacity-100 bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple text-ink-950 shadow-glowStrong h-12 px-8 text-base"
