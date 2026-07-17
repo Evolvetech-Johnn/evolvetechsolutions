@@ -8,10 +8,10 @@ import { siteConfig } from "@/config/site";
 
 const navLinks = [
   { href: "/crm", label: "CRM" },
-  { href: "#servicos", label: "Serviços" },
-  { href: "#portfolio", label: "Portfólio" },
-  { href: "#processo", label: "Processo" },
-  { href: "#contato", label: "Contato" }
+  { href: "/#servicos", label: "Serviços" },
+  { href: "/#portfolio", label: "Portfólio" },
+  { href: "/#processo", label: "Processo" },
+  { href: "/#contato", label: "Contato" }
 ];
 
 export default function Navbar() {
@@ -24,7 +24,7 @@ export default function Navbar() {
     <div className="sticky top-0 z-40 border-b border-white/[0.08] bg-ink-950/[0.55] backdrop-blur">
       <Container className="py-3">
         <div className="flex items-center justify-between gap-3">
-          <a href="#topo" className="group inline-flex items-center gap-3">
+          <a href="/#topo" className="group inline-flex items-center gap-3">
             <img
               src="/LogoVF.png"
               alt="EVOLVETECH SOLUTIONS"
@@ -59,7 +59,7 @@ export default function Navbar() {
             </nav>
             <div className="flex items-center gap-2">
               <ButtonLink
-                href="#contato"
+                href="/#contato"
                 variant="secondary"
                 size="sm"
                 aria-label="Solicitar orçamento"

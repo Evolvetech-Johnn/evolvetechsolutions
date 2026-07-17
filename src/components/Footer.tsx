@@ -49,13 +49,13 @@ export default function Footer() {
             <div className="text-xs font-semibold tracking-wide text-white/60">
               SERVIÇOS
             </div>
-            <a href="#servicos" className="hover:text-white">
+            <a href="/#servicos" className="hover:text-white">
               Sistemas personalizados
             </a>
-            <a href="#servicos" className="hover:text-white">
+            <a href="/#servicos" className="hover:text-white">
               Dashboards & BI operacional
             </a>
-            <a href="#servicos" className="hover:text-white">
+            <a href="/#servicos" className="hover:text-white">
               Automações e integrações
             </a>
             <div className="mt-3 text-xs font-semibold tracking-wide text-white/60">
@@ -76,10 +76,10 @@ export default function Footer() {
         <div className="mt-10 flex flex-col gap-2 border-t border-white/5 pt-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
           <div>© {new Date().getFullYear()} EVOLVETECH SOLUTIONS. Todos os direitos reservados.</div>
           <div className="flex gap-3">
-            <a href="#topo" className="hover:text-white">
+            <a href="/#topo" className="hover:text-white">
               Voltar ao topo
             </a>
-            <a href="#contato" className="hover:text-white">
+            <a href="/#contato" className="hover:text-white">
               Solicitar orçamento
             </a>
           </div>
