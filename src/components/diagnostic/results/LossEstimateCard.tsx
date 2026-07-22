@@ -16,47 +16,47 @@ export function LossEstimateCard({ estimate }: LossEstimateCardProps) {
   }
 
   return (
-    <div className="bg-red-50 rounded-2xl border border-red-100 p-6 sm:p-8">
-      <div className="flex items-start gap-4 mb-6">
-        <div className="p-3 bg-red-100 rounded-xl text-red-600">
+    <div className="bg-gradient-to-br from-[#1a0f14] to-[#261118] rounded-3xl ring-1 ring-red-500/20 p-6 md:p-8 shadow-[0_0_30px_rgba(255,0,0,0.05)]">
+      <div className="flex items-start gap-4 mb-8">
+        <div className="p-3 bg-red-500/10 rounded-xl text-red-400 ring-1 ring-red-500/30">
           <TrendingDown className="w-6 h-6" />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-red-900">O custo de permanecer como está</h3>
-          <p className="text-red-700/80 text-sm mt-1">
+          <h3 className="text-2xl font-bold text-white mb-2">O custo de permanecer como está</h3>
+          <p className="text-white/60 text-sm leading-relaxed max-w-3xl">
             Esta é uma projeção indicativa baseada nas respostas fornecidas. O valor real depende da 
             operação, das margens e do contexto da empresa.
           </p>
         </div>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white p-4 rounded-xl border border-red-100 shadow-sm">
-          <p className="text-sm font-medium text-slate-500 mb-1">Horas Manuais/Mês</p>
-          <p className="text-2xl font-bold text-slate-900">~{Math.round(estimate.horasManuaisMensais)}h</p>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+        <div className="bg-white/5 p-5 rounded-2xl ring-1 ring-white/10 backdrop-blur">
+          <p className="text-sm font-medium text-white/50 mb-2">Horas Manuais/Mês</p>
+          <p className="text-2xl font-bold text-white">~{Math.round(estimate.horasManuaisMensais)}h</p>
         </div>
         
-        <div className="bg-white p-4 rounded-xl border border-red-100 shadow-sm">
-          <p className="text-sm font-medium text-slate-500 mb-1">Custo Operacional Extra</p>
-          <p className="text-2xl font-bold text-slate-900">{formatCurrency(estimate.perdaManualAjustada + estimate.perdaRetrabalho + estimate.custoRelatoriosMensais)}</p>
+        <div className="bg-white/5 p-5 rounded-2xl ring-1 ring-white/10 backdrop-blur">
+          <p className="text-sm font-medium text-white/50 mb-2">Custo Operacional Extra</p>
+          <p className="text-2xl font-bold text-white">{formatCurrency(estimate.perdaManualAjustada + estimate.perdaRetrabalho + estimate.custoRelatoriosMensais)}</p>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-red-100 shadow-sm">
-          <p className="text-sm font-medium text-slate-500 mb-1">Receita Não Capturada</p>
-          <p className="text-2xl font-bold text-slate-900">{formatCurrency(estimate.receitaPotencialPerdida + estimate.receitaFollowUpPerdida)}</p>
+        <div className="bg-white/5 p-5 rounded-2xl ring-1 ring-white/10 backdrop-blur">
+          <p className="text-sm font-medium text-white/50 mb-2">Receita Não Capturada</p>
+          <p className="text-2xl font-bold text-white">{formatCurrency(estimate.receitaPotencialPerdida + estimate.receitaFollowUpPerdida)}</p>
         </div>
 
-        <div className="bg-red-600 p-4 rounded-xl shadow-md text-white">
-          <p className="text-sm font-medium text-red-100 mb-1">Impacto Anual Estimado</p>
-          <p className="text-2xl font-bold">{formatCurrency(estimate.impactoAnual)}</p>
+        <div className="bg-red-500/20 p-5 rounded-2xl ring-1 ring-red-500/40 shadow-[0_0_20px_rgba(239,68,68,0.2)]">
+          <p className="text-sm font-medium text-red-200/80 mb-2">Impacto Anual Estimado</p>
+          <p className="text-2xl font-bold text-red-400">{formatCurrency(estimate.impactoAnual)}</p>
         </div>
       </div>
 
-      <div className="flex items-start gap-3 text-sm text-red-800 bg-red-100/50 p-4 rounded-lg">
-        <AlertTriangle className="w-5 h-5 flex-shrink-0" />
-        <p>
+      <div className="flex items-start gap-4 text-sm text-red-200/90 bg-red-500/10 ring-1 ring-red-500/20 p-5 rounded-xl">
+        <AlertTriangle className="w-5 h-5 flex-shrink-0 text-red-400 mt-0.5" />
+        <p className="leading-relaxed">
           A falta de sistemas integrados e automações adequadas pode estar custando à sua empresa até 
-          <strong> {formatCurrency(estimate.impactoAnual)} por ano</strong> entre desperdício operacional 
+          <strong className="text-red-400 font-bold"> {formatCurrency(estimate.impactoAnual)} por ano</strong> entre desperdício operacional 
           e oportunidades comerciais perdidas.
         </p>
       </div>

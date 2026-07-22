@@ -17,20 +17,20 @@ export function DimensionScoreCard({ scores }: DimensionScoreCardProps) {
   });
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-      <h3 className="text-lg font-semibold text-slate-800 mb-6">Detalhamento por Área</h3>
-      <div className="space-y-5">
+    <div className="bg-white/[0.03] ring-1 ring-white/10 shadow-glow rounded-3xl p-6 md:p-8 backdrop-blur">
+      <h3 className="text-xl font-bold text-white mb-6">Detalhamento por Área</h3>
+      <div className="space-y-6">
         {data.map((item, idx) => (
           <div key={idx}>
-            <div className="flex justify-between text-sm font-medium mb-1">
-              <span className="text-slate-700">{item.label}</span>
-              <span className={item.percentage < 50 ? 'text-orange-600' : 'text-blue-600'}>
+            <div className="flex justify-between text-sm font-medium mb-2">
+              <span className="text-white/80">{item.label}</span>
+              <span className={item.percentage < 50 ? 'text-neon-orange' : 'text-neon-cyan'}>
                 {item.percentage}%
               </span>
             </div>
-            <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
               <motion.div 
-                className={`h-full rounded-full ${item.percentage < 50 ? 'bg-orange-500' : 'bg-blue-600'}`}
+                className={`h-full rounded-full ${item.percentage < 50 ? 'bg-neon-orange shadow-[0_0_10px_rgba(255,142,62,0.5)]' : 'bg-neon-cyan shadow-[0_0_10px_rgba(62,231,255,0.5)]'}`}
                 initial={{ width: 0 }}
                 animate={{ width: `${item.percentage}%` }}
                 transition={{ duration: 1, delay: idx * 0.1 }}

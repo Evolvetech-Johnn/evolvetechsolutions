@@ -11,13 +11,13 @@ interface QuestionRendererProps {
 
 export function QuestionRenderer({ question, value, onChange, error }: QuestionRendererProps) {
   return (
-    <div className="mb-8 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+    <div className="mb-8 bg-white/[0.02] p-6 rounded-2xl border border-white/5 shadow-sm">
       <div className="mb-4">
-        <label className="block text-lg font-semibold text-slate-800 mb-1">
+        <label className="block text-lg font-semibold text-white mb-1">
           {question.title}
         </label>
         {question.description && (
-          <p className="text-sm text-slate-500">{question.description}</p>
+          <p className="text-sm text-white/60">{question.description}</p>
         )}
       </div>
 
@@ -36,7 +36,7 @@ export function QuestionRenderer({ question, value, onChange, error }: QuestionR
         )}
       </div>
 
-      {error && <p className="mt-2 text-sm text-red-600 flex items-center gap-1"><HelpCircle className="w-4 h-4" /> {error}</p>}
+      {error && <p className="mt-2 text-sm text-red-400 flex items-center gap-1"><HelpCircle className="w-4 h-4" /> {error}</p>}
     </div>
   );
 }
@@ -49,7 +49,7 @@ function ScaleInput({ q, value, onChange }: { q: ScaleQuestion; value: any; onCh
 
   return (
     <div>
-      <div className="flex justify-between text-xs text-slate-500 mb-2 px-1">
+      <div className="flex justify-between text-xs text-white/50 mb-2 px-1">
         <span>{q.minLabel}</span>
         <span>{q.maxLabel}</span>
       </div>
@@ -59,10 +59,10 @@ function ScaleInput({ q, value, onChange }: { q: ScaleQuestion; value: any; onCh
             key={opt}
             type="button"
             onClick={() => onChange(opt)}
-            className={`flex-1 py-3 rounded-lg border text-lg font-medium transition-colors ${
+            className={`flex-1 py-3 rounded-xl border text-lg font-medium transition-all ${
               value === opt
-                ? 'bg-blue-600 border-blue-600 text-white shadow-md'
-                : 'bg-slate-50 border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50'
+                ? 'bg-neon-cyan/20 border-neon-cyan text-neon-cyan shadow-[0_0_15px_rgba(62,231,255,0.3)]'
+                : 'bg-white/5 border-white/10 text-white/70 hover:border-white/30 hover:bg-white/10'
             }`}
           >
             {opt}
@@ -75,7 +75,7 @@ function ScaleInput({ q, value, onChange }: { q: ScaleQuestion; value: any; onCh
             <button
               type="button"
               onClick={() => onChange('nao_sei')}
-              className={`text-sm underline ${value === 'nao_sei' ? 'text-blue-600 font-semibold' : 'text-slate-400'}`}
+              className={`text-sm underline transition-colors ${value === 'nao_sei' ? 'text-neon-cyan font-semibold' : 'text-white/40 hover:text-white/60'}`}
             >
               Não sei informar
             </button>
@@ -84,7 +84,7 @@ function ScaleInput({ q, value, onChange }: { q: ScaleQuestion; value: any; onCh
             <button
               type="button"
               onClick={() => onChange('N/A')}
-              className={`text-sm underline ${value === 'N/A' ? 'text-blue-600 font-semibold' : 'text-slate-400'}`}
+              className={`text-sm underline transition-colors ${value === 'N/A' ? 'text-neon-cyan font-semibold' : 'text-white/40 hover:text-white/60'}`}
             >
               Não se aplica
             </button>
@@ -101,10 +101,10 @@ function SelectInput({ q, value, onChange }: { q: SelectQuestion; value: any; on
       {q.options.map((opt) => (
         <label
           key={opt.value}
-          className={`flex items-center p-4 border rounded-xl cursor-pointer transition-colors ${
+          className={`flex items-center p-4 border rounded-xl cursor-pointer transition-all ${
             value === opt.value
-              ? 'border-blue-600 bg-blue-50/50 shadow-sm'
-              : 'border-slate-200 bg-white hover:bg-slate-50'
+              ? 'border-neon-cyan bg-neon-cyan/10 shadow-[0_0_15px_rgba(62,231,255,0.15)]'
+              : 'border-white/10 bg-white/5 hover:bg-white/10'
           }`}
         >
           <input
@@ -113,9 +113,9 @@ function SelectInput({ q, value, onChange }: { q: SelectQuestion; value: any; on
             value={opt.value}
             checked={value === opt.value}
             onChange={() => onChange(opt.value)}
-            className="w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-600"
+            className="w-4 h-4 text-neon-cyan border-white/20 bg-transparent focus:ring-neon-cyan focus:ring-offset-ink-950"
           />
-          <span className={`ml-3 block font-medium ${value === opt.value ? 'text-blue-900' : 'text-slate-700'}`}>
+          <span className={`ml-3 block font-medium ${value === opt.value ? 'text-neon-cyan' : 'text-white/70'}`}>
             {opt.label}
           </span>
         </label>
@@ -125,13 +125,15 @@ function SelectInput({ q, value, onChange }: { q: SelectQuestion; value: any; on
 }
 
 function TextInput({ q, value, onChange }: { q: TextQuestion; value: any; onChange: (v: any) => void }) {
+  const baseClasses = "w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/30 shadow-sm focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan focus:outline-none transition-all p-4";
+  
   if (q.type === 'textarea') {
     return (
       <textarea
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}
         placeholder={q.placeholder}
-        className="w-full rounded-xl border-slate-200 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-4 min-h-[120px]"
+        className={`${baseClasses} min-h-[120px] resize-y`}
       />
     );
   }
@@ -142,17 +144,19 @@ function TextInput({ q, value, onChange }: { q: TextQuestion; value: any; onChan
       value={value || ''}
       onChange={(e) => onChange(e.target.value)}
       placeholder={q.placeholder}
-      className="w-full rounded-xl border-slate-200 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-4"
+      className={baseClasses}
     />
   );
 }
 
 function NumberInput({ q, value, onChange }: { q: NumberQuestion; value: any; onChange: (v: any) => void }) {
+  const baseClasses = "w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/30 shadow-sm focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan focus:outline-none transition-all p-4";
+
   return (
     <div className="relative">
       {q.type === 'currency' && (
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-          <span className="text-slate-500 font-medium">R$</span>
+          <span className="text-white/50 font-medium">R$</span>
         </div>
       )}
       <input
@@ -161,13 +165,11 @@ function NumberInput({ q, value, onChange }: { q: NumberQuestion; value: any; on
         onChange={(e) => onChange(e.target.value ? Number(e.target.value) : null)}
         placeholder={q.placeholder}
         min="0"
-        className={`w-full rounded-xl border-slate-200 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-4 ${
-          q.type === 'currency' ? 'pl-12' : ''
-        } ${q.type === 'percentage' ? 'pr-12' : ''}`}
+        className={`${baseClasses} ${q.type === 'currency' ? 'pl-12' : ''} ${q.type === 'percentage' ? 'pr-12' : ''}`}
       />
       {q.type === 'percentage' && (
         <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
-          <span className="text-slate-500 font-medium">%</span>
+          <span className="text-white/50 font-medium">%</span>
         </div>
       )}
     </div>

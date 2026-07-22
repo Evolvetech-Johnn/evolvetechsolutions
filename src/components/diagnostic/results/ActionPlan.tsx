@@ -18,27 +18,27 @@ export function ActionPlan({ recommendations }: ActionPlanProps) {
   if (longTerm.length === 0) longTerm.push({ solucaoRecomendada: "Escalar melhorias e treinar equipe", beneficioEsperado: "" } as any);
 
   return (
-    <div className="bg-slate-900 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+    <div className="bg-white/[0.03] ring-1 ring-white/10 shadow-glowStrong rounded-3xl p-6 sm:p-10 text-white relative overflow-hidden backdrop-blur">
       {/* Decorative bg */}
-      <div className="absolute top-0 right-0 -mt-16 -mr-16 text-slate-800 opacity-50">
+      <div className="absolute top-0 right-0 -mt-16 -mr-16 text-white/5 pointer-events-none">
         <Calendar className="w-64 h-64" />
       </div>
 
       <div className="relative z-10">
-        <h3 className="text-2xl font-bold mb-8">Plano Sugerido: Próximos 90 Dias</h3>
+        <h3 className="text-2xl font-bold mb-8 text-white">Plano Sugerido: Próximos 90 Dias</h3>
 
         <div className="space-y-8">
           <div className="flex gap-4">
             <div className="flex flex-col items-center">
-              <div className="w-4 h-4 rounded-full bg-blue-500 ring-4 ring-blue-500/20"></div>
-              <div className="w-0.5 h-full bg-slate-800 mt-2"></div>
+              <div className="w-4 h-4 rounded-full bg-neon-blue ring-4 ring-neon-blue/20 shadow-[0_0_10px_rgba(45,110,255,0.5)]"></div>
+              <div className="w-0.5 h-full bg-white/10 mt-2"></div>
             </div>
             <div className="pb-8">
-              <h4 className="font-bold text-blue-400 text-lg mb-2">0 a 30 dias: Fundação</h4>
-              <ul className="space-y-2 text-slate-300 text-sm">
+              <h4 className="font-bold text-neon-blue text-lg mb-2">0 a 30 dias: Fundação</h4>
+              <ul className="space-y-2 text-white/70 text-sm">
                 {shortTerm.slice(0, 3).map((item, idx) => (
                   <li key={idx} className="flex gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-slate-500 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-neon-blue/50 flex-shrink-0" />
                     <span>{item.solucaoRecomendada}</span>
                   </li>
                 ))}
@@ -48,20 +48,20 @@ export function ActionPlan({ recommendations }: ActionPlanProps) {
 
           <div className="flex gap-4">
             <div className="flex flex-col items-center">
-              <div className="w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-emerald-500/20"></div>
-              <div className="w-0.5 h-full bg-slate-800 mt-2"></div>
+              <div className="w-4 h-4 rounded-full bg-neon-cyan ring-4 ring-neon-cyan/20 shadow-[0_0_10px_rgba(62,231,255,0.5)]"></div>
+              <div className="w-0.5 h-full bg-white/10 mt-2"></div>
             </div>
             <div className="pb-8">
-              <h4 className="font-bold text-emerald-400 text-lg mb-2">31 a 60 dias: Implementação</h4>
-              <ul className="space-y-2 text-slate-300 text-sm">
+              <h4 className="font-bold text-neon-cyan text-lg mb-2">31 a 60 dias: Implementação</h4>
+              <ul className="space-y-2 text-white/70 text-sm">
                 {midTerm.slice(0, 3).map((item, idx) => (
                   <li key={idx} className="flex gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-slate-500 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-neon-cyan/50 flex-shrink-0" />
                     <span>{item.solucaoRecomendada}</span>
                   </li>
                 ))}
                 <li className="flex gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-slate-500 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-neon-cyan/50 flex-shrink-0" />
                   <span>Prototipar dashboard ou sistema prioritário</span>
                 </li>
               </ul>
@@ -70,23 +70,23 @@ export function ActionPlan({ recommendations }: ActionPlanProps) {
 
           <div className="flex gap-4">
             <div className="flex flex-col items-center">
-              <div className="w-4 h-4 rounded-full bg-purple-500 ring-4 ring-purple-500/20"></div>
+              <div className="w-4 h-4 rounded-full bg-neon-purple ring-4 ring-neon-purple/20 shadow-[0_0_10px_rgba(188,45,255,0.5)]"></div>
             </div>
             <div>
-              <h4 className="font-bold text-purple-400 text-lg mb-2">61 a 90 dias: Expansão</h4>
-              <ul className="space-y-2 text-slate-300 text-sm">
+              <h4 className="font-bold text-neon-purple text-lg mb-2">61 a 90 dias: Expansão</h4>
+              <ul className="space-y-2 text-white/70 text-sm">
                 <li className="flex gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-slate-500 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-neon-purple/50 flex-shrink-0" />
                   <span>Colocar solução em produção e treinar usuários</span>
                 </li>
                 {longTerm.slice(0, 2).map((item, idx) => (
                   <li key={idx} className="flex gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-slate-500 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-neon-purple/50 flex-shrink-0" />
                     <span>{item.solucaoRecomendada}</span>
                   </li>
                 ))}
                 <li className="flex gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-slate-500 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-neon-purple/50 flex-shrink-0" />
                   <span>Medir ganhos e planejar próxima fase</span>
                 </li>
               </ul>

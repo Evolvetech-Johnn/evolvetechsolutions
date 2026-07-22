@@ -4,153 +4,133 @@ import { Lock, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 interface LeadCaptureProps {
   overallScore: number;
-  onSubmit: (lead: Lead) => void;
-  submitting: boolean;
+  onSubmit: (data: LeadData) => void;
+  submitting?: boolean;
 }
 
-export function LeadCapture({ overallScore, onSubmit, submitting }: LeadCaptureProps) {
-  const [formData, setFormData] = useState<Lead>({
+export function LeadCapture({ overallScore, onSubmit, submitting = false }: LeadCaptureProps) {
+  const [formData, setFormData] = useState<LeadData>({
     nome: '',
-    cargo: '',
+    nomeEmpresa: '',
     email: '',
     telefone: '',
-    autorizacaoContato: true,
-    aceitePrivacidade: false,
+    cargo: ''
   });
-
-  const [errors, setErrors] = useState<Partial<Record<keyof Lead, string>>>({});
-
-  const validate = () => {
-    const newErrors: Partial<Record<keyof Lead, string>> = {};
-    if (!formData.nome.trim()) newErrors.nome = 'Nome é obrigatório';
-    if (!formData.cargo.trim()) newErrors.cargo = 'Cargo é obrigatório';
-    if (!formData.email.trim() || !/^\S+@\S+\.\S+$/.test(formData.email)) {
-      newErrors.email = 'E-mail corporativo inválido';
-    }
-    if (!formData.telefone.trim()) newErrors.telefone = 'Telefone é obrigatório';
-    if (!formData.aceitePrivacidade) {
-      newErrors.aceitePrivacidade = 'Você deve aceitar a Política de Privacidade';
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  const [error, setError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (validate()) {
-      onSubmit(formData);
+    if (!formData.nome || !formData.email || !formData.telefone || !formData.cargo || !formData.nomeEmpresa) {
+      setError('Por favor, preencha todos os campos obrigatórios.');
+      return;
     }
+    setError('');
+    onSubmit(formData);
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-xl relative overflow-hidden">
-        {/* Background Accent */}
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
-        
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-blue-50 text-blue-600 mb-4 ring-8 ring-blue-50/50">
-            <span className="text-3xl font-extrabold">{overallScore}</span>
-            <span className="text-sm font-medium ml-1">/100</span>
+    <div className="flex flex-col items-center justify-center p-4 min-h-[60vh] relative">
+      <div className="max-w-xl w-full bg-white/[0.03] ring-1 ring-white/10 shadow-glowStrong p-8 md:p-12 rounded-3xl backdrop-blur relative overflow-hidden">
+
+        {/* Glow halo */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-neon-cyan opacity-[0.05] rounded-full blur-3xl -mr-20 -mt-20"></div>
+
+        <div className="text-center mb-8 relative z-10">
+          <div className="w-16 h-16 bg-neon-green/10 text-neon-green rounded-full flex items-center justify-center mx-auto mb-6 ring-1 ring-neon-green/30 shadow-[0_0_20px_rgba(59,255,182,0.2)]">
+            <CheckCircle2 className="w-8 h-8" />
           </div>
-          <h2 className="text-2xl font-bold text-slate-900">Seu diagnóstico está pronto!</h2>
-          <p className="mt-2 text-slate-600">
-            Calculamos sua nota geral. Preencha os dados abaixo para liberar o relatório detalhado,
-            os gargalos identificados e seu plano de ação.
+          <h2 className="text-2xl font-bold text-white">Seu diagnóstico está pronto!</h2>
+          <p className="text-white/60 mt-3">
+            Sua nota prévia é <strong>{overallScore}/100</strong>. Para acessar o relatório completo com estimativa de perdas
+            financeiras e plano de ação de 90 dias, informe seus dados:
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Nome completo</label>
-              <input
-                type="text"
-                className={`w-full rounded-xl border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3 ${errors.nome ? 'border-red-300 ring-red-100' : ''}`}
-                value={formData.nome}
-                onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-              />
-              {errors.nome && <p className="mt-1 text-xs text-red-600">{errors.nome}</p>}
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Cargo</label>
-              <input
-                type="text"
-                className={`w-full rounded-xl border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3 ${errors.cargo ? 'border-red-300 ring-red-100' : ''}`}
-                value={formData.cargo}
-                onChange={(e) => setFormData({ ...formData, cargo: e.target.value })}
-              />
-              {errors.cargo && <p className="mt-1 text-xs text-red-600">{errors.cargo}</p>}
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
+          <div>
+            <label className="block text-sm font-medium text-white/70 mb-1">Nome Completo *</label>
+            <input
+              type="text"
+              required
+              value={formData.nome}
+              onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+              className="w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/30 shadow-sm focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan focus:outline-none p-3.5 transition-all"
+              placeholder="Ex: João da Silva"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-white/70 mb-1">Nome da Empresa *</label>
+            <input
+              type="text"
+              required
+              value={formData.nomeEmpresa}
+              onChange={(e) => setFormData({ ...formData, nomeEmpresa: e.target.value })}
+              className="w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/30 shadow-sm focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan focus:outline-none p-3.5 transition-all"
+              placeholder="Sua Empresa LTDA"
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">E-mail corporativo</label>
+              <label className="block text-sm font-medium text-white/70 mb-1">E-mail Corporativo *</label>
               <input
                 type="email"
-                className={`w-full rounded-xl border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3 ${errors.email ? 'border-red-300 ring-red-100' : ''}`}
+                required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/30 shadow-sm focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan focus:outline-none p-3.5 transition-all"
+                placeholder="joao@empresa.com.br"
               />
-              {errors.email && <p className="mt-1 text-xs text-red-600">{errors.email}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Telefone / WhatsApp</label>
+              <label className="block text-sm font-medium text-white/70 mb-1">WhatsApp *</label>
               <input
-                type="text"
-                className={`w-full rounded-xl border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3 ${errors.telefone ? 'border-red-300 ring-red-100' : ''}`}
+                type="tel"
+                required
                 value={formData.telefone}
                 onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-                placeholder="(00) 00000-0000"
+                className="w-full rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/30 shadow-sm focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan focus:outline-none p-3.5 transition-all"
+                placeholder="(11) 99999-9999"
               />
-              {errors.telefone && <p className="mt-1 text-xs text-red-600">{errors.telefone}</p>}
             </div>
           </div>
 
-          <div className="pt-4 space-y-4">
-            <label className="flex items-start">
-              <input
-                type="checkbox"
-                className="mt-1 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
-                checked={formData.aceitePrivacidade}
-                onChange={(e) => setFormData({ ...formData, aceitePrivacidade: e.target.checked })}
-              />
-              <span className="ml-3 text-sm text-slate-600">
-                Li e concordo com a <a href="/privacidade" target="_blank" className="text-blue-600 hover:underline">Política de Privacidade</a>.
-              </span>
-            </label>
-            {errors.aceitePrivacidade && <p className="mt-0 text-xs text-red-600 pl-7">{errors.aceitePrivacidade}</p>}
-
-            <label className="flex items-start">
-              <input
-                type="checkbox"
-                className="mt-1 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
-                checked={formData.autorizacaoContato}
-                onChange={(e) => setFormData({ ...formData, autorizacaoContato: e.target.checked })}
-              />
-              <span className="ml-3 text-sm text-slate-600">
-                Autorizo o contato de um consultor da EVOLVETECH SOLUTIONS para analisar meus resultados.
-              </span>
-            </label>
+          <div>
+            <label className="block text-sm font-medium text-white/70 mb-1">Cargo *</label>
+            <select
+              required
+              value={formData.cargo}
+              onChange={(e) => setFormData({ ...formData, cargo: e.target.value })}
+              className="w-full rounded-xl border border-white/10 bg-ink-950 text-white shadow-sm focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan focus:outline-none p-3.5 transition-all"
+            >
+              <option value="" disabled className="text-white/40">Selecione seu cargo</option>
+              <option value="Sócio/Fundador">Sócio / Fundador</option>
+              <option value="Diretor">Diretor / C-Level</option>
+              <option value="Gerente">Gerente / Coordenador</option>
+              <option value="Analista">Analista / Especialista</option>
+              <option value="Outro">Outro</option>
+            </select>
           </div>
 
-          <div className="pt-6">
+          {error && <p className="text-red-400 text-sm">{error}</p>}
+
+          <div className="pt-2">
             <button
               type="submit"
               disabled={submitting}
-              className="w-full flex items-center justify-center px-6 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-700 shadow-md transition-all disabled:opacity-70"
+              className="w-full flex items-center justify-center px-6 py-4 rounded-xl text-ink-950 font-bold bg-neon-cyan hover:bg-white transition-all shadow-glow hover:shadow-glowStrong disabled:opacity-50"
             >
-              {submitting ? (
-                "Gerando relatório..."
-              ) : (
-                <>
-                  Ver Relatório Completo <ArrowRight className="ml-2 w-5 h-5" />
-                </>
-              )}
+              {submitting ? 'Gerando relatório...' : 'Ver meu Diagnóstico e Perdas Financeiras'}
+              {!submitting && <Lock className="ml-2 w-4 h-4 opacity-70" />}
             </button>
-            <p className="mt-4 text-xs text-center text-slate-500 flex items-center justify-center gap-1">
-              <Lock className="w-3 h-3" /> Seus dados estão seguros
+          </div>
+
+          <div className="mt-4 text-xs text-white/40 flex items-start gap-2 leading-relaxed">
+            <Lock className="w-4 h-4 flex-shrink-0 mt-0.5" />
+            <p>
+              Garantimos 100% de sigilo sobre os dados inseridos. Ao continuar, você concorda com
+              nossa Política de Privacidade e em receber contatos comerciais da EVOLVETECH SOLUTIONS.
             </p>
           </div>
         </form>
