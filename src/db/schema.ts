@@ -10,3 +10,15 @@ export const portfolioItems = pgTable("portfolio_items", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
+
+export const teamProfiles = pgTable("team_profiles", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  slug: text("slug").unique().notNull(),
+  name: text("name").notNull(),
+  role: text("role").notNull(),
+  description: text("description"),
+  imageUrl: text("image_url"),
+  orderIndex: integer("order_index").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
