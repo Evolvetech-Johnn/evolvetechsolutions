@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Activity, Clock, ShieldCheck, Target, ArrowRight } from 'lucide-react';
+import { Activity, Clock, ShieldCheck, Target, ArrowRight, BadgeCheck, Zap, LineChart } from 'lucide-react';
 
 interface DiagnosticLandingProps {
   onStart: () => void;
