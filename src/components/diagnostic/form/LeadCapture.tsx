@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Lead } from '../../../types/diagnostic';
+import { LeadData } from '../../../types/lead';
 import { Lock, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 interface LeadCaptureProps {
