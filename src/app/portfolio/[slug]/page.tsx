@@ -1,7 +1,9 @@
 import React from 'react';
 import { PortfolioGallery } from '@/components/portfolio/PortfolioGallery';
-import { BadgeCheck, ArrowRight } from 'lucide-react';
+import { BadgeCheck, ArrowRight, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import { notFound } from 'next/navigation';
 
 async function getProfile(slug: string) {
@@ -43,12 +45,21 @@ export default async function DynamicPortfolio({ params }: { params: Promise<{ s
 
   return (
     <div className="min-h-screen bg-ink-950 text-white relative">
+      <Navbar />
+      
       <div className="absolute inset-0 bg-hero-grid opacity-30 mix-blend-screen pointer-events-none" />
       <div className="absolute inset-0 bg-soft-noise opacity-30 pointer-events-none mix-blend-overlay" />
       
       {/* Header Section */}
       <section className="relative z-10 pt-32 pb-16 px-6 max-w-7xl mx-auto text-center md:text-left flex flex-col md:flex-row items-center gap-12">
         <div className="flex-1">
+          <Link 
+            href="/#equipe" 
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-neon-cyan transition-colors mb-6 font-medium"
+          >
+            <ArrowLeft className="w-4 h-4" /> Voltar para a Equipe
+          </Link>
+          <br />
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon-cyan/10 border border-neon-cyan/20 text-neon-cyan text-sm font-semibold mb-6">
             <BadgeCheck className="w-4 h-4" />
             {profile.role}
@@ -90,6 +101,8 @@ export default async function DynamicPortfolio({ params }: { params: Promise<{ s
         
         <PortfolioGallery slug={slug} />
       </section>
+
+      <Footer />
     </div>
   );
 }
