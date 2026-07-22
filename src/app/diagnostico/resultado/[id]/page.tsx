@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useEffect, useState, use } from 'react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import { DiagnosticResultView } from '../../../../components/diagnostic/DiagnosticResultView';
 import { DiagnosticResult } from '../../../../types/diagnostic';
 import { diagnosticApi } from '../../../../services/diagnosticApi';
-import { notFound } from 'next/navigation';
 import { AlertCircle } from 'lucide-react';
 
 export default function DiagnosticResultPage({ params }: { params: Promise<{ id: string }> }) {
@@ -47,30 +48,46 @@ export default function DiagnosticResultPage({ params }: { params: Promise<{ id:
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-ink-950 flex-col gap-4">
-        <div className="w-8 h-8 border-4 border-neon-cyan border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-white/60 font-medium">Buscando seu relatório...</p>
+      <div className="flex flex-col min-h-screen bg-ink-950">
+        <Navbar />
+        <main className="flex-grow flex items-center justify-center flex-col gap-4">
+          <div className="w-8 h-8 border-4 border-neon-cyan border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-white/60 font-medium">Buscando seu relatório...</p>
+        </main>
+        <Footer />
       </div>
     );
   }
 
   if (error || !result) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-ink-950 p-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-hero-grid opacity-30 mix-blend-screen pointer-events-none" />
-        <div className="relative max-w-md bg-white/[0.03] ring-1 ring-white/10 shadow-glowStrong p-8 rounded-2xl backdrop-blur text-center">
-          <div className="w-12 h-12 bg-red-500/20 text-red-400 rounded-full flex items-center justify-center mx-auto mb-4 ring-1 ring-red-500/30">
-            <AlertCircle className="w-6 h-6" />
+      <div className="flex flex-col min-h-screen bg-ink-950">
+        <Navbar />
+        <main className="flex-grow flex items-center justify-center p-4 relative overflow-hidden">
+          <div className="absolute inset-0 bg-hero-grid opacity-30 mix-blend-screen pointer-events-none" />
+          <div className="relative max-w-md bg-white/[0.03] ring-1 ring-white/10 shadow-glowStrong p-8 rounded-2xl backdrop-blur text-center">
+            <div className="w-12 h-12 bg-red-500/20 text-red-400 rounded-full flex items-center justify-center mx-auto mb-4 ring-1 ring-red-500/30">
+              <AlertCircle className="w-6 h-6" />
+            </div>
+            <h2 className="text-xl font-bold text-white mb-2">Relatório não encontrado</h2>
+            <p className="text-white/60 mb-6">Não conseguimos localizar o diagnóstico solicitado. Ele pode ter expirado ou o link é inválido.</p>
+            <a href="/diagnostico" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-ink-950 bg-neon-cyan hover:bg-white w-full transition-colors shadow-glow">
+              Fazer Novo Diagnóstico
+            </a>
           </div>
-          <h2 className="text-xl font-bold text-white mb-2">Relatório não encontrado</h2>
-          <p className="text-white/60 mb-6">Não conseguimos localizar o diagnóstico solicitado. Ele pode ter expirado ou o link é inválido.</p>
-          <a href="/diagnostico" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-ink-950 bg-neon-cyan hover:bg-white w-full transition-colors shadow-glow">
-            Fazer Novo Diagnóstico
-          </a>
-        </div>
+        </main>
+        <Footer />
       </div>
     );
   }
 
-  return <DiagnosticResultView result={result} />;
+  return (
+    <div className="flex flex-col min-h-screen bg-ink-950">
+      <Navbar />
+      <main className="flex-grow">
+        <DiagnosticResultView result={result} />
+      </main>
+      <Footer />
+    </div>
+  );
 }

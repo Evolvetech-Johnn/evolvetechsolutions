@@ -61,13 +61,6 @@ export function DiagnosticWizard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6">
-      <div className="max-w-3xl mx-auto">
-        {!isLeadStep && (
-          <div className="mb-8">
-            <ProgressBar currentStep={session.currentStep} totalSteps={diagnosticSteps.length} />
-          </div>
-        )}
     <div className="min-h-screen bg-ink-950 flex flex-col relative overflow-hidden">
       <div className="absolute inset-0 bg-hero-grid opacity-30 mix-blend-screen pointer-events-none" />
       <div className="flex-grow flex items-center justify-center p-4 relative z-10">
