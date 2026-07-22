@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/crm", label: "CRM" },
   { href: "/#servicos", label: "Serviços" },
   { href: "/#portfolio", label: "Portfólio" },
+  { href: "/#equipe", label: "Equipe" },
   { href: "/#processo", label: "Processo" },
   { href: "/#contato", label: "Contato" }
 ];

@@ -9,6 +9,7 @@ import Hero from "@/sections/Hero";
 import ProblemSolution from "@/sections/ProblemSolution";
 import Services from "@/sections/Services";
 import Portfolio from "@/sections/Portfolio";
+import Team from "@/sections/Team";
 import SocialProof from "@/sections/SocialProof";
 import Differentials from "@/sections/Differentials";
 import Process from "@/sections/Process";
@@ -25,6 +26,7 @@ export default function Site() {
         <ProblemSolution />
         <Services />
         <Portfolio />
+        <Team />
         <SocialProof />
         <Differentials />
         <Process />

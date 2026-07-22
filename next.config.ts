@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com; style-src 'self' 'unsafe-inline';"
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://vercel.live; img-src 'self' data: https://www.google-analytics.com https://*.supabase.co; connect-src 'self' https://www.google-analytics.com https://*.supabase.co; style-src 'self' 'unsafe-inline';"
           }
         ]
       }
