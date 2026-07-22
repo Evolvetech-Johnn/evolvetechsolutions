@@ -63,8 +63,8 @@ export function DiagnosticWizard() {
   return (
     <div className="min-h-screen bg-ink-950 flex flex-col relative overflow-hidden">
       <div className="absolute inset-0 bg-hero-grid opacity-30 mix-blend-screen pointer-events-none" />
-      <div className="flex-grow flex items-center justify-center p-4 relative z-10">
-        <div className="max-w-3xl w-full bg-white/[0.03] ring-1 ring-white/10 shadow-glowStrong rounded-3xl p-6 md:p-10 backdrop-blur">
+      <div className="flex-grow flex items-start justify-center p-4 pt-8 md:pt-16 relative z-10">
+        <div className="max-w-3xl w-full bg-white/[0.03] ring-1 ring-white/10 shadow-glowStrong rounded-3xl p-6 md:p-10 backdrop-blur min-h-[600px]">
           {!isLeadStep && (
             <div className="mb-8">
               <ProgressBar currentStep={session.currentStep} totalSteps={diagnosticSteps.length} />
