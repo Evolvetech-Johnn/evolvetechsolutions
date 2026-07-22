@@ -58,6 +58,9 @@ export default function Footer() {
             <a href="/#servicos" className="hover:text-white">
               Automações e integrações
             </a>
+            <a href="/diagnostico" className="hover:text-white text-blue-400 font-medium">
+              Fazer Diagnóstico Gratuito
+            </a>
             <div className="mt-3 text-xs font-semibold tracking-wide text-white/60">
               LEGAL
             </div>

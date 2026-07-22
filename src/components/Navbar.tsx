@@ -59,7 +59,7 @@ export default function Navbar() {
             </nav>
             <div className="flex items-center gap-2">
               <ButtonLink
-                href="/#contato"
+                href="/diagnostico"
                 variant="secondary"
                 size="sm"
                 aria-label="Diagnóstico Gratuito"

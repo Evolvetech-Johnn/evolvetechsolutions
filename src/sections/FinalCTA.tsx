@@ -48,11 +48,11 @@ export default function FinalCTA() {
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href={wa} target="_blank" rel="noreferrer" size="lg">
-                Quero essa conversa
+              <ButtonLink href="/diagnostico" size="lg">
+                Fazer Diagnóstico Gratuito
               </ButtonLink>
-              <ButtonLink href="/#servicos" variant="secondary" size="lg">
-                Ver serviços
+              <ButtonLink href={wa} target="_blank" rel="noreferrer" variant="secondary" size="lg">
+                Falar com consultor
               </ButtonLink>
             </div>
 
