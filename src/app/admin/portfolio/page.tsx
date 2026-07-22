@@ -19,6 +19,7 @@ export default function AdminPortfolioPage() {
     description: '',
     category: '',
     imageUrl: '',
+    teamProfileSlug: '',
   });
 
   // Formulário Equipe
@@ -111,7 +112,7 @@ export default function AdminPortfolioPage() {
       });
       
       if (res.ok) {
-        setFormData({ title: '', description: '', category: '', imageUrl: '' });
+        setFormData({ title: '', description: '', category: '', imageUrl: '', teamProfileSlug: '' });
         setFile(null);
         setEditingProjectId(null);
         fetchItems();
@@ -134,6 +135,7 @@ export default function AdminPortfolioPage() {
       description: item.description || '',
       category: item.category,
       imageUrl: item.imageUrl,
+      teamProfileSlug: item.teamProfileSlug || '',
     });
   };
 
@@ -286,6 +288,17 @@ export default function AdminPortfolioPage() {
                   onChange={(e) => setFormData({...formData, category: e.target.value})}
                   className="w-full bg-ink-900 border border-white/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-neon-cyan outline-none"
                 />
+                <select
+                  required
+                  value={formData.teamProfileSlug}
+                  onChange={(e) => setFormData({...formData, teamProfileSlug: e.target.value})}
+                  className="w-full bg-ink-900 border border-white/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-neon-cyan outline-none text-gray-300"
+                >
+                  <option value="" disabled>Selecione o dono do projeto</option>
+                  {teamProfiles.map(p => (
+                    <option key={p.slug} value={p.slug}>{p.name}</option>
+                  ))}
+                </select>
                 <div className="space-y-2">
                   <label className="text-sm text-gray-400">Opção 1: Fazer upload (Supabase Storage)</label>
                   <input 
@@ -310,7 +323,7 @@ export default function AdminPortfolioPage() {
                     {uploading ? 'Salvando...' : (editingProjectId ? 'Atualizar Projeto' : 'Salvar Projeto')}
                   </button>
                   {editingProjectId && (
-                    <button type="button" onClick={() => { setEditingProjectId(null); setFormData({ title: '', description: '', category: '', imageUrl: ''}); }} className="px-6 bg-ink-800 text-white font-bold py-3 rounded-xl hover:bg-ink-700 transition-colors">
+                    <button type="button" onClick={() => { setEditingProjectId(null); setFormData({ title: '', description: '', category: '', imageUrl: '', teamProfileSlug: ''}); }} className="px-6 bg-ink-800 text-white font-bold py-3 rounded-xl hover:bg-ink-700 transition-colors">
                       Cancelar
                     </button>
                   )}

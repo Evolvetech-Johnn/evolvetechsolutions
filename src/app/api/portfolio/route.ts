@@ -1,11 +1,19 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/db';
 import { portfolioItems } from '@/db/schema';
-import { desc } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
-    const items = await db.select().from(portfolioItems).orderBy(desc(portfolioItems.createdAt));
+    const { searchParams } = new URL(req.url);
+    const slug = searchParams.get('slug');
+
+    let items;
+    if (slug) {
+      items = await db.select().from(portfolioItems).where(eq(portfolioItems.teamProfileSlug, slug)).orderBy(desc(portfolioItems.createdAt));
+    } else {
+      items = await db.select().from(portfolioItems).orderBy(desc(portfolioItems.createdAt));
+    }
     return NextResponse.json(items);
   } catch (error) {
     console.error('Error fetching portfolio items:', error);
@@ -16,13 +24,14 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { title, description, category, imageUrl, orderIndex } = body;
+    const { title, description, category, imageUrl, orderIndex, teamProfileSlug } = body;
 
     const newItem = await db.insert(portfolioItems).values({
       title,
       description,
       category,
       imageUrl,
+      teamProfileSlug: teamProfileSlug || null,
       orderIndex: orderIndex || 0,
     }).returning();
 

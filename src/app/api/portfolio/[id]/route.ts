@@ -7,13 +7,14 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
   try {
     const { id } = await params;
     const body = await req.json();
-    const { title, description, category, imageUrl, orderIndex } = body;
+    const { title, description, category, imageUrl, orderIndex, teamProfileSlug } = body;
 
     const updatedItem = await db.update(portfolioItems).set({
       title,
       description,
       category,
       imageUrl,
+      teamProfileSlug: teamProfileSlug || null,
       orderIndex: orderIndex || 0,
       updatedAt: new Date(),
     }).where(eq(portfolioItems.id, id)).returning();

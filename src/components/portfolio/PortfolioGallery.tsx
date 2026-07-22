@@ -3,14 +3,15 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export function PortfolioGallery() {
+export function PortfolioGallery({ slug }: { slug?: string }) {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchPortfolio() {
       try {
-        const res = await fetch('/api/portfolio');
+        const url = slug ? `/api/portfolio?slug=${slug}` : '/api/portfolio';
+        const res = await fetch(url);
         const data = await res.json();
         setItems(data);
       } catch (error) {
@@ -20,7 +21,7 @@ export function PortfolioGallery() {
       }
     }
     fetchPortfolio();
-  }, []);
+  }, [slug]);
 
   if (loading) {
     return (

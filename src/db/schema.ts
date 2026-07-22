@@ -6,6 +6,7 @@ export const portfolioItems = pgTable("portfolio_items", {
   description: text("description"),
   category: text("category").notNull(),
   imageUrl: text("image_url").notNull(),
+  teamProfileSlug: text("team_profile_slug").references(() => teamProfiles.slug),
   orderIndex: integer("order_index").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),

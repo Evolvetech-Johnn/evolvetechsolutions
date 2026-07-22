@@ -88,7 +88,7 @@ export default async function DynamicPortfolio({ params }: { params: Promise<{ s
           <p className="text-gray-400">Uma seleção dos melhores trabalhos recentes.</p>
         </div>
         
-        <PortfolioGallery />
+        <PortfolioGallery slug={slug} />
       </section>
     </div>
   );
